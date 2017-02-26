@@ -51,7 +51,7 @@ parser = WebhookParser(channel_secret)
 def PttBeauty():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
     soup = BeautifulSoup(TargetURI, "html.parser")
-    print soup.prettify()
+    print("soup>>>" + soup.prettify())
     return 'OK'
 
 def callback():
