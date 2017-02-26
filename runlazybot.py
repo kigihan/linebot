@@ -324,7 +324,7 @@ def PttBeautyCarousel():
                 CarouselColumn(
                     thumbnail_image_url = article_list_sorted[1][3],
                     title = "文章1",
-                    text = "(" + article_list_sorted[1][0] + "推) " + article_list_sorted[1][2],
+                    text = "(" + str(article_list_sorted[1][0]) + "推) " + article_list_sorted[1][2],
                     actions = [
                         URITemplateAction(
                             label = "連結1",
@@ -335,7 +335,7 @@ def PttBeautyCarousel():
                 CarouselColumn(
                     thumbnail_image_url = article_list_sorted[2][3],
                     title = "文章1",
-                    text = "(" + article_list_sorted[2][0] + "推) " + article_list_sorted[2][2],
+                    text = "(" + str(article_list_sorted[2][0]) + "推) " + article_list_sorted[2][2],
                     actions = [
                         URITemplateAction(
                             label = "連結1",
@@ -346,7 +346,7 @@ def PttBeautyCarousel():
                 CarouselColumn(
                     thumbnail_image_url = article_list_sorted[3][3],
                     title = "文章1",
-                    text = "(" + article_list_sorted[3][0] + "推) " + article_list_sorted[3][2],
+                    text = "(" + str(article_list_sorted[3][0]) + "推) " + article_list_sorted[3][2],
                     actions = [
                         URITemplateAction(
                             label = "連結1",
@@ -357,7 +357,7 @@ def PttBeautyCarousel():
                 CarouselColumn(
                     thumbnail_image_url = article_list_sorted[4][3],
                     title = "文章1",
-                    text = "(" + article_list_sorted[4][0] + "推) " + article_list_sorted[4][2],
+                    text = "(" + str(article_list_sorted[4][0]) + "推) " + article_list_sorted[4][2],
                     actions = [
                         URITemplateAction(
                             label = "連結1",
