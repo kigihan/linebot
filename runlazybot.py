@@ -102,7 +102,8 @@ def callback():
                     )
                 )
                 line_bot_api.reply_message(
-                event.reply_token,all_template_message
+                event.reply_token,
+                all_template_message
                 )
 
             if event.message.text.lower() == '表特':
@@ -110,6 +111,13 @@ def callback():
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
+                )
+
+            if event.message.text.lower() == 'beau':
+                all_template_message = PttBeautyCarousel()
+                line_bot_api.reply_message(
+                event.reply_token,
+                all_template_message
                 )
 
     return 'OK'
@@ -139,6 +147,57 @@ def crawPage(url, push_rate, soup):
                     comment_rate = 0
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
+                    print("        HighPost: " + URL)
+                    res_post = requests.get(URL, verify=False)
+                    soup_post = BeautifulSoup(res_post.text, "html.parser")
+                    img_uri_num = 5
+                    img_links_list = []
+                    for img_uri_num in range(img_uri_num, 10, +1):
+                        img_links = soup_post.select("a")[img_uri_num]["href"]
+                        print(img_links)
+                        if img_links.endswith(".jpg"):
+                            img_links_list.append(img_links)
+                    # for link in img_links:
+                    #     print("    start FOR")
+                    #     print(link)
+                    #     if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
+                    #         print("    if(re.match): " + link)
+                    #         if not link.endswith(".jpg"):
+                    #             link += ".jpg"
+                    #         img_links_list.append(link["href"])
+                    #         print(link)
+
+                    article_list.append((int(comment_rate), URL, title, img_links_list[0]))
+                    sorted(article_list, key = lambda x : x[0], reverse = True)
+        except:
+            # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
+            # print('本文已被刪除')
+            print('delete')
+
+def crawPageCarousel(url, push_rate, soup):
+    for r_ent in soup.find_all(class_="r-ent"):
+        try:
+            # 先得到每篇文章的篇url
+            link = r_ent.find('a')['href']
+            if 'M.1430099938.A.3B7' in link:
+                continue
+            comment_rate = ""
+            if (link):
+                # 確定得到url再去抓 標題 以及 推文數
+                title = r_ent.find(class_="title").text.strip()
+                rate = r_ent.find(class_="nrec").text
+                URL = 'https://www.ptt.cc' + link
+                #print("........" + URL)
+                if (rate):
+                    comment_rate = rate
+                    if rate.find(u'爆') > -1:
+                        comment_rate = 100
+                    if rate.find('X') > -1:
+                        comment_rate = -1 * int(rate[1])
+                else:
+                    comment_rate = 0
+                # 比對推文數
+                if int(comment_rate) >= 30:
                     print("        HighPost: " + URL)
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
@@ -204,6 +263,45 @@ def PttBeauty():
         all_template_message += data
     return all_template_message
 
+def PttBeautyCarousel():
+    TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
+    res = requests.get(TargetURI, verify=False)
+    #print(res.text)
+    #ResContent = res.text
+    soup = BeautifulSoup(res.text, "html.parser")
+    #print("    soup>>>" + soup.prettify())
+    #爬最新頁數
+    LatestPageURI = soup.select('.btn.wide')[1]['href']
+    #print("    URI>>> " + LatestPageURI)
+    LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
+    #print("    PageNum>>> " + LatestPageNum.group(1))
+    LPN = int(LatestPageNum.group(1)) + 1
+    push_rate = 50  # 推文
+    page_uri_list = []
+    for page in range(LPN, LPN-3, -1):
+        page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
+        page_uri_list.append(page_uri)
+    #print("    PageURI>>> " + page_uri)
+    #print(page_uri_list)
+    while page_uri_list:
+        index = page_uri_list.pop(0)
+        #print("    try to parse: " + index)
+        res = requests.get(index, verify=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
+        if (soup.title.text.find('Service Temporarily') > -1):
+            page_uri_list.append(index)
+            # print u'error_URL:',index
+            # time.sleep(1)
+        else:
+            crawPageCarousel(index, push_rate, soup)
+            # print u'OK_URL:', index
+            # time.sleep(0.05)
+    all_template_message = ''
+    for article in article_list:
+        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
+        all_template_message += data
+    return all_template_message
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
