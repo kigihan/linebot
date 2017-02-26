@@ -156,7 +156,8 @@ def crawPage(url, push_rate, soup):
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
                     img_post = BeautifulSoup(URL.text, "html.parser")
-                    imgURI = img_post.find_all(href=re.compile(".jpg"))
+                    imgURI = img_post.find_all(href=re.compile(".jpg"))[0]
+                    print(imgURI)
                     article_list.append(int(comment_rate), URL, title, imgURI)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
@@ -170,7 +171,8 @@ def PttBeauty():
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "html.parser")
     #print("    soup>>>" + soup.prettify())
-    LatestPageURI = soup.select('.btn.wide')[1]['href']
+    get_PageURI = soup.select('.btn.wide')[1]['href']
+    LatestPageURI = int(get_PageURI) + 1
     #print("    URI>>> " + LatestPageURI)
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     print("    PageNum>>> " + LatestPageNum.group(1))
