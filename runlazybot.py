@@ -141,19 +141,23 @@ def crawPage(url, push_rate, soup):
                     print("        HighPost: " + URL)
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
-                    img_links = soup_post.select("a")[6]["href"]
-                    print(img_links)
+                    img_uri_num = 5
                     img_links_list = []
-                    for link in img_links:
-                        print("    start FOR")
-                        print(link)
-                        if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
-                            print("    if(re.match): " + link)
-                            if not link.endswith(".jpg"):
-                                link += ".jpg"
-                            img_links_list.append(link["href"])
-                            print(link)
-                    article_list.append((int(comment_rate), URL, title, img_links_list))
+                    for img_uri_num in range(img_uri_num, 10, +1):
+                        img_links = soup_post.select("a")[img_uri_num]["href"]
+                        print(img_links)
+                        img_links_list += img_links
+                    # for link in img_links:
+                    #     print("    start FOR")
+                    #     print(link)
+                    #     if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
+                    #         print("    if(re.match): " + link)
+                    #         if not link.endswith(".jpg"):
+                    #             link += ".jpg"
+                    #         img_links_list.append(link["href"])
+                    #         print(link)
+
+                    article_list.append((int(comment_rate), URL, title, img_links))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
