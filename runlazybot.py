@@ -296,9 +296,13 @@ def PttBeautyCarousel():
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            crawPageCarousel(index, push_rate, soup)
+            crawPage(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
+    article_list_sorted = []
+    article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
+    print(article_list)
+    print(article_list[0][0] + article_list[1][0])
     all_template_message = ''
     for article in article_list:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
