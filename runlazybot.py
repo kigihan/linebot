@@ -124,11 +124,11 @@ def callback():
             if event.message.text.lower() == '表特':
                 all_template_message = PttBeauty()
 
-            line_bot_api.reply_message(
-                event.reply_token,
-#                TextSendMessage(text="U just said: " + event.message.text)
-                all_template_message
-            )
+                line_bot_api.reply_message(
+                    event.reply_token,
+#                   TextSendMessage(text="U just said: " + event.message.text)
+                    all_template_message
+                )
 
     return 'OK'
 article_list = []
@@ -146,7 +146,7 @@ def crawPage(url, push_rate, soup):
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
-                print("........" + URL)
+                #print("........" + URL)
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
@@ -184,7 +184,7 @@ def PttBeauty():
     #print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
-        print("    try to parse: " + index)
+        #print("    try to parse: " + index)
         res = requests.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
