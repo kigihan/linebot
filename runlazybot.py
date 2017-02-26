@@ -84,7 +84,7 @@ def callback():
                 all_template_message = TemplateSendMessage(
                     alt_text = 'PC敘述',
                     template = ButtonsTemplate(
-                        thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg',
+                        thumbnail_image_url = "https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg",
                         title = '標題',
                         text = '文字敘述',
                         actions = [
@@ -195,7 +195,7 @@ def callback():
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
-                                thumbnail_image_url = "http://i.imgur.com/gAaUTT6.jpg",
+                                thumbnail_image_url = "https://i.imgur.com/gAaUTT6.jpg",
                                 title = "11111",
                                 text = "tttttttttttext",
                                 actions = [
@@ -206,7 +206,7 @@ def callback():
                                 ]
                             ),
                             CarouselColumn(
-                                thumbnail_image_url = "http://i.imgur.com/gAaUTT6.jpg",
+                                thumbnail_image_url = "https://i.imgur.com/gAaUTT6.jpg",
                                 title = "22",
                                 text = "t2",
                                 actions = [
