@@ -168,7 +168,8 @@ def crawPage(url, push_rate, soup):
                     #         print(link)
 
                     article_list.append((int(comment_rate), URL, title, img_links_list[0]))
-                    sorted(article_list, key = lambda x : x[0], reverse = True)
+
+                sorted(article_list, key = lambda x : x[0], reverse = True)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
