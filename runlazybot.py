@@ -195,6 +195,8 @@ def callback():
                 event.reply_token,
                 all_template_message
                 )
+                del article_list[:]
+                del article_list_sorted[:]
 
             # if event.message.text.lower() == 'beau':
             #     #carousel_template_message = ''
