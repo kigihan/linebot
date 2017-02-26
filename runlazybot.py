@@ -120,7 +120,7 @@ def callback():
                 article_list_sorted = PttBeautyCarousel()
                 print(article_list_sorted)
                 all_template_message = TemplateSendMessage(
-                    alt_text = "PTT表特版50+推近期文章",
+                    alt_text = "PTT表特版近日推文數前5名",
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
@@ -263,7 +263,7 @@ def crawPage(url, push_rate, soup):
                         if img_links.endswith(".jpg"):
                             if not img_links.startswith("https://"):
                                 img_links = re.sub("http", "https", img_links)
-                                print(img_links)
+                                #print(img_links)
                             img_links_list.append(img_links)
                     # for link in img_links:
                     #     print("    start FOR")
