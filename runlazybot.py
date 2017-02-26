@@ -172,17 +172,18 @@ def PttBeauty():
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
-    print("    PageNum>>> " + LatestPageNum.group(1))
+    #print("    PageNum>>> " + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
     push_rate = 50  # 推文
     page_uri_list = []
     for page in range(LPN, LPN-10, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
-    print("    PageURI>>> " + page_uri)
-    print(page_uri_list)
+    #print("    PageURI>>> " + page_uri)
+    #print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
+        print("    try to parse: " + index)
         res = requests.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
