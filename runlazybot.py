@@ -190,7 +190,6 @@ def PttBeauty():
     for article in article_list:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
         all_template_message += data
-    all_template_message = ''
     return all_template_message
 
 
