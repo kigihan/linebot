@@ -28,6 +28,8 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+from bs4 import BeautifulSoup
+
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -45,6 +47,12 @@ parser = WebhookParser(channel_secret)
 
 
 @app.route("/callback", methods=['POST'])
+
+def PttBeauty():
+    TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
+    soup = BeautifulSoup(TargetURI, "html.parser")
+    print soup.prettify()
+
 def callback():
     signature = request.headers['X-Line-Signature']
 
@@ -95,27 +103,29 @@ def callback():
                         ]
                     )
                 )
+            # if event.message.text.lower() == 'bmenu 表特':
+            #     all_template_message = TemplateSendMessage(
+            #         alt_text = 'alttexthere',
+            #         template = CarouselTemplate(
+            #             columns = [
+            #                 CarouselColumn(
+            #                     thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200',
+            #                     title = 'pic 1 meow',
+            #                     text = 'a lazy cat behind window',
+            #                     actions = [
+            #                         URITemplateAction(
+            #                             label = 'link here',
+            #                             uri = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200'
+            #                         )
+            #                     ]
+            #                 )
+            #             ]
+            #         )
+            #     )
+            
             if event.message.text.lower() == 'bmenu 表特':
-                all_template_message = TemplateSendMessage(
-                    alt_text = 'alttexthere',
-                    template = CarouselTemplate(
-                        columns = [
-                            CarouselColumn(
-                                thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200',
-                                title = 'pic 1 meow',
-                                text = 'a lazy cat behind window',
-                                actions=[
-                                    URITemplateAction(
-                                        label='link here',
-                                        uri='https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200'
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                )
-                      
-                      
+                all_template_message = PttBeauty()
+
             line_bot_api.reply_message(
                 event.reply_token,
 #                TextSendMessage(text="U just said: " + event.message.text)
