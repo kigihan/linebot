@@ -218,9 +218,13 @@ def callback():
                     )
                 )
                 print(carousel_template_message)
+                # line_bot_api.reply_message(
+                # event.reply_token,
+                # carousel_template_message
+                # )
                 line_bot_api.reply_message(
                 event.reply_token,
-                carousel_template_message
+                TextSendMessage(text = carousel_template_message)
                 )
 
     return 'OK'
