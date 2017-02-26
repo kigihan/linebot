@@ -193,13 +193,13 @@ def callback():
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
-                                thumbnail_image_url = article_list_sorted[0][3],
+                                thumbnail_image_url = "http://i.imgur.com/gAaUTT6.jpg",
                                 title = "文章1",
-                                text = "(" + str(article_list_sorted[0][0]) + "推) " + article_list_sorted[0][2],
+                                text = "(100推) " + "[正妹] 新垣結衣 近期美圖",
                                 actions = [
                                     URITemplateAction(
                                         label = "連結1",
-                                        uri = article_list_sorted[0][1]
+                                        uri = "https://www.ptt.cc/bbs/Beauty/M.1488020739.A.2BD.html"
                                     )
                                 ]
                             )
