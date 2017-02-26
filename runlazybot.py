@@ -138,7 +138,10 @@ def crawPage(url, push_rate, soup):
                     comment_rate = 0
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
-                    article_list.append((int(comment_rate), URL, title))
+                    res_post = requests.get(URL, verify=False)
+                    soup_post = BeautifulSoup(res_post.text, "html.parser")
+                    img_uri = soup_post.find(href = re.complle(".jpg"))[0]
+                    article_list.append((int(comment_rate), URL, title, img_uri))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -158,7 +161,7 @@ def PttBeauty():
     LPN = int(LatestPageNum.group(1)) + 1
     push_rate = 50  # 推文
     page_uri_list = []
-    for page in range(LPN, LPN-10, -1):
+    for page in range(LPN, LPN-2, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
@@ -179,7 +182,7 @@ def PttBeauty():
             # time.sleep(0.05)
     all_template_message = ''
     for article in article_list:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + "\n\n"
+        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
         all_template_message += data
     return all_template_message
 
