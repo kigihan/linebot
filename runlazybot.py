@@ -147,7 +147,7 @@ def crawPage(url, push_rate, soup):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         print(img_links)
                         if img_links.endswith(".jpg"):
-                            img_links_list += img_links
+                            img_links_list.append(img_links)
                     # for link in img_links:
                     #     print("    start FOR")
                     #     print(link)
