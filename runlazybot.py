@@ -301,7 +301,7 @@ def PttBeautyCarousel():
             # time.sleep(0.05)
     article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
-    # print(article_list_sorted)
+    print(article_list_sorted)
     all_template_message = ''
     # for article in article_list_sorted:
     #     data = "(" + str(article_list_sorted[0]) + "推) " + article_list_sorted[2] + "\n" + article_list_sorted[1] + "\n" + article_list_sorted[3] + "\n\n"
