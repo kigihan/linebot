@@ -17,6 +17,7 @@ from __future__ import unicode_literals
 import os
 import sys
 import botsetting
+import requests
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -131,6 +132,7 @@ def callback():
 
 def PttBeauty():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
+    res = requests.get(TargetURI)
     soup = BeautifulSoup(TargetURI, "html.parser")
     print("soup>>>" + soup.prettify())
     return 'OK'
