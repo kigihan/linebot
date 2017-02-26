@@ -171,12 +171,11 @@ def PttBeauty():
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "html.parser")
     #print("    soup>>>" + soup.prettify())
-    get_PageURI = soup.select('.btn.wide')[1]['href']
-    LatestPageURI = int(get_PageURI) + 1
+    LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     print("    PageNum>>> " + LatestPageNum.group(1))
-    LPN = int(LatestPageNum.group(1))
+    LPN = int(LatestPageNum.group(1)) + 1
     push_rate = 50  # 推文
     page_uri_list = []
     for page in range(LPN, LPN-10, -1):
