@@ -80,8 +80,14 @@ def callback():
         if isinstance(event, MessageEvent):
             all_template_message = ""
             carousel_template_message = ""
+            article_list = []
+            article_list_sorted = []
+            img_links_list = []
+            page_uri_list = []
             del article_list[:]
             del article_list_sorted[:]
+            del img_links_list[:]
+            del page_uri_list[:]
             if event.message.text.lower() == 'bmenu':                
                 all_template_message = TemplateSendMessage(
                     alt_text = 'PC敘述',
@@ -238,7 +244,7 @@ def callback():
             #     )
 
     return 'OK'
-article_list = []
+
 
 def crawPage(url, push_rate, soup):
     for r_ent in soup.find_all(class_="r-ent"):
@@ -267,8 +273,7 @@ def crawPage(url, push_rate, soup):
                     #print("        HighPost: " + URL)
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
-                    img_uri_num = 5
-                    img_links_list = []
+                    img_uri_num = 5                    
                     for img_uri_num in range(img_uri_num, 10, +1):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         #print(img_links)
@@ -321,7 +326,6 @@ def crawPageCarousel(url, push_rate, soup):
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
                     img_uri_num = 5
-                    img_links_list = []
                     for img_uri_num in range(img_uri_num, 10, +1):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         print(img_links)
@@ -356,7 +360,6 @@ def PttBeauty():
     #print("    PageNum>>> " + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
     push_rate = 50  # 推文
-    page_uri_list = []
     for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
@@ -376,7 +379,6 @@ def PttBeauty():
             crawPage(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
-    article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
     all_template_message = ''
@@ -399,7 +401,6 @@ def PttBeautyCarousel():
     #print("    PageNum>>> " + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
     push_rate = 50  # 推文
-    page_uri_list = []
     for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
@@ -419,7 +420,6 @@ def PttBeautyCarousel():
             crawPage(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
-    article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)    
     # for article in article_list_sorted:
