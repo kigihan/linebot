@@ -195,7 +195,7 @@ def callback():
                             CarouselColumn(
                                 thumbnail_image_url = "http://i.imgur.com/gAaUTT6.jpg",
                                 title = "11111",
-                                text = "(100) [正妹] 新垣結衣 近期美圖",
+                                text = "tttttttttttext",
                                 actions = [
                                     URITemplateAction(
                                         label = "LL1",
