@@ -80,15 +80,15 @@ def callback():
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'bmenu':
                 all_template_message = TemplateSendMessage(
-                    alt_text = 'AltText',
+                    alt_text = '大標題',
                     template = ButtonsTemplate(
                         thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200',
                         title = 'menutitle',
                         text = 'here is text',
                         actions = [
                             MessageTemplateAction(
-                                label = 'bt1_label',
-                                text = 'bt1_twxt'
+                                label = '標題',
+                                text = '訊息1'
                             ),
                             MessageTemplateAction(
                                 label = 'bt2_label',
