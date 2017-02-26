@@ -100,35 +100,16 @@ def callback():
                             )
                         ]
                     )
-                )
-            # if event.message.text.lower() == 'bmenu 表特':
-            #     all_template_message = TemplateSendMessage(
-            #         alt_text = 'alttexthere',
-            #         template = CarouselTemplate(
-            #             columns = [
-            #                 CarouselColumn(
-            #                     thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200',
-            #                     title = 'pic 1 meow',
-            #                     text = 'a lazy cat behind window',
-            #                     actions = [
-            #                         URITemplateAction(
-            #                             label = 'link here',
-            #                             uri = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200'
-            #                         )
-            #                     ]
-            #                 )
-            #             ]
-            #         )
-            #     )
-            
+                )            
+
             if event.message.text.lower() == '表特':
                 all_template_message = PttBeauty()
 
-                line_bot_api.reply_message(
-                    event.reply_token,
-#                   TextSendMessage(text="U just said: " + event.message.text)
-                    all_template_message
-                )
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=all_template_message)
+                #all_template_message
+            )
 
     return 'OK'
 article_list = []
