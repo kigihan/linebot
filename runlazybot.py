@@ -147,14 +147,14 @@ def crawPage(url, push_rate, soup):
                     comment_rate = 0
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
-                    print("        HighPost: " + URL)
+                    #print("        HighPost: " + URL)
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
                     img_uri_num = 5
                     img_links_list = []
                     for img_uri_num in range(img_uri_num, 10, +1):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
-                        print(img_links)
+                        #print(img_links)
                         if img_links.endswith(".jpg"):
                             img_links_list.append(img_links)
                     # for link in img_links:
@@ -169,6 +169,7 @@ def crawPage(url, push_rate, soup):
 
                     article_list.append((int(comment_rate), URL, title, img_links_list[0]))
 
+                print(article_list)
                 sorted(article_list, key = lambda x : x[0], reverse = True)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
