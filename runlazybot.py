@@ -80,11 +80,11 @@ def callback():
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'bmenu':
                 all_template_message = TemplateSendMessage(
-                    alt_text = '大標題',
+                    alt_text = 'PC敘述',
                     template = ButtonsTemplate(
-                        thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg/200',
-                        title = 'menutitle',
-                        text = 'here is text',
+                        thumbnail_image_url = 'https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg',
+                        title = '標題',
+                        text = '文字敘述',
                         actions = [
                             MessageTemplateAction(
                                 label = '標題',
@@ -93,10 +93,6 @@ def callback():
                             MessageTemplateAction(
                                 label = 'bt2_label',
                                 text = 'bt2_twxt'
-                            ),
-                            MessageTemplateAction(
-                                label = 'bt3_label',
-                                text = 'bt3_twxt'
                             )
                         ]
                     )
