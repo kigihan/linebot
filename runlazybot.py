@@ -140,7 +140,7 @@ def crawPage(url, push_rate, soup):
                 if int(comment_rate) >= push_rate:
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
-                    img_links = soup_post.find(id = "main-content").find_all("a")
+                    img_links = soup_post.find(id = "main-content").find_all("a").text.strip()
                     img_links_list = []
                     for link in img_links:
                         print("    start FOR")
