@@ -106,21 +106,14 @@ def callback():
                 all_template_message = PttBeauty()
                 text_send(all_template_message)
 
-            # line_bot_api.reply_message(
-            #     event.reply_token,
-            #     TextSendMessage(text=all_template_message)
-            #     #all_template_message
-            # )
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=all_template_message)
+                #all_template_message
+            )
 
     return 'OK'
 article_list = []
-
-def text_send(text_send_content):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=all_template_message)
-        #all_template_message
-    )
 
 def crawPage(url, push_rate, soup):
     for r_ent in soup.find_all(class_="r-ent"):
