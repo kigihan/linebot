@@ -262,7 +262,7 @@ def crawPage(url, push_rate, soup):
                         #print(img_links)
                         if img_links.endswith(".jpg"):
                             if not img_links.startswith("https://"):
-                                img_links = re.sub(r"(\w+)://(\w+).(\w+) \1", "https", img_links)
+                                img_links = re.sub("http", "https", img_links)
                                 print(img_links)
                             img_links_list.append(img_links)
                     # for link in img_links:
