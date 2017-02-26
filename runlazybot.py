@@ -167,10 +167,7 @@ def crawPage(url, push_rate, soup):
                     #         img_links_list.append(link["href"])
                     #         print(link)
 
-                    article_list.append((int(comment_rate), URL, title, img_links_list[0]))
-
-                print(article_list)
-                sorted(article_list, key = lambda x : x[0], reverse = True)
+                    article_list.append((int(comment_rate), URL, title, img_links_list[0]))                
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -259,6 +256,8 @@ def PttBeauty():
             crawPage(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
+    print(article_list)
+    sorted(article_list, key = lambda x : x[0], reverse = True)
     all_template_message = ''
     for article in article_list:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
