@@ -155,7 +155,9 @@ def crawPage(url, push_rate, soup):
                     comment_rate = 0
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
-                    article_list.append((int(comment_rate), URL, title))
+                    img_post = BeautifulSoup(URL.text, "html.parser")
+                    imgURI = img_post.find_all(href=re.compile(".jpg"))
+                    article_list.append(int(comment_rate), URL, title, imgURI)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -163,7 +165,7 @@ def crawPage(url, push_rate, soup):
 
 def PttBeauty():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
-    res = requests.get(TargetURI)
+    res = requests.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "html.parser")
@@ -173,7 +175,7 @@ def PttBeauty():
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     print("    PageNum>>> " + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1))
-    push_rate = 10  # 推文
+    push_rate = 50  # 推文
     page_uri_list = []
     for page in range(LPN, LPN-10, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
@@ -182,7 +184,7 @@ def PttBeauty():
     print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
-        res = rs.get(index, verify=False)
+        res = requests.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
         if (soup.title.text.find('Service Temporarily') > -1):
@@ -195,7 +197,7 @@ def PttBeauty():
             # time.sleep(0.05)
     content = ''
     for article in article_list:
-        data = "[" + str(article[0]) + "] push" + article[2] + "\n" + article[1] + "\n\n"
+        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
         content += data
     return content
 
