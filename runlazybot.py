@@ -120,23 +120,23 @@ def callback():
                 article_list_sorted = PttBeautyCarousel()
                 print(article_list_sorted)
                 all_template_message = TemplateSendMessage(
-                    alt_text = "PTT表特版近日推文數前5名\n\n" + "(" + str(article_list_sorted[0][0]) + "推)" \
+                    alt_text = "PTT表特版近日推文數前5名\n\n" + "(" + str(article_list_sorted[0][0]) + "推) " \
                      + article_list_sorted[0][2] + "\n" + article_list_sorted[0][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[1][0]) + "推)" \
+                     + "\n\n" + "(" + str(article_list_sorted[1][0]) + "推) " \
                      + article_list_sorted[1][2] + "\n" + article_list_sorted[1][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[2][0]) + "推)" \
+                     + "\n\n" + "(" + str(article_list_sorted[2][0]) + "推) " \
                      + article_list_sorted[2][2] + "\n" + article_list_sorted[2][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[3][0]) + "推)" \
+                     + "\n\n" + "(" + str(article_list_sorted[3][0]) + "推) " \
                      + article_list_sorted[3][2] + "\n" + article_list_sorted[3][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[4][0]) + "推)" \
+                     + "\n\n" + "(" + str(article_list_sorted[4][0]) + "推) " \
                      + article_list_sorted[4][2] + "\n" + article_list_sorted[4][1] \
                      ,
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[0][3],
-                                title = "( " + str(article_list_sorted[0][0]) + "推 )",
-                                text = article_list_sorted[0][2],
+                                #title = "( " + str(article_list_sorted[0][0]) + "推 )",
+                                text = "( " + str(article_list_sorted[0][0]) + "推 )" + article_list_sorted[0][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -146,8 +146,8 @@ def callback():
                             ),
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[1][3],
-                                title = "( " + str(article_list_sorted[1][0]) + "推 ) ",
-                                text = article_list_sorted[1][2],
+                                #title = "( " + str(article_list_sorted[1][0]) + "推 ) ",
+                                text = "( " + str(article_list_sorted[1][0]) + "推 ) " + article_list_sorted[1][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -157,8 +157,8 @@ def callback():
                             ),
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[2][3],
-                                title = "( " + str(article_list_sorted[2][0]) + "推 )",
-                                text = article_list_sorted[2][2],
+                                #title = "( " + str(article_list_sorted[2][0]) + "推 )",
+                                text = "( " + str(article_list_sorted[2][0]) + "推 )" + article_list_sorted[2][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -168,8 +168,8 @@ def callback():
                             ),
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[3][3],
-                                title = "( " + str(article_list_sorted[3][0]) + "推 )",
-                                text = article_list_sorted[3][2],
+                                #title = "( " + str(article_list_sorted[3][0]) + "推 )",
+                                text = "( " + str(article_list_sorted[3][0]) + "推 )" + article_list_sorted[3][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -179,8 +179,8 @@ def callback():
                             ),
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[4][3],
-                                title = "( " + str(article_list_sorted[4][0]) + " 推)",
-                                text = article_list_sorted[4][2],
+                                #title = "( " + str(article_list_sorted[4][0]) + " 推)",
+                                text = "( " + str(article_list_sorted[4][0]) + " 推)" + article_list_sorted[4][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
