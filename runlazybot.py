@@ -100,16 +100,15 @@ def callback():
                             )
                         ]
                     )
-                )            
+                )
+                line_bot_api.reply_message(
+                event.reply_token,                
+                all_template_message
+                )
 
             if event.message.text.lower() == '表特':
                 all_template_message = PttBeauty()
-
-            line_bot_api.reply_message(
-                event.reply_token,
                 TextSendMessage(text=all_template_message)
-                #all_template_message
-            )
 
     return 'OK'
 article_list = []
@@ -148,16 +147,6 @@ def crawPage(url, push_rate, soup):
                         print(img_links)
                         if img_links.endswith(".jpg"):
                             img_links_list.append(img_links)
-                    # for link in img_links:
-                    #     print("    start FOR")
-                    #     print(link)
-                    #     if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
-                    #         print("    if(re.match): " + link)
-                    #         if not link.endswith(".jpg"):
-                    #             link += ".jpg"
-                    #         img_links_list.append(link["href"])
-                    #         print(link)
-
                     article_list.append((int(comment_rate), URL, title, img_links_list[0]))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
@@ -197,10 +186,13 @@ def PttBeauty():
             crawPage(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
+    # all_template_message = ''
+    # for article in article_list:
+    #     data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
+    #     all_template_message += data
     all_template_message = ''
     for article in article_list:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
-        all_template_message += data
+
     return all_template_message
 
 
