@@ -127,7 +127,7 @@ def crawPage(url, push_rate, soup):
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
-                print("........" + URL)
+                #print("........" + URL)
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
@@ -138,6 +138,7 @@ def crawPage(url, push_rate, soup):
                     comment_rate = 0
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
+                    print("        HighPost: " + URL)
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
                     img_links = soup_post.find(id = "main-content").find_all("a").text.strip()
