@@ -132,6 +132,7 @@ def callback():
 
     return 'OK'
 article_list = []
+
 def crawPage(url, push_rate, soup):
     for r_ent in soup.find_all(class_="r-ent"):
         try:
@@ -155,10 +156,7 @@ def crawPage(url, push_rate, soup):
                     comment_rate = 0
                 # 比對推文數
                 if int(comment_rate) >= push_rate:
-                    img_post = BeautifulSoup(URL.text, "html.parser")
-                    imgURI = img_post.find_all(href=re.compile(".jpg"))[0]
-                    print(imgURI)
-                    article_list.append(int(comment_rate), URL, title, imgURI)
+                    article_list.append((int(comment_rate), URL, title))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -198,7 +196,7 @@ def PttBeauty():
             # time.sleep(0.05)
     content = ''
     for article in article_list:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
+        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + "\n\n"
         content += data
     return content
 
