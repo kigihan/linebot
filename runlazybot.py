@@ -74,6 +74,7 @@ def callback():
 #            TextSendMessage(text="U just said: " + event.message.text)
 #        )
 
+    all_template_message = TemplateSendMessage()
     for event in events:
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'bmenu':
@@ -133,7 +134,9 @@ def callback():
 def PttBeauty():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
     res = requests.get(TargetURI)
-    soup = BeautifulSoup(TargetURI, "html.parser")
+    print(res.text)
+    ResContent = res.content
+    soup = BeautifulSoup(ResContent.text, "html.parser")
     print("soup>>>" + soup.prettify())
     return 'OK'
 
