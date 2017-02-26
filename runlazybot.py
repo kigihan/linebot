@@ -368,6 +368,7 @@ def PttBeautyCarousel():
             ]
         )
     )
+    print(all_template_message)
     return all_template_message
 
 if __name__ == "__main__":
