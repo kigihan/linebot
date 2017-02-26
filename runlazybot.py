@@ -146,7 +146,8 @@ def crawPage(url, push_rate, soup):
                     for img_uri_num in range(img_uri_num, 10, +1):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         print(img_links)
-                        img_links_list += img_links
+                        if img_links.endswith(".jpg"):
+                            img_links_list += img_links
                     # for link in img_links:
                     #     print("    start FOR")
                     #     print(link)
@@ -157,7 +158,7 @@ def crawPage(url, push_rate, soup):
                     #         img_links_list.append(link["href"])
                     #         print(link)
 
-                    article_list.append((int(comment_rate), URL, title, img_links))
+                    article_list.append((int(comment_rate), URL, title, img_links_list[0]))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
