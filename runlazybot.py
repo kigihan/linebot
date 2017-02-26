@@ -143,8 +143,9 @@ def PttBeauty():
     #print("    URI>>> " + LatestPageURI)
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     print("    PageNum>>> " + LatestPageNum.group(1))
-    for page in range(LatestPageNum, LatestPageNum-10, -1):
-        page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(LatestPageNum) + ".html"
+    LPN = int(LatestPageNum)
+    for page in range(LPN, LPN-10, -1):
+        page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     print("    PageList>>>" + page_uri_list)
     return 'OK'
