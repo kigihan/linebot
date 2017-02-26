@@ -18,6 +18,7 @@ import os
 import sys
 import botsetting
 import requests
+import re
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -139,7 +140,9 @@ def PttBeauty():
     soup = BeautifulSoup(res.text, "html.parser")
     #print("soup>>>" + soup.prettify())
     LatestPageURI = soup.select('.btn.wide')[1]['href']
-    print(LatestPageURI)
+    print("    URI>>> " + LatestPageURI)
+    match=re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
+    print( "    PageNum>>> " + match.group(1))
     return 'OK'
 
 
