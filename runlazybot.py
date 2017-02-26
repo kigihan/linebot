@@ -48,12 +48,6 @@ parser = WebhookParser(channel_secret)
 
 @app.route("/callback", methods=['POST'])
 
-def PttBeauty():
-    TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
-    soup = BeautifulSoup(TargetURI, "html.parser")
-    print("soup>>>" + soup.prettify())
-    return 'OK'
-
 def callback():
     signature = request.headers['X-Line-Signature']
 
@@ -133,8 +127,12 @@ def callback():
                 all_template_message
             )
 
+    return 'OK'
 
-
+def PttBeauty():
+    TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
+    soup = BeautifulSoup(TargetURI, "html.parser")
+    print("soup>>>" + soup.prettify())
     return 'OK'
 
 
