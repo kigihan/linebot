@@ -77,6 +77,7 @@ def callback():
 #        )
 
     all_template_message = TemplateSendMessage()
+    carousel_template_message = TemplateSendMessage()
     for event in events:
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'bmenu':
@@ -188,7 +189,7 @@ def callback():
             if event.message.text.lower() == 'beau':
                 #carousel_template_message = ''
                 #article_list_sorted = PttBeautyCarousel()
-                #print(article_list_sorted)
+                #print(article_list_sorted)                
                 carousel_template_message = TemplateSendMessage(
                     alt_text = 'PTTtitle',
                     template = CarouselTemplate(
