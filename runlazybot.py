@@ -313,7 +313,7 @@ def PttBeautyCarousel():
                 CarouselColumn(
                     thumbnail_image_url = article_list_sorted[0][3],
                     title = "文章1",
-                    text = "(" + article_list_sorted[0][0] + "推) " + article_list_sorted[0][2],
+                    text = "(" + str(article_list_sorted[0][0]) + "推) " + article_list_sorted[0][2],
                     actions = [
                         URITemplateAction(
                             label = "連結1",
