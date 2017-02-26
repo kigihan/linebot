@@ -87,12 +87,16 @@ def callback():
                         text = '文字敘述',
                         actions = [
                             MessageTemplateAction(
-                                label = '標題',
+                                label = '訊息標題',
                                 text = '訊息1'
                             ),
                             MessageTemplateAction(
                                 label = 'bt2_label',
                                 text = 'bt2_twxt'
+                            ),
+                            URITemplateAction(
+                                label = "URI標題",
+                                uri = "https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg"
                             )
                         ]
                     )
