@@ -189,7 +189,7 @@ def callback():
                 #article_list_sorted = PttBeautyCarousel()
                 #print(article_list_sorted)
                 carousel_template_message = TemplateSendMessage(
-                    alt_text = "PTT",
+                    alt_text = 'PTTtitle',
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
@@ -206,10 +206,10 @@ def callback():
                         ]
                     )
                 )
-                print(all_template_message)
+                print(carousel_template_message)
                 line_bot_api.reply_message(
                 event.reply_token,
-                all_template_message
+                carousel_template_message
                 )
 
     return 'OK'
