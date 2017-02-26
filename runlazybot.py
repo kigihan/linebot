@@ -116,6 +116,7 @@ def callback():
             if event.message.text.lower() == 'beau':
                 all_template_message = ''
                 article_list_sorted = PttBeautyCarousel()
+                print(article_list_sorted)
                 all_template_message = TemplateSendMessage(
                     alt_text = "PTT表特版50+推近期文章",
                     template = CarouselTemplate(
