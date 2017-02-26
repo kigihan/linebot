@@ -185,7 +185,7 @@ def callback():
             #     )
 
             if event.message.text.lower() == 'beau':
-                carousel_template_message = ''
+                #carousel_template_message = ''
                 #article_list_sorted = PttBeautyCarousel()
                 #print(article_list_sorted)
                 carousel_template_message = TemplateSendMessage(
