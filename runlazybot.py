@@ -134,10 +134,12 @@ def callback():
 def PttBeauty():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
     res = requests.get(TargetURI)
-    print(res.text)
-    ResContent = res.content
-    soup = BeautifulSoup(ResContent.text, "html.parser")
-    print("soup>>>" + soup.prettify())
+    #print(res.text)
+    #ResContent = res.text
+    soup = BeautifulSoup(res.text, "html.parser")
+    #print("soup>>>" + soup.prettify())
+    LatestPageURI = soup.select('.btn.wide')[1]['href']
+    print(LatestPageURI)
     return 'OK'
 
 
