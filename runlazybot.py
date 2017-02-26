@@ -185,17 +185,17 @@ def callback():
             #     )
 
             if event.message.text.lower() == 'beau':
-                all_template_message = ''
+                carousel_template_message = ''
                 #article_list_sorted = PttBeautyCarousel()
                 #print(article_list_sorted)
-                all_template_message = TemplateSendMessage(
+                carousel_template_message = TemplateSendMessage(
                     alt_text = "PTT",
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
                                 thumbnail_image_url = "http://i.imgur.com/gAaUTT6.jpg",
                                 title = "11111",
-                                text = "(100) " + "[正妹] 新垣結衣 近期美圖",
+                                text = "(100) [正妹] 新垣結衣 近期美圖",
                                 actions = [
                                     URITemplateAction(
                                         label = "LL1",
