@@ -80,6 +80,8 @@ def callback():
         if isinstance(event, MessageEvent):
             all_template_message = ""
             carousel_template_message = ""
+            del article_list[:]
+            del article_list_sorted[:]
             if event.message.text.lower() == 'bmenu':                
                 all_template_message = TemplateSendMessage(
                     alt_text = 'PC敘述',
