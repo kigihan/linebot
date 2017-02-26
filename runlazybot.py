@@ -193,12 +193,15 @@ def callback():
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
+                                print(article_list_sorted[0][3])
                                 thumbnail_image_url = article_list_sorted[0][3],
                                 title = "文章1",
+                                print(article_list_sorted[0][0])
                                 text = "(" + str(article_list_sorted[0][0]) + "推) " + article_list_sorted[0][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "連結1",
+                                        print(article_list_sorted[0][1])
                                         uri = article_list_sorted[0][1]
                                     )
                                 ]
@@ -206,6 +209,7 @@ def callback():
                         ]
                     )
                 )
+                print(all_template_message)
                 line_bot_api.reply_message(
                 event.reply_token,
                 all_template_message
