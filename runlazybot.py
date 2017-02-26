@@ -141,8 +141,7 @@ def crawPage(url, push_rate, soup):
                     print("        HighPost: " + URL)
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
-                    print(soup_post)
-                    img_links = soup_post.find(id = "main-content").find_all("a").text.strip()
+                    img_links = soup_post.select("a")[0]["href"]
                     print("    ImgLinks: " + img_links)
                     img_links_list = []
                     for link in img_links:
