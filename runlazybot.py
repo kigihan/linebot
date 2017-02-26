@@ -100,17 +100,17 @@ def callback():
                             )
                         ]
                     )
-                )            
+                )
+                line_bot_api.reply_message(
+                event.reply_token,all_template_message
+                )
 
             if event.message.text.lower() == '表特':
                 all_template_message = PttBeauty()
-                text_send(all_template_message)
-
-            line_bot_api.reply_message(
+                line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
-                #all_template_message
-            )
+                )
 
     return 'OK'
 article_list = []
