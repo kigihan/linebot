@@ -144,6 +144,7 @@ def crawPage(url, push_rate, soup):
                     img_links_list = []
                     for link in img_links:
                         print("    start FOR")
+                        print(link)
                         if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
                             print("    if(re.match): " + link)
                             if not link.endswith(".jpg"):
