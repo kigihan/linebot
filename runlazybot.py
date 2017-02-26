@@ -136,7 +136,7 @@ def callback():
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[0][3],
                                 #title = "( " + str(article_list_sorted[0][0]) + "推 )",
-                                text = "( " + str(article_list_sorted[0][0]) + "推 )" + article_list_sorted[0][2],
+                                text = "( " + str(article_list_sorted[0][0]) + "推 ) " + article_list_sorted[0][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -158,7 +158,7 @@ def callback():
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[2][3],
                                 #title = "( " + str(article_list_sorted[2][0]) + "推 )",
-                                text = "( " + str(article_list_sorted[2][0]) + "推 )" + article_list_sorted[2][2],
+                                text = "( " + str(article_list_sorted[2][0]) + "推 ) " + article_list_sorted[2][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -169,7 +169,7 @@ def callback():
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[3][3],
                                 #title = "( " + str(article_list_sorted[3][0]) + "推 )",
-                                text = "( " + str(article_list_sorted[3][0]) + "推 )" + article_list_sorted[3][2],
+                                text = "( " + str(article_list_sorted[3][0]) + "推 ) " + article_list_sorted[3][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
@@ -180,7 +180,7 @@ def callback():
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[4][3],
                                 #title = "( " + str(article_list_sorted[4][0]) + " 推)",
-                                text = "( " + str(article_list_sorted[4][0]) + " 推)" + article_list_sorted[4][2],
+                                text = "( " + str(article_list_sorted[4][0]) + " 推) " + article_list_sorted[4][2],
                                 actions = [
                                     URITemplateAction(
                                         label = "PTT原文連結",
