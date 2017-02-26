@@ -256,10 +256,11 @@ def PttBeauty():
             crawPage(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
-    print(sorted(article_list, key = lambda x:x[0], reverse = True))
+    article_list_sorted = []
+    article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list)
     all_template_message = ''
-    for article in article_list:
+    for article in article_list_sorted:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
         all_template_message += data
     return all_template_message
