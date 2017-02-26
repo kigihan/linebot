@@ -120,7 +120,8 @@ def callback():
                 article_list_sorted = PttBeautyCarousel()
                 print(article_list_sorted)
                 all_template_message = TemplateSendMessage(
-                    alt_text = "PTT表特版近日推文數前5名",
+                    alt_text = "PTT表特版近日推文數前5名\n\n" + "(" + str(article_list_sorted[0][0]) + "推)" + \
+                    article_list_sorted[0][2] + "\n" + article_list_sorted[0][1],
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
