@@ -171,7 +171,7 @@ def PttBeauty():
     LPN = int(LatestPageNum.group(1)) + 1
     push_rate = 50  # 推文
     page_uri_list = []
-    for page in range(LPN, LPN-2, -1):
+    for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
