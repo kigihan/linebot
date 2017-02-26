@@ -146,6 +146,7 @@ def crawPage(url, push_rate, soup):
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
+                print("........" + URL)
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
