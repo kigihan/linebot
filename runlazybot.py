@@ -202,6 +202,17 @@ def callback():
                                         uri = "https://www.ptt.cc/bbs/Beauty/M.1488020739.A.2BD.html"
                                     )
                                 ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url = "http://i.imgur.com/gAaUTT6.jpg",
+                                title = "22",
+                                text = "t2",
+                                actions = [
+                                    URITemplateAction(
+                                        label = "L2",
+                                        uri = "https://www.ptt.cc/bbs/Beauty/M.1487987174.A.32C.html"
+                                    )
+                                ]
                             )
                         ]
                     )
