@@ -121,7 +121,7 @@ def callback():
             #         )
             #     )
             
-            if event.message.text.lower() == 'bmenu 表特':
+            if event.message.text.lower() == '表特':
                 all_template_message = PttBeauty()
 
             line_bot_api.reply_message(
@@ -131,6 +131,35 @@ def callback():
             )
 
     return 'OK'
+article_list = []
+def crawPage(url, push_rate, soup):
+    for r_ent in soup.find_all(class_="r-ent"):
+        try:
+            # 先得到每篇文章的篇url
+            link = r_ent.find('a')['href']
+            if 'M.1430099938.A.3B7' in link:
+                continue
+            comment_rate = ""
+            if (link):
+                # 確定得到url再去抓 標題 以及 推文數
+                title = r_ent.find(class_="title").text.strip()
+                rate = r_ent.find(class_="nrec").text
+                URL = 'https://www.ptt.cc' + link
+                if (rate):
+                    comment_rate = rate
+                    if rate.find(u'爆') > -1:
+                        comment_rate = 100
+                    if rate.find('X') > -1:
+                        comment_rate = -1 * int(rate[1])
+                else:
+                    comment_rate = 0
+                # 比對推文數
+                if int(comment_rate) >= push_rate:
+                    article_list.append((int(comment_rate), URL, title))
+        except:
+            # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
+            # print('本文已被刪除')
+            print('delete')
 
 def PttBeauty():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
@@ -143,12 +172,32 @@ def PttBeauty():
     #print("    URI>>> " + LatestPageURI)
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     print("    PageNum>>> " + LatestPageNum.group(1))
-    LPN = int(LatestPageNum)
+    LPN = int(LatestPageNum.group(1))
+    push_rate = 10  # 推文
+    page_uri_list = []
     for page in range(LPN, LPN-10, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
-    print("    PageList>>>" + page_uri_list)
-    return 'OK'
+    print("    PageURI>>> " + page_uri)
+    print(page_uri_list)
+    while page_uri_list:
+        index = page_uri_list.pop(0)
+        res = rs.get(index, verify=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
+        if (soup.title.text.find('Service Temporarily') > -1):
+            page_uri_list.append(index)
+            # print u'error_URL:',index
+            # time.sleep(1)
+        else:
+            crawPage(index, push_rate, soup)
+            # print u'OK_URL:', index
+            # time.sleep(0.05)
+    content = ''
+    for article in article_list:
+        data = "[" + str(article[0]) + "] push" + article[2] + "\n" + article[1] + "\n\n"
+        content += data
+    return content
 
 
 if __name__ == "__main__":
