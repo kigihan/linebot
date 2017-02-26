@@ -75,12 +75,12 @@ def callback():
 #            event.reply_token,
 #            TextSendMessage(text="U just said: " + event.message.text)
 #        )
-
-    all_template_message = TemplateSendMessage()
-    carousel_template_message = TemplateSendMessage()
+    
     for event in events:
         if isinstance(event, MessageEvent):
-            if event.message.text.lower() == 'bmenu':
+            all_template_message = ""
+            carousel_template_message = ""
+            if event.message.text.lower() == 'bmenu':                
                 all_template_message = TemplateSendMessage(
                     alt_text = 'PC敘述',
                     template = ButtonsTemplate(
