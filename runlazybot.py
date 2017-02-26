@@ -140,8 +140,12 @@ def crawPage(url, push_rate, soup):
                 if int(comment_rate) >= push_rate:
                     res_post = requests.get(URL, verify=False)
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
-                    img_uri = soup_post.find(href = re.complle(".jpg"))[0]
-                    article_list.append((int(comment_rate), URL, title, img_uri))
+                    img_links = soup_post.find(id = "main-content").find_all("a")
+                    img_links_list = []
+                    for link in img_links:
+                        if re.match(r"^https?://*.jpg", link["href"]):
+                            img_links_list.append(link["href"])
+                    article_list.append((int(comment_rate), URL, title, img_links_list))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
