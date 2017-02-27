@@ -52,6 +52,7 @@ filter_test = [
     ["default", "[公告]"],
     ["soft_job", "[公告]", "[情報]"],
     ["lol", "[公告]", "[實況]"]
+    ["nba", "[公告]"]
 ]
 
 @app.route("/callback", methods=['POST'])
