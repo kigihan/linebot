@@ -142,9 +142,9 @@ def callback():
                 )
 
             if event.message.text.lower() == 'softjob':
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate)
                 simple_board_name = "Soft_Job"
                 simple_push_rate = 20
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate)
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
