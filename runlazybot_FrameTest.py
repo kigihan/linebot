@@ -491,7 +491,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            simple_craw_page(index, push_rate, soup, filter_softjob)
+            simple_craw_page(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     print(article_list)
