@@ -153,7 +153,7 @@ def callback():
                 )
 
             if event.message.text.lower().startswith("lzptt "):
-                simple_board_name = re.match('lzptt (.*)', event.message.text)
+                simple_board_name = str(re.match('lzptt (.*)', event.message.text))
                 print(simple_board_name)
                 simple_push_rate = 20
                 filter_simple = ["公告"]
