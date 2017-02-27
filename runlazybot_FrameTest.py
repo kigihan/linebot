@@ -484,12 +484,13 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #class=btn wide
     #抓最新-1頁的連結
     LatestPageURI = soup.select('.btn.wide')[1]['href']
-    print("    URI>>> " + LatestPageURI)
+    #print("    URI>>> " + LatestPageURI)
     #從連接拆出最新-1頁數
     noindex_page_uri = re.split("index", LatestPageURI)
-    print(noindex_page_uri)
+    #print(noindex_page_uri)
     print(noindex_page_uri[1][0:-5])
-    LatestPageNum = re.match(simple_page_uri,LatestPageURI)
+    #LatestPageNum = re.match(simple_page_uri,LatestPageURI)
+    LatestPageNum = noindex_page_uri[1][0:-5]
     print( LatestPageNum )
     #print(LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
