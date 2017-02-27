@@ -153,6 +153,7 @@ def callback():
                 )
 
             if event.message.text.lower().startswith("lzptt "):
+                print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
                 #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
