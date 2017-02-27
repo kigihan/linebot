@@ -166,8 +166,8 @@ def callback():
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
-                print(all_template_message)
                 )
+                print(all_template_message)
 
             if event.message.text.lower() == 'beau':
                 all_template_message = ''
