@@ -307,7 +307,7 @@ def crawPageNBA(url, push_rate, soup):
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
-                print("........" + URL)
+                #print("........" + URL)
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
@@ -317,8 +317,9 @@ def crawPageNBA(url, push_rate, soup):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
-                print("................" + str(comment_rate) + title)
+                #print("................" + str(comment_rate) + title)
                 if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
+                    print(comment_rate + title)
                     article_list.append((int(comment_rate), URL, title))                
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
