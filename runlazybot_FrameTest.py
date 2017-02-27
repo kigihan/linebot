@@ -142,9 +142,10 @@ def callback():
                 )
 
             if event.message.text.lower() == 'softjob':
+                filter_softjob = ["情報", "公告"]
                 simple_board_name = "Soft_Job"
                 simple_push_rate = 20
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate)
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_softjob)
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
@@ -317,19 +318,12 @@ def simple_craw_page(url, push_rate, soup):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
-                #print("................" + str(comment_rate) + title)
-                # if int(comment_rate) >= push_rate:
-                #     print(comment_rate + title)
-                #     if not title.startswith("[情報]"):
-                #         print("........" + comment_rate + title)
-                #         if not title.startswith("[公告]"):
-                #             print("................" + comment_rate + title)
-                #             article_list.append((int(comment_rate), URL, title))
-                #             print(article_list)
-                if int(comment_rate) >= push_rate and not ((title.startswith("[情報]")) or (title.startswith("[公告]"))):
-                    print("................" + comment_rate + title)
+                # if int(comment_rate) >= push_rate and not ((title.startswith("[情報]")) or (title.startswith("[公告]"))):
+                #     #print("................" + comment_rate + title)
+                #     article_list.append((int(comment_rate), URL, title))
+                #     #print(article_list)
+                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_Soft_Job))):
                     article_list.append((int(comment_rate), URL, title))
-                    print(article_list)
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
@@ -497,7 +491,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            simple_craw_page(index, push_rate, soup)
+            simple_craw_page(index, push_rate, soup, filter_softjob)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     print(article_list)
