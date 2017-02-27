@@ -20,7 +20,6 @@ import botsetting
 import requests
 import re
 import json
-import ptt_filter
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -159,12 +158,12 @@ def callback():
                 #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
-                try:
-                    if ptt_filter.simple_board_name:
-                        print(ptt_filter.simple_board_name)
-                except:
-                    filter_simple = ptt_filter.default
-                    print("..........except: " + filter_simple)
+                # try:
+                #     if ptt_filter.simple_board_name:
+                #         print(ptt_filter.simple_board_name)
+                # except:
+                #     filter_simple = ptt_filter.default
+                #     print("..........except: " + filter_simple)
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
