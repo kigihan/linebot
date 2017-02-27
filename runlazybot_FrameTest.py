@@ -493,7 +493,8 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     LatestPageNum = noindex_page_uri[1][0:-5]
     print( LatestPageNum )
     #print(LatestPageNum.group(1))
-    LPN = int(LatestPageNum.group(1)) + 1
+    #LPN = int(LatestPageNum.group(1)) + 1
+    LPN = int(LatestPageNum) + 1
     #吃傳進來的推文閥值
     push_rate = simple_push_rate
     page_uri_list = []
