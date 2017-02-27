@@ -154,7 +154,7 @@ def callback():
 
             if event.message.text.lower().startswith("lzptt "):
                 simple_board_name_input = re.split('["W]+', event.message.text)
-                print("     .......>> " + simple_board_name_input)
+                print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 print("..............<<" + simple_board_name)
                 simple_push_rate = 20
