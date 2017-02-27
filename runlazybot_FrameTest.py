@@ -322,7 +322,8 @@ def simple_craw_page(url, push_rate, soup):
                 #     #print("................" + comment_rate + title)
                 #     article_list.append((int(comment_rate), URL, title))
                 #     #print(article_list)
-                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_Soft_Job))):
+                print(filter_softjob)
+                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_softjob))):
                     article_list.append((int(comment_rate), URL, title))
                     print(article_list)
         
