@@ -80,6 +80,7 @@ def callback():
     carousel_template_message = TemplateSendMessage()
     simple_board_name = ""
     simple_push_rate = 90
+    filter_simple = []
     for event in events:
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'lazyn00b' or event.message.text.lower() == "lazynoob":
@@ -144,7 +145,8 @@ def callback():
             if event.message.text.lower() == 'softjob':
                 simple_board_name = "Soft_Job"
                 simple_push_rate = 20
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate)
+                filter_simple = filter_softjob
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
@@ -237,6 +239,7 @@ def callback():
     del article_list_sorted[:]
     simple_board_name = ""
     simple_push_rate is None
+    del filter_simple[:]
 
     return 'OK'
 article_list = []
@@ -293,7 +296,7 @@ def crawPageBeauty(url, push_rate, soup):
             # print('本文已被刪除')
             print('delete')
 
-def simple_craw_page(url, push_rate, soup):
+def simple_craw_page(url, push_rate, soup, filter_simple):
     #r-ent是每頁裡面各篇文的class
     print(filter_softjob)
     for r_ent in soup.find_all(class_="r-ent"):
@@ -317,16 +320,10 @@ def simple_craw_page(url, push_rate, soup):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
-                #只看推文數 >= push_rate設定的
-                # if int(comment_rate) >= push_rate and not ((title.startswith("[情報]")) or (title.startswith("[公告]"))):
-                #     #print("................" + comment_rate + title)
-                #     article_list.append((int(comment_rate), URL, title))
-                #     #print(article_list)
-                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_softjob))):
+                #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
+                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
                     print(article_list)
-                # if int(comment_rate) >= push_rate and not (title.startswith("情報", "公告")):
-                #     article_list.append((int(comment_rate), URL, title))
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
@@ -494,7 +491,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            simple_craw_page(index, push_rate, soup)
+            simple_craw_page(index, push_rate, soup, filter_simple)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     print(article_list)
