@@ -145,7 +145,7 @@ def callback():
                 filter_softjob = ["情報", "公告"]
                 simple_board_name = "Soft_Job"
                 simple_push_rate = 20
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_softjob)
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate)
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
