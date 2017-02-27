@@ -320,17 +320,18 @@ def simple_craw_page(url, push_rate, soup):
                 #print("................" + str(comment_rate) + title)
                 if int(comment_rate) >= push_rate:
                     print(comment_rate + title)
-                    if not title.startswith("[Live]"):
+                    if not title.startswith("[情報]"):
                         print("........" + comment_rate + title)
-                        if not re.search("[公告]", title):
+                        if not title.startswith("[公告]"):
                             print("................" + comment_rate + title)
                             article_list.append(int(comment_rate), URL, title)
+                            print(article_list)
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
             print('delete')
-    print(article_list)
+    #print(article_list)
 
 def crawPageNBA(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
