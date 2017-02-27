@@ -325,7 +325,7 @@ def simple_craw_page(url, push_rate, soup):
                         if not re.search("[公告]", title):
                             print("................" + comment_rate + title)
                             article_list.append(int(comment_rate), URL, title)
-
+    print(article_list)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -358,7 +358,7 @@ def crawPageNBA(url, push_rate, soup):
                 #print("................" + str(comment_rate) + title)
                 if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
                 #if int(comment_rate) >= push_rate:
-                    print(comment_rate + title)
+                    #print(comment_rate + title)
                     article_list.append((int(comment_rate), URL, title))                
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
@@ -482,7 +482,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
     #print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
-        print("    try to parse: " + index)
+        #print("    try to parse: " + index)
         res = requests.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
