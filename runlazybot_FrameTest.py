@@ -78,6 +78,8 @@ def callback():
 
     all_template_message = TemplateSendMessage()
     carousel_template_message = TemplateSendMessage()
+    simple_board_name = ""
+    simple_push_rate = 90
     for event in events:
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'lazyn00b' or event.message.text.lower() == "lazynoob":
