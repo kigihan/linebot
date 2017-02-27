@@ -171,6 +171,7 @@ def callback():
                 try:
                     if simple_board_name in filter_test:
                         print(filter_test.index(simple_board_name))
+                        print("........Do it here")
                 except:
                     filter_simple = filter_test[0][1:]
                     print("..........except: " + filter_simple)
