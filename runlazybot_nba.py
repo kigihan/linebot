@@ -287,9 +287,8 @@ def crawPageNBA(url, push_rate, soup):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
-                if int(comment_rate) >= push_rate:
-                    if not re.search("[live]", title, re.IGNORECASE):
-                        article_list.append((int(comment_rate), URL, title))                
+                if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
+                    article_list.append((int(comment_rate), URL, title))                
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
