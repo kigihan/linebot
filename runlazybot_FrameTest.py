@@ -320,7 +320,7 @@ def simple_craw_page(url, push_rate, soup):
                 #print("................" + str(comment_rate) + title)
                 if int(comment_rate) >= push_rate:
                     print(comment_rate + title)
-                    if not re.search("[live]", title, re.IGNORECASE):
+                    if not title.startswith("[Live]"):
                         print("........" + comment_rate + title)
                         if not re.search("[公告]", title):
                             print("................" + comment_rate + title)
