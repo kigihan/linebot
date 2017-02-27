@@ -163,18 +163,21 @@ def callback():
                 print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
+                #吃輸入的推文數
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
-                    print("........fail1")
+                    print("........input push rate fail1")
                     simple_push_rate = 30
-                try:
-                    if simple_board_name in filter_test:
-                        print(filter_test.index(simple_board_name))
-                        print("........Do it here")
-                except:
-                    filter_simple = filter_test[0][1:]
-                    print("..........except: " + filter_simple)
+                # try:
+                #     if simple_board_name in filter_test:
+                #         print(filter_test.index(simple_board_name))
+                #         print("........Do it here")
+                # except:
+                #     filter_simple = filter_test[0][1:]
+                #     print("..........except: " + filter_simple)
+                if simple_board_name in filter_test:
+                    print(filter_test.index(simple_board_name))
                 #filter_simple = ["[公告]"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
