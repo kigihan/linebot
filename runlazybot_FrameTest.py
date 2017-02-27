@@ -157,7 +157,7 @@ def callback():
                 #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
-                simple_push_rate = 20
+                simple_push_rate = int(simple_board_name_input[2])
                 filter_simple = ["公告"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
