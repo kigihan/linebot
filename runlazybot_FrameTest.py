@@ -51,8 +51,8 @@ filter_softjob = ["[情報]", "[公告]"]
 filter_test = [
     ["default", "[公告]"],
     ["soft_job", "[公告]", "[情報]"],
-    ["lol", "[公告]", "[實況]"],
-    ["nba", "[公告]"],
+    ["lol", "[公告]"],
+    ["nba", "[公告]", "[Live]"],
     ["beauty", "[公告]"]
 ]
 
@@ -107,7 +107,7 @@ def callback():
                                 text = 'LzHelp'
                             ),
                             URITemplateAction(
-                                label = "超讚的冰島相簿(flickr)",
+                                label = "借你看超爽的冰島相簿(flickr)",
                                 uri = "https://www.flickr.com/photos/132023410@N06/albums/72157673424430564"
                             )
                         ]
