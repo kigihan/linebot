@@ -85,7 +85,7 @@ def callback():
         if isinstance(event, MessageEvent):
             if event.message.text.lower() == 'lazyn00b' or event.message.text.lower() == "lazynoob":
                 all_template_message = TemplateSendMessage(
-                    alt_text = '安安 \n\n指令說明請輸入\"LazHelp\"(大小寫皆可)\n',
+                    alt_text = '安安 \n\n指令說明請輸入\"LzHelp\"(大小寫皆可)\n',
                     template = ButtonsTemplate(
                         thumbnail_image_url = "https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg",
                         title = '安安',
@@ -97,7 +97,7 @@ def callback():
                             ),
                             MessageTemplateAction(
                                 label = '其他指令說明',
-                                text = 'LazHelp'
+                                text = 'LzHelp'
                             ),
                             URITemplateAction(
                                 label = "超讚的冰島相簿(flickr)",
@@ -111,7 +111,7 @@ def callback():
                 all_template_message
                 )
 
-            if event.message.text.lower() == 'lazhelp':
+            if event.message.text.lower() == 'lzhelp':
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="以下指令大小寫皆可\n\n" + \
@@ -146,6 +146,17 @@ def callback():
                 simple_board_name = "Soft_Job"
                 simple_push_rate = 20
                 filter_simple = filter_softjob
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+                line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=all_template_message)
+                )
+
+            if event.message.text.lower().startswith("lzptt "):
+                simple_board_name = re.match('lzptt (.*)', event.message.text)
+                print(simple_board_name)
+                simple_push_rate = 20
+                filter_simple = ["公告"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
                 event.reply_token,
