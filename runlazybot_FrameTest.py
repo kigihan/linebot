@@ -154,7 +154,7 @@ def callback():
 
             if event.message.text.lower().startswith("lzptt "):
                 simple_board_name = str(re.match('lzptt (.*)', event.message.text))
-                print("     .......>> " + simple_board_name)
+                print("     .......>> " + simple_board_name + "\n ........<<" + simple_board_name.group(1))
                 simple_push_rate = 20
                 filter_simple = ["公告"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
