@@ -124,13 +124,13 @@ def callback():
                 TextSendMessage(text= \
                     "指令說明\n\n" + \
                     "[+]Beauty版熱文\n" + \
-                    "(手機觀看可得較佳效果)" + \
+                    "(手機觀看可得較佳效果)\n" + \
                     "Beau\n\n" + \
                     "[+]查看PTT各版熱門文章\n" + \
                     "lzptt (空格) 版名 (空格) 推文數標準(預設50)\n\n" + \
                     "以下為範例: \n" + \
                     "lzptt nba 80\n" + \
-                    "lzptt gossiping 10")
+                    "lzptt gossiping 10\n")
                 )
 
             if event.message.text.lower() == '表特':
