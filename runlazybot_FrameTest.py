@@ -494,7 +494,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #吃傳進來的板名(simple_board_name)
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
     rs = requests.session()
-    if simple_board_name == ("gossiping" or "sex"):
+    if simple_board_name in ["gossiping", "sex"]:
         print("........start to verify 18+")
         adult_payload = {
         "from" : "/bbs/" + simple_board_name + "/index.html",
