@@ -107,7 +107,7 @@ def callback():
                                 text = 'LzHelp'
                             ),
                             URITemplateAction(
-                                label = "借你看超爽的冰島相簿(flickr)",
+                                label = "借你看冰島相簿喔(flickr)",
                                 uri = "https://www.flickr.com/photos/132023410@N06/albums/72157673424430564"
                             )
                         ]
