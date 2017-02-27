@@ -317,7 +317,7 @@ def crawPageNBA(url, push_rate, soup):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
-                print("................" + str(push_rate) + title)
+                print("................" + str(comment_rate) + title)
                 if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
                     article_list.append((int(comment_rate), URL, title))                
         except:
@@ -454,6 +454,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
             crawPageNBA(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
+    print(article_list)
     article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
