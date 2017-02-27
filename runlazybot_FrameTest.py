@@ -158,21 +158,21 @@ def callback():
                 )
 
             if event.message.text.lower().startswith("lzptt "):
-                print(event.message.text)
+                #print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
-                #print(simple_board_name_input)
+                print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
+                try:
+                    simple_push_rate = int(simple_board_name_input[2])
+                except:
+                    simple_push_rate = 30
                 try:
                     if simple_board_name in filter_test:
                         print(filter_test.index(simple_board_name))
                 except:
                     filter_simple = filter_test[0][1:]
                     print("..........except: " + filter_simple)
-                try:
-                    simple_push_rate = int(simple_board_name_input[2])
-                except:
-                    simple_push_rate = 30
                 #filter_simple = ["[公告]"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
