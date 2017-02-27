@@ -296,6 +296,7 @@ def crawPageBeauty(url, push_rate, soup):
 
 def simple_craw_page(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
+    print(filter_softjob)
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -322,7 +323,6 @@ def simple_craw_page(url, push_rate, soup):
                 #     #print("................" + comment_rate + title)
                 #     article_list.append((int(comment_rate), URL, title))
                 #     #print(article_list)
-                print(filter_softjob)
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_softjob))):
                     article_list.append((int(comment_rate), URL, title))
                     print(article_list)
