@@ -47,7 +47,7 @@ if channel_access_token is None:
 
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
-
+filter_softjob = ["情報", "公告"]
 
 @app.route("/callback", methods=['POST'])
 
@@ -142,7 +142,6 @@ def callback():
                 )
 
             if event.message.text.lower() == 'softjob':
-                filter_softjob = ["情報", "公告"]
                 simple_board_name = "Soft_Job"
                 simple_push_rate = 20
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate)
