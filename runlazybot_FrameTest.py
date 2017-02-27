@@ -48,6 +48,11 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 filter_softjob = ["[情報]", "[公告]"]
+filter_test = [
+    ["default", "[公告]"],
+    ["soft_job", "[公告]", "[情報]"],
+    ["lol", "[公告]", "[實況]"]
+]
 
 @app.route("/callback", methods=['POST'])
 
@@ -158,12 +163,12 @@ def callback():
                 #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
-                # try:
-                #     if ptt_filter.simple_board_name:
-                #         print(ptt_filter.simple_board_name)
-                # except:
-                #     filter_simple = ptt_filter.default
-                #     print("..........except: " + filter_simple)
+                try:
+                    if simple_board_name in filter_test:
+                        print(filter_test.index(simple_board_name))
+                except:
+                    filter_simple = filter_test[0][1:]
+                    print("..........except: " + filter_simple)
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
