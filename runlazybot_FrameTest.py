@@ -177,7 +177,9 @@ def callback():
                 #     filter_simple = filter_test[0][1:]
                 #     print("..........except: " + filter_simple)
                 if simple_board_name in filter_test:
-                    print(filter_test.index(simple_board_name))
+                    a = filter_test.index(simple_board_name)
+                    print(a)
+                    print(a)
                 #filter_simple = ["[公告]"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
