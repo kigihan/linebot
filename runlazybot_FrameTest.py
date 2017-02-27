@@ -48,6 +48,12 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 filter_softjob = ["[情報]", "[公告]"]
+filter_test = [
+    ["default", "[公告]"]
+    ["nba", "[公告]", "[live]"]
+    ["beauty", "[公告]", "[帥哥]"]
+    ["soft_job", "[公告]", "[情報]"]
+]
 
 @app.route("/callback", methods=['POST'])
 
@@ -159,10 +165,16 @@ def callback():
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
                 try:
+                    if simple_board_name in filter_test[:0]:
+                        print(filter_test.index(simple_board_name))
+                except:
+                    filter_simple = filter_test[0:1]
+                    print("..........except: " + filter_simple)
+                try:
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
                     simple_push_rate = 30
-                filter_simple = ["公告"]
+                #filter_simple = ["[公告]"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 line_bot_api.reply_message(
                 event.reply_token,
@@ -488,12 +500,10 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #從連接拆出最新-1頁數
     noindex_page_uri = re.split("index", LatestPageURI)
     #print(noindex_page_uri)
-    print(noindex_page_uri[1][0:-5])
-    #LatestPageNum = re.match(simple_page_uri,LatestPageURI)
+    #print(noindex_page_uri[1][0:-5])
     LatestPageNum = noindex_page_uri[1][0:-5]
-    print( LatestPageNum )
+    #print( LatestPageNum )
     #print(LatestPageNum.group(1))
-    #LPN = int(LatestPageNum.group(1)) + 1
     LPN = int(LatestPageNum) + 1
     #吃傳進來的推文閥值
     push_rate = simple_push_rate
