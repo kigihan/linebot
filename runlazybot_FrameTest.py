@@ -293,6 +293,40 @@ def crawPageBeauty(url, push_rate, soup):
             # print('本文已被刪除')
             print('delete')
 
+def simple_craw_page(url, push_rate, soup):
+    #r-ent是每頁裡面各篇文的class
+    for r_ent in soup.find_all(class_="r-ent"):
+        try:
+            #抓各篇文章uri的後半段
+            link = r_ent.find('a')['href']
+            # if 'M.1430099938.A.3B7' in link:
+            #     continue
+            comment_rate = ""
+            if (link):
+                #文章uri存在的話，表示沒被刪文，可以繼續抓值(標題、推文數)，因為link的網址只有後半段，自己接起來
+                title = r_ent.find(class_="title").text.strip()
+                rate = r_ent.find(class_="nrec").text
+                URL = 'https://www.ptt.cc' + link
+                #print("........" + URL)
+                if (rate):
+                    comment_rate = rate
+                    if rate.find(u'爆') > -1:
+                        comment_rate = 100
+                    if rate.find('X') > -1:
+                        comment_rate = -1 * int(rate[1])
+                else:
+                    comment_rate = 0
+                #只看推文數 >= push_rate設定的
+                #print("................" + str(comment_rate) + title)
+                if int(comment_rate) >= push_rate and not (re.search("[live]", title, re.IGNORECASE) or re.search("[公告]", title)):
+                #if int(comment_rate) >= push_rate:
+                    print(comment_rate + title)
+                    article_list.append((int(comment_rate), URL, title))                
+        except:
+            # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
+            # print('本文已被刪除')
+            print('delete')
+
 def crawPageNBA(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
     for r_ent in soup.find_all(class_="r-ent"):
@@ -453,7 +487,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            crawPageNBA(index, push_rate, soup)
+            simple_craw_page(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     print(article_list)
