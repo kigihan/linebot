@@ -166,6 +166,7 @@ def callback():
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
+                    print("........fail1")
                     simple_push_rate = 30
                 try:
                     if simple_board_name in filter_test:
