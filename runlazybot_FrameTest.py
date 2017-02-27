@@ -324,7 +324,7 @@ def simple_craw_page(url, push_rate, soup):
                         print("........" + comment_rate + title)
                         if not title.startswith("[公告]"):
                             print("................" + comment_rate + title)
-                            article_list.append(int(comment_rate), URL, title)
+                            article_list.append((int(comment_rate), URL, title))
                             print(article_list)
         
         except:
