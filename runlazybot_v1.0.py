@@ -463,7 +463,7 @@ def PttNBAFilm():
     #print("    PageNum>>> " + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
     #設定推文數閥值
-    push_rate = 50
+    push_rate = 20
     page_uri_list = []
     for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/NBA_Film/index" + str(page) + ".html"
