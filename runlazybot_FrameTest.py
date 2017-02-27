@@ -318,10 +318,14 @@ def simple_craw_page(url, push_rate, soup):
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
                 #print("................" + str(comment_rate) + title)
-                if int(comment_rate) >= push_rate and not (re.search("[live]", title, re.IGNORECASE) or re.search("[公告]", title)):
-                #if int(comment_rate) >= push_rate:
+                if int(comment_rate) >= push_rate:
                     print(comment_rate + title)
-                    article_list.append((int(comment_rate), URL, title))                
+                    if not re.search("[live]", title, re.IGNORECASE):
+                        print("........" + comment_rate + title)
+                        if not re.search("[公告]", title):
+                            print("................" + comment_rate + title)
+                            article_list.append(int(comment_rate), URL, title)
+
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
