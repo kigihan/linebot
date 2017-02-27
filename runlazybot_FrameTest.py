@@ -509,7 +509,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     soup = BeautifulSoup(res.text, "html.parser")
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
-    #抓最新-1頁的連結
+    #抓最新-1頁連結
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
     #從連接拆出最新-1頁數
