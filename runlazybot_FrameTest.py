@@ -486,7 +486,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #print("    URI>>> " + LatestPageURI)
     #從連接拆出最新-1頁數
     LatestPageNum = re.match("/bbs/" + simple_board_name + "/index(.*).html",LatestPageURI)
-    #print("    PageNum>>> " + LatestPageNum.group(1))
+    print( LatestPageNum + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
     #吃傳進來的推文閥值
     push_rate = simple_push_rate
