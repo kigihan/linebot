@@ -317,6 +317,7 @@ def crawPageNBA(url, push_rate, soup):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
+                print("................" + str(push_rate) + title)
                 if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
                     article_list.append((int(comment_rate), URL, title))                
         except:
