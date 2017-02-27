@@ -157,9 +157,9 @@ def callback():
                 #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
-                if simple_board_name_input[2]:
+                try:
                     simple_push_rate = int(simple_board_name_input[2])
-                else:
+                except:
                     simple_push_rate = 30
                 filter_simple = ["公告"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
