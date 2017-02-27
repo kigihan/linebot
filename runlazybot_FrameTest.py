@@ -522,11 +522,15 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
-        ptt_cookies = "__cfduid=db90216088a1f86648b36bb1650f0994c1470023728; \
-        over18=1; __utmt=1; __utma=156441338.214347805.1465751876.1488219040.1488230463.618; \
-        __utmb=156441338.8.10.1488230463; __utmc=156441338; \
-        __utmz=156441338.1488230463.618.158.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)"
-        res = requests.get(index,cookies = ptt_cookies , verify=False)
+        rs = requests.session()
+        if simple_board_name == ("gossiping" or "sex"):
+            adult_payload = {
+            "from" : "/bbs/" + simple_board_name + "/index.html",
+            "yes" : "yes"
+            }
+            res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
+
+        res = rs.get(index,cookies = ptt_cookies , verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
         if (soup.title.text.find('Service Temporarily') > -1):
