@@ -170,14 +170,19 @@ def callback():
                 except:
                     print("........input push rate fail1")
                     simple_push_rate = 30
-                try:
-                    if simple_board_name in filter_test:
-                        print(filter_test.index(simple_board_name))
-                        print("........Do it here")
-                    print("........pass")
-                except:
-                    filter_simple = filter_test[0][1:]
-                    print("..........except: " + filter_simple)
+                # try:
+                #     if simple_board_name in filter_test:
+                #         print(filter_test.index(simple_board_name))
+                #         print("........Do it here")
+                #     print("........pass")
+                # except:
+                #     filter_simple = filter_test[0][1:]
+                #     print("..........except: " + filter_simple)
+                for filter_ctr in filter_test:
+                    print(filter_ctr)
+                    if simple_board_name == filter_ctr[0]:
+                        filter_simple = filter_ctr[1:]
+                    print(filter_simple)
                 # if simple_board_name in filter_test:
                 #     a = filter_test.index(simple_board_name)
                 #filter_simple = ["[公告]"]
