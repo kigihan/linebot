@@ -20,6 +20,7 @@ import botsetting
 import requests
 import re
 import json
+import ptt_filter
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -48,12 +49,6 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 filter_softjob = ["[情報]", "[公告]"]
-filter_test = [
-    ["default", "[公告]"]
-    ["nba", "[公告]", "[live]"]
-    ["beauty", "[公告]", "[帥哥]"]
-    ["soft_job", "[公告]", "[情報]"]
-]
 
 @app.route("/callback", methods=['POST'])
 
@@ -165,10 +160,10 @@ def callback():
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
                 try:
-                    if simple_board_name in filter_test[:0]:
-                        print(filter_test.index(simple_board_name))
+                    if ptt_filter.simple_board_name:
+                        print(ptt_filter.simple_board_name)
                 except:
-                    filter_simple = filter_test[0:1]
+                    filter_simple = ptt_filter.default
                     print("..........except: " + filter_simple)
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
