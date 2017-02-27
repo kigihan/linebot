@@ -154,7 +154,7 @@ def callback():
 
             if event.message.text.lower().startswith("lzptt "):
                 simple_board_name = str(re.match('lzptt (.*)', event.message.text))
-                print(simple_board_name)
+                print("     .......>> " + simple_board_name)
                 simple_push_rate = 20
                 filter_simple = ["公告"]
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
@@ -309,7 +309,7 @@ def crawPageBeauty(url, push_rate, soup):
 
 def simple_craw_page(url, push_rate, soup, filter_simple):
     #r-ent是每頁裡面各篇文的class
-    print(filter_softjob)
+    #print(filter_softjob)
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -334,7 +334,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
-                    print(article_list)
+                    #print(article_list)
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
@@ -476,7 +476,6 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
     #抓最新-1頁的連結
-    LatestPageURI = []
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
     #從連接拆出最新-1頁數
@@ -506,7 +505,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
             simple_craw_page(index, push_rate, soup, filter_simple)
             # print u'OK_URL:', index
             # time.sleep(0.05)
-    print(article_list)
+    #print(article_list)
     article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
