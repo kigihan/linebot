@@ -47,7 +47,7 @@ if channel_access_token is None:
 
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
-filter_softjob = ["情報", "公告"]
+filter_softjob = ["[情報]", "[公告]"]
 
 @app.route("/callback", methods=['POST'])
 
@@ -322,11 +322,11 @@ def simple_craw_page(url, push_rate, soup):
                 #     #print("................" + comment_rate + title)
                 #     article_list.append((int(comment_rate), URL, title))
                 #     #print(article_list)
-                # if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_softjob))):
-                #     article_list.append((int(comment_rate), URL, title))
-                    #print(article_list)
-                if int(comment_rate) >= push_rate and not (title.startswith("情報", "公告")):
+                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_softjob))):
                     article_list.append((int(comment_rate), URL, title))
+                    print(article_list)
+                # if int(comment_rate) >= push_rate and not (title.startswith("情報", "公告")):
+                #     article_list.append((int(comment_rate), URL, title))
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
