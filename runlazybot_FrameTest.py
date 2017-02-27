@@ -530,7 +530,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
             }
             res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
 
-        res = rs.get(index,cookies = ptt_cookies , verify=False)
+        res = rs.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
         if (soup.title.text.find('Service Temporarily') > -1):
