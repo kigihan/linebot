@@ -526,7 +526,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
         over18=1; __utmt=1; __utma=156441338.214347805.1465751876.1488219040.1488230463.618; \
         __utmb=156441338.8.10.1488230463; __utmc=156441338; \
         __utmz=156441338.1488230463.618.158.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)"
-        res = requests.get(index,cookies =  , verify=False)
+        res = requests.get(index,cookies = ptt_cookies , verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
         if (soup.title.text.find('Service Temporarily') > -1):
