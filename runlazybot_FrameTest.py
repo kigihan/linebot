@@ -52,7 +52,8 @@ filter_test = [
     ["default", "[公告]"],
     ["soft_job", "[公告]", "[情報]"],
     ["lol", "[公告]", "[實況]"],
-    ["nba", "[公告]"]
+    ["nba", "[公告]"],
+    ["beauty", "[公告]"]
 ]
 
 @app.route("/callback", methods=['POST'])
@@ -161,37 +162,30 @@ def callback():
             if event.message.text.lower().startswith("lzptt "):
                 #print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
-                print(simple_board_name_input)
+                #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
                 #吃輸入的推文數
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
-                    print("........input push rate fail1")
+                    #print("........input push rate fail1")
                     simple_push_rate = 30
-                # try:
-                #     if simple_board_name in filter_test:
-                #         print(filter_test.index(simple_board_name))
-                #         print("........Do it here")
-                #     print("........pass")
-                # except:
-                #     filter_simple = filter_test[0][1:]
-                #     print("..........except: " + filter_simple)
+                
                 for filter_ctr in filter_test:
-                    print(filter_ctr)
+                    #print(filter_ctr)
                     if simple_board_name == filter_ctr[0]:
                         filter_simple = filter_ctr[1:]
-                    print(filter_simple)
-                # if simple_board_name in filter_test:
-                #     a = filter_test.index(simple_board_name)
-                #filter_simple = ["[公告]"]
+                    else:
+                        filter_simple = filter_test[0][1:]
+                    #print(filter_simple)
+                
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+                print(all_template_message)
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
                 )
-                print(all_template_message)
 
             if event.message.text.lower() == 'beau':
                 all_template_message = ''
