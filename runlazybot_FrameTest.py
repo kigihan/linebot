@@ -233,6 +233,8 @@ def callback():
                 #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
     del article_list[:]
     del article_list_sorted[:]
+    simple_board_name = ""
+    simple_push_rate is None
 
     return 'OK'
 article_list = []
