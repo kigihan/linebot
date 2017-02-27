@@ -89,7 +89,7 @@ def callback():
                         text = '請選擇下述服務',
                         actions = [
                             MessageTemplateAction(
-                                label = 'PTT表特版近日前五大熱門文章',
+                                label = 'PTT表特版五大熱門文章',
                                 text = 'BEAU'
                             ),
                             MessageTemplateAction(
@@ -112,7 +112,7 @@ def callback():
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="以下指令大小寫皆可\n\n" + \
-                                     "指令     | 說明" + \
+                                     "指令     | 說明\n" + \
                                      "NBA      | 查看NBA版近日熱門文章\n" + \
                                      "NBAFilm  | 查看NBAFilm版近日熱門文章\n" + \
                                      "Beau     | 查看Beauty版近日熱門文章\n" + \
