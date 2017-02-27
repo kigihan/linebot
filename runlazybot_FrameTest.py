@@ -123,10 +123,10 @@ def callback():
                 event.reply_token,
                 TextSendMessage(text= \
                     "[+]查看Beauty版熱門文章\n" + \
-                    "　 Beau\n\n" + \
+                    "　　Beau\n\n" + \
                     "[+]查看PTT各版熱門文章\n" + \
-                    "　 lzptt (空格) 版名 (空格) 推文數標準(預設50)\n" + \
-                    "　 以下為範例: \n" + \
+                    "　　lzptt (空格) 版名 (空格) 推文數標準(預設50)\n" + \
+                    "　　以下為範例: \n" + \
                     "lzptt nba 80\n" + \
                     "lzptt gossiping 10")
                 )
