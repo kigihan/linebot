@@ -512,7 +512,10 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
     #抓最新-1頁連結
-    LatestPageURI = soup.select('.btn.wide')[1]['href']
+    try:
+        LatestPageURI = soup.select('.btn.wide')[1]['href']
+    except:
+        all_template_message = "發生錯誤。"
     #print("    URI>>> " + LatestPageURI)
     #從連接拆出最新-1頁數
     noindex_page_uri = re.split("index", LatestPageURI)
