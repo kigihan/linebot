@@ -495,13 +495,13 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
     rs = requests.session()
     if simple_board_name in ["gossiping", "sex"]:
-        print("........start to verify 18+")
+        #print("........start to verify 18+")
         adult_payload = {
         "from" : "/bbs/" + simple_board_name + "/index.html",
         "yes" : "yes"
         }
         res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
-        print(res.text)
+        #print(res.text)
 
     res = rs.get(TargetURI, verify=False)
     #print(res.text)
