@@ -438,7 +438,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
-    #print(page_uri_list)
+    print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
