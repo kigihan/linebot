@@ -64,7 +64,7 @@ def callback():
     except InvalidSignatureError:
         abort(400)
 
-    # if event is MessageEvent and message is TextMessage, then echo text
+#     if event is MessageEvent and message is TextMessage, then echo text
 #    for event in events:
 #        if not isinstance(event, MessageEvent):
 #            continue
@@ -115,11 +115,19 @@ def callback():
                 TextSendMessage(text=all_template_message)
                 )
 
+            if event.message.text.lower() == 'nba':
+                all_template_message = PttNBA()
+                line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=all_template_message)
+                )
+
             if event.message.text.lower() == 'beau':
                 all_template_message = ''
                 article_list_sorted = PttBeautyCarousel()
                 print(article_list_sorted)
                 all_template_message = TemplateSendMessage(
+                    #PC版不支援CarouselTemplate，只會顯示這段訊息，手機板剛好不會顯示，拿來當PC版的資訊欄位
                     alt_text = "PTT表特版近日推文數前5名\n\n" + "(" + str(article_list_sorted[0][0]) + "推) " \
                      + article_list_sorted[0][2] + "\n" + article_list_sorted[0][1] \
                      + "\n\n" + "(" + str(article_list_sorted[1][0]) + "推) " \
@@ -135,6 +143,7 @@ def callback():
                         columns = [
                             CarouselColumn(
                                 thumbnail_image_url = article_list_sorted[0][3],
+                                #反正CarouselTemplate的title欄位非必要，放了也沒比較好看，就省掉
                                 #title = "( " + str(article_list_sorted[0][0]) + "推 )",
                                 text = "( " + str(article_list_sorted[0][0]) + "推 ) " + article_list_sorted[0][2],
                                 actions = [
@@ -195,61 +204,24 @@ def callback():
                 event.reply_token,
                 all_template_message
                 )
-                del article_list[:]
-                del article_list_sorted[:]
-
-            # if event.message.text.lower() == 'beau':
-            #     #carousel_template_message = ''
-            #     #article_list_sorted = PttBeautyCarousel()
-            #     #print(article_list_sorted)                
-            #     carousel_template_message = TemplateSendMessage(
-            #         alt_text = 'PTTtitle',
-            #         template = CarouselTemplate(
-            #             columns = [
-            #                 CarouselColumn(
-            #                     thumbnail_image_url = "https://i.imgur.com/gAaUTT6.jpg",
-            #                     title = "11111",
-            #                     text = "tttttttttttext",
-            #                     actions = [
-            #                         URITemplateAction(
-            #                             label = "LL1",
-            #                             uri = "https://www.ptt.cc/bbs/Beauty/M.1488020739.A.2BD.html"
-            #                         )
-            #                     ]
-            #                 ),
-            #                 CarouselColumn(
-            #                     thumbnail_image_url = "https://i.imgur.com/gAaUTT6.jpg",
-            #                     title = "22",
-            #                     text = "t2",
-            #                     actions = [
-            #                         URITemplateAction(
-            #                             label = "L2",
-            #                             uri = "https://www.ptt.cc/bbs/Beauty/M.1487987174.A.32C.html"
-            #                         )
-            #                     ]
-            #                 )
-            #             ]
-            #         )
-            #     )
-            #     print(carousel_template_message)
-            #     line_bot_api.reply_message(
-            #     event.reply_token,
-            #     carousel_template_message
-            #     )
+                #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
+    del article_list[:]
+    del article_list_sorted[:]
 
     return 'OK'
 article_list = []
 
-def crawPage(url, push_rate, soup):
+def crawPageBeauty(url, push_rate, soup):
+    #r-ent是每頁裡面各篇文的class
     for r_ent in soup.find_all(class_="r-ent"):
         try:
-            # 先得到每篇文章的篇url
+            #抓各篇文章uri的後半段
             link = r_ent.find('a')['href']
             if 'M.1430099938.A.3B7' in link:
                 continue
             comment_rate = ""
             if (link):
-                # 確定得到url再去抓 標題 以及 推文數
+                #文章uri存在的話，表示沒被刪文，可以繼續抓值(標題、推文數)，因為link的網址只有後半段，自己接起來
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
@@ -262,47 +234,46 @@ def crawPage(url, push_rate, soup):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
-                # 比對推文數
+                #只看推文數 >= push_rate設定的
                 if int(comment_rate) >= push_rate:
                     #print("        HighPost: " + URL)
+                    #抓URL網頁內容給res_post
                     res_post = requests.get(URL, verify=False)
+                    #把網頁內容parser過後丟給soup_post
                     soup_post = BeautifulSoup(res_post.text, "html.parser")
+                    #比較像暫時解，因為我抓全部<a >但前5個會是PTT的連結，後面才開始是po文內的，就設定個起始值降loading
                     img_uri_num = 5
                     img_links_list = []
+                    #沒打算抓很多連結來分析，只要有一張圖就可以了，讓他抓第5到10個連結
                     for img_uri_num in range(img_uri_num, 10, +1):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         #print(img_links)
+                        #如果該連結結尾是.jpg，那就可以用
                         if img_links.endswith(".jpg"):
+                            #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
                             if not img_links.startswith("https://"):
                                 img_links = re.sub("http", "https", img_links)
                                 #print(img_links)
+                            #雖然只要一張，但抓都抓了，有幾張存幾張，可能後面有用
                             img_links_list.append(img_links)
-                    # for link in img_links:
-                    #     print("    start FOR")
-                    #     print(link)
-                    #     if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
-                    #         print("    if(re.match): " + link)
-                    #         if not link.endswith(".jpg"):
-                    #             link += ".jpg"
-                    #         img_links_list.append(link["href"])
-                    #         print(link)
-
+                    #一篇文的資料抓完了，存進list
                     article_list.append((int(comment_rate), URL, title, img_links_list[0]))                
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
             print('delete')
 
-def crawPageCarousel(url, push_rate, soup):
+def crawPageNBA(url, push_rate, soup):
+    #r-ent是每頁裡面各篇文的class
     for r_ent in soup.find_all(class_="r-ent"):
         try:
-            # 先得到每篇文章的篇url
+            #抓各篇文章uri的後半段
             link = r_ent.find('a')['href']
-            if 'M.1430099938.A.3B7' in link:
-                continue
+            # if 'M.1430099938.A.3B7' in link:
+            #     continue
             comment_rate = ""
             if (link):
-                # 確定得到url再去抓 標題 以及 推文數
+                #文章uri存在的話，表示沒被刪文，可以繼續抓值(標題、推文數)，因為link的網址只有後半段，自己接起來
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
@@ -315,29 +286,30 @@ def crawPageCarousel(url, push_rate, soup):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
-                # 比對推文數
-                if int(comment_rate) >= 30:
-                    print("        HighPost: " + URL)
-                    res_post = requests.get(URL, verify=False)
-                    soup_post = BeautifulSoup(res_post.text, "html.parser")
-                    img_uri_num = 5
-                    img_links_list = []
-                    for img_uri_num in range(img_uri_num, 10, +1):
-                        img_links = soup_post.select("a")[img_uri_num]["href"]
-                        print(img_links)
-                        if img_links.endswith(".jpg"):
-                            img_links_list.append(img_links)
-                    # for link in img_links:
-                    #     print("    start FOR")
-                    #     print(link)
-                    #     if re.match(r"^https?://(i.)?(m.)?imgur.com", link["href"]):
-                    #         print("    if(re.match): " + link)
-                    #         if not link.endswith(".jpg"):
-                    #             link += ".jpg"
-                    #         img_links_list.append(link["href"])
-                    #         print(link)
-
-                    article_list.append((int(comment_rate), URL, title, img_links_list[0]))
+                #只看推文數 >= push_rate設定的
+                if int(comment_rate) >= push_rate:
+                    #print("        HighPost: " + URL)
+                    #抓URL網頁內容給res_post
+                    # res_post = requests.get(URL, verify=False)
+                    # #把網頁內容parser過後丟給soup_post
+                    # soup_post = BeautifulSoup(res_post.text, "html.parser")
+                    # #比較像暫時解，因為我抓全部<a >但前5個會是PTT的連結，後面才開始是po文內的，就設定個起始值降loading
+                    # img_uri_num = 5
+                    # img_links_list = []
+                    # #沒打算抓很多連結來分析，只要有一張圖就可以了，讓他抓第5到10個連結
+                    # for img_uri_num in range(img_uri_num, 10, +1):
+                    #     img_links = soup_post.select("a")[img_uri_num]["href"]
+                    #     #print(img_links)
+                    #     #如果該連結結尾是.jpg，那就可以用
+                    #     if img_links.endswith(".jpg"):
+                    #         #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
+                    #         if not img_links.startswith("https://"):
+                    #             img_links = re.sub("http", "https", img_links)
+                    #             #print(img_links)
+                    #         #雖然只要一張，但抓都抓了，有幾張存幾張，可能後面有用
+                    #         img_links_list.append(img_links)
+                    #一篇文的資料抓完了，存進list
+                    article_list.append((int(comment_rate), URL, title))                
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -350,12 +322,13 @@ def PttBeauty():
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "html.parser")
     #print("    soup>>>" + soup.prettify())
+    #class=btn wide
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     #print("    PageNum>>> " + LatestPageNum.group(1))
     LPN = int(LatestPageNum.group(1)) + 1
-    push_rate = 50  # 推文
+    push_rate = 30  # 推文
     page_uri_list = []
     for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
@@ -373,7 +346,7 @@ def PttBeauty():
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            crawPage(index, push_rate, soup)
+            crawPageBeauty(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     article_list_sorted = []
@@ -392,14 +365,18 @@ def PttBeautyCarousel():
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "html.parser")
     #print("    soup>>>" + soup.prettify())
-    #爬最新頁數
+    #爬最新-1頁面連結(因為直接get的話，第1頁是index.html)
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
+    #從連結抓出最新-1頁數
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
     #print("    PageNum>>> " + LatestPageNum.group(1))
+    #最新頁雖然是index.html，但剛剛的數字+1也能連的到，所以+1來用
     LPN = int(LatestPageNum.group(1)) + 1
-    push_rate = 50  # 推文
+    #設個閥值，想降些loading，這支parser好像不太快
+    push_rate = 30  # 推文
     page_uri_list = []
+    #抓個3頁差不多吧，表特版文章更新不算快，把這三頁的uri接好存到page_uri_list
     for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
@@ -408,15 +385,16 @@ def PttBeautyCarousel():
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
+        #爬頁面內容出來
         res = requests.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
-        # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
+        #如網頁忙線中,則先將網頁加入page_uri_list等1秒後重試
         if (soup.title.text.find('Service Temporarily') > -1):
             page_uri_list.append(index)
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            crawPage(index, push_rate, soup)
+            crawPageBeauty(index, push_rate, soup)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     article_list_sorted = []
@@ -426,6 +404,52 @@ def PttBeautyCarousel():
     #     data = "(" + str(article_list_sorted[0]) + "推) " + article_list_sorted[2] + "\n" + article_list_sorted[1] + "\n" + article_list_sorted[3] + "\n\n"
     #     all_template_message += data
     return article_list_sorted
+
+def PttNBA():
+    TargetURI = "https://www.ptt.cc/bbs/NBA/index.html"
+    res = requests.get(TargetURI, verify=False)
+    #print(res.text)
+    #ResContent = res.text
+    soup = BeautifulSoup(res.text, "html.parser")
+    #print("    soup>>>" + soup.prettify())
+    #class=btn wide
+    #抓最新-1頁的連結
+    LatestPageURI = soup.select('.btn.wide')[1]['href']
+    #print("    URI>>> " + LatestPageURI)
+    #從連接拆出最新-1頁數
+    LatestPageNum = re.match('/bbs/NBA/index(.*).html',LatestPageURI)
+    #print("    PageNum>>> " + LatestPageNum.group(1))
+    LPN = int(LatestPageNum.group(1)) + 1
+    #設定推文數閥值
+    push_rate = 50
+    page_uri_list = []
+    for page in range(LPN, LPN-3, -1):
+        page_uri = "https://www.ptt.cc/bbs/NBA/index" + str(page) + ".html"
+        page_uri_list.append(page_uri)
+    #print("    PageURI>>> " + page_uri)
+    #print(page_uri_list)
+    while page_uri_list:
+        index = page_uri_list.pop(0)
+        #print("    try to parse: " + index)
+        res = requests.get(index, verify=False)
+        soup = BeautifulSoup(res.text, 'html.parser')
+        #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
+        if (soup.title.text.find('Service Temporarily') > -1):
+            page_uri_list.append(index)
+            # print u'error_URL:',index
+            # time.sleep(1)
+        else:
+            crawPageNBA(index, push_rate, soup)
+            # print u'OK_URL:', index
+            # time.sleep(0.05)
+    article_list_sorted = []
+    article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
+    #print(article_list_sorted)
+    all_template_message = ''
+    for article in article_list_sorted:
+        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
+        all_template_message += data
+    return all_template_message
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
