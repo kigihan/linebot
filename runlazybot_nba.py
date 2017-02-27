@@ -80,25 +80,25 @@ def callback():
     carousel_template_message = TemplateSendMessage()
     for event in events:
         if isinstance(event, MessageEvent):
-            if event.message.text.lower() == 'bmenu':
+            if event.message.text.lower() == 'lazyn00b' or event.message.text.lower() == "lazynoob":
                 all_template_message = TemplateSendMessage(
-                    alt_text = 'PC敘述',
+                    alt_text = '安安 \n 指令說明請輸入\"lazhelp\"(大小寫皆可)\n\n',
                     template = ButtonsTemplate(
                         thumbnail_image_url = "https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg",
-                        title = '標題',
-                        text = '文字敘述',
+                        title = '安安',
+                        text = '請選擇下述服務',
                         actions = [
                             MessageTemplateAction(
-                                label = '訊息標題',
-                                text = '訊息1'
+                                label = 'PTT表特版近日前五大熱門文章',
+                                text = 'BEAU'
                             ),
                             MessageTemplateAction(
-                                label = 'bt2_label',
-                                text = 'bt2_twxt'
+                                label = '其他指令說明',
+                                text = 'LazHelp'
                             ),
                             URITemplateAction(
-                                label = "URI標題",
-                                uri = "https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg"
+                                label = "超讚的冰島相簿",
+                                uri = "https://www.flickr.com/photos/132023410@N06/albums/72157673424430564"
                             )
                         ]
                     )
@@ -106,6 +106,17 @@ def callback():
                 line_bot_api.reply_message(
                 event.reply_token,
                 all_template_message
+                )
+
+            if event.message.text.lower() == 'lazhelp':
+                line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text="以下指令大小寫皆可\n\n" + \
+                                     "指令     | 說明" + \
+                                     "NBA      | 查看NBA版近日熱門文章\n" + \
+                                     "NBAFilm  | 查看NBAFilm版近日熱門文章\n" + \
+                                     "Beau     | 查看Beauty版近日熱門文章\n" + \
+                                     "\n\n")
                 )
 
             if event.message.text.lower() == '表特':
