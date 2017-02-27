@@ -515,7 +515,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     try:
         LatestPageURI = soup.select('.btn.wide')[1]['href']
     except:
-        all_template_message = "發生錯誤。"
+        all_template_message = "發生錯誤，可至PTT確認版名。\n https://www.ptt.cc/hotboard.html"
         return all_template_message
     #print("    URI>>> " + LatestPageURI)
     #從連接拆出最新-1頁數
