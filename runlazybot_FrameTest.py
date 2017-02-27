@@ -307,7 +307,7 @@ def crawPageNBA(url, push_rate, soup):
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
-                #print("........" + URL)
+                print("........" + URL)
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
@@ -438,10 +438,10 @@ def ptt_simple_board(simple_board_name, simple_push_rate):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
-    print(page_uri_list)
+    #print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
-        #print("    try to parse: " + index)
+        print("    try to parse: " + index)
         res = requests.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
