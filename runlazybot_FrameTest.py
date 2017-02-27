@@ -318,14 +318,18 @@ def simple_craw_page(url, push_rate, soup):
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的
                 #print("................" + str(comment_rate) + title)
-                if int(comment_rate) >= push_rate:
-                    print(comment_rate + title)
-                    if not title.startswith("[情報]"):
-                        print("........" + comment_rate + title)
-                        if not title.startswith("[公告]"):
-                            print("................" + comment_rate + title)
-                            article_list.append((int(comment_rate), URL, title))
-                            print(article_list)
+                # if int(comment_rate) >= push_rate:
+                #     print(comment_rate + title)
+                #     if not title.startswith("[情報]"):
+                #         print("........" + comment_rate + title)
+                #         if not title.startswith("[公告]"):
+                #             print("................" + comment_rate + title)
+                #             article_list.append((int(comment_rate), URL, title))
+                #             print(article_list)
+                if int(comment_rate) >= push_rate and not ((title.startswith("[情報]")) or (title.startswith("[公告]"))):
+                    print("................" + comment_rate + title)
+                    article_list.append((int(comment_rate), URL, title))
+                    print(article_list)
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
