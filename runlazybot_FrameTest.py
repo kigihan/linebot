@@ -493,7 +493,17 @@ def PttBeautyCarousel():
 def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #吃傳進來的板名(simple_board_name)
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
-    res = requests.get(TargetURI, verify=False)
+    rs = requests.session()
+    if simple_board_name == ("gossiping" or "sex"):
+        print("........start to verify 18+")
+        adult_payload = {
+        "from" : "/bbs/" + simple_board_name + "/index.html",
+        "yes" : "yes"
+        }
+        res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
+        print(res.text)
+
+    res = rs.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "html.parser")
@@ -522,15 +532,6 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
-        rs = requests.session()
-        if simple_board_name == ("gossiping" or "sex"):
-            print("........start to verify 18+")
-            adult_payload = {
-            "from" : "/bbs/" + simple_board_name + "/index.html",
-            "yes" : "yes"
-            }
-            res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
-            print(res.text)
 
         res = rs.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
