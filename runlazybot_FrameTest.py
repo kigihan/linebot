@@ -122,11 +122,13 @@ def callback():
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= \
-                    "[+]查看Beauty版熱門文章\n" + \
-                    "　　Beau\n\n" + \
+                    "指令說明\n\n" + \
+                    "[+]Beauty版熱文\n" + \
+                    "(手機觀看可得較佳效果)" + \
+                    "Beau\n\n" + \
                     "[+]查看PTT各版熱門文章\n" + \
-                    "　　lzptt (空格) 版名 (空格) 推文數標準(預設50)\n" + \
-                    "　　以下為範例: \n" + \
+                    "lzptt (空格) 版名 (空格) 推文數標準(預設50)\n\n" + \
+                    "以下為範例: \n" + \
                     "lzptt nba 80\n" + \
                     "lzptt gossiping 10")
                 )
