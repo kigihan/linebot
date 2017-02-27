@@ -324,6 +324,7 @@ def simple_craw_page(url, push_rate, soup):
                 #     #print(article_list)
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_Soft_Job))):
                     article_list.append((int(comment_rate), URL, title))
+                    print(article_list)
         
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
