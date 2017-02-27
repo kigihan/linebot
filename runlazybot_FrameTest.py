@@ -524,11 +524,13 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
         #print("    try to parse: " + index)
         rs = requests.session()
         if simple_board_name == ("gossiping" or "sex"):
+            print("........start to verify 18+")
             adult_payload = {
             "from" : "/bbs/" + simple_board_name + "/index.html",
             "yes" : "yes"
             }
             res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
+            print(res.text)
 
         res = rs.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'html.parser')
