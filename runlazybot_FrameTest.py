@@ -121,11 +121,14 @@ def callback():
             if event.message.text.lower() == 'lzhelp':
                 line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text="以下指令大小寫皆可\n\n" + \
-                                     "NBA : NBA版熱門文章\n" + \
-                                     "NBAFilm : NBAFilm版熱門文章\n" + \
-                                     "Beau : Beauty版熱門文章\n" + \
-                                     "\n")
+                TextSendMessage(text= \
+                    "[+]查看Beauty版熱門文章\n" + \
+                    "　 Beau\n\n" + \
+                    "[+]查看PTT各版熱門文章\n" + \
+                    "　 lzptt (空格) 版名 (空格) 推文數標準(預設50)\n" + \
+                    "　 以下為範例: \n" + \
+                    "lzptt nba 80\n" + \
+                    "lzptt gossiping 10")
                 )
 
             if event.message.text.lower() == '表特':
@@ -170,7 +173,7 @@ def callback():
                     simple_push_rate = int(simple_board_name_input[2])
                 except:
                     #print("........input push rate fail1")
-                    simple_push_rate = 30
+                    simple_push_rate = 50
                 
                 for filter_ctr in filter_test:
                     #print(filter_ctr)
@@ -181,10 +184,10 @@ def callback():
                     #print(filter_simple)
                 
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
-                print(all_template_message)
+                #print(all_template_message)
                 if not all_template_message:
-                    all_template_message = "請調整推文數標準，設定方式可參考lzptt指令說明: \n" + \
-                    "lzptt (PTT版名) (推文數標準)\n" + \
+                    all_template_message = "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
+                    "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
                     "例: lzptt nba 70\n"
                 line_bot_api.reply_message(
                 event.reply_token,
