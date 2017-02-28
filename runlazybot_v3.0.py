@@ -70,6 +70,7 @@ for filter_clns in filter_test:
     # print(".......filter 2 ........")
     # print(filter_formal)
     filter_test[i].append(filter_default[0][1:])
+    i += 1
 print("...........FULL FILTER............")
 print(filter_test)
 @app.route("/callback", methods=['POST'])
