@@ -167,12 +167,6 @@ def callback():
                 )
 
             if event.message.text.lower().startswith("lzptt "):
-                del all_template_message
-                del article_list[:]
-                del article_list_sorted[:]
-                simple_board_name = ""
-                simple_push_rate is None
-                del filter_simple[:]
                 #print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
                 #print(simple_board_name_input)
@@ -377,6 +371,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
                 print("........rate in craw: " + str(push_rate))
+                del article_list
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
                     #print(article_list)
@@ -572,9 +567,11 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
             # time.sleep(0.05)
     #print(article_list)
     article_list_sorted = []
+    del article_list_sorted
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
     all_template_message = ''
+    del all_template_message
     for article in article_list_sorted:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
         all_template_message += data
