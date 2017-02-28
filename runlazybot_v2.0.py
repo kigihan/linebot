@@ -237,21 +237,21 @@ def callback():
                     #print(all_template_message)
                     print(len(all_template_message))
                     if not all_template_message:
-                        if push_rate_match >= 1:
-                            all_template_message = \
-                            "請調整推文數標準，設定方式可參考LzPtts指令說明: \n\n" + \
-                            "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
-                            "例: LzPtts car 心得\n" + \
-                            "例: LzPtts nba box 70\n"
-                        elif push_rate_match <=0:
+                        if search_match <=0:
                             all_template_message = \
                             "查無結果，請調整搜尋關鍵字，LzPtts指令說明: \n\n" + \
                             "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
                             "例: LzPtts car 心得\n" + \
                             "例: LzPtts nba box 70\n"
+                        elif push_rate_match <= 0:
+                            all_template_message = \
+                            "請降低推文數標準，LzPtts指令說明: \n\n" + \
+                            "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                            "例: LzPtts car 心得\n" + \
+                            "例: LzPtts nba box 70\n"
                     if len(all_template_message) >= 2000:
                         all_template_message = \
-                        "文章過多，請提高推文數。\n\n" + \
+                        "文章過多，請調整設定，LzPtts指令說明: 。\n\n" + \
                         "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
                         "例: LzPtts car 心得\n" + \
                         "例: LzPtts nba box 70\n"
