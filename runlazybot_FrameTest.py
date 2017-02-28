@@ -567,12 +567,13 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
             # print u'OK_URL:', index
             # time.sleep(0.05)
     #print(article_list)
-    article_list_sorted = []
+    # article_list_sorted = []
     #del article_list_sorted
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
-    all_template_message = ''
+    # all_template_message = ''
     #del all_template_message
+    print("......all: " + all_template_message)
     all_template_message = ""
     for article in article_list_sorted:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
