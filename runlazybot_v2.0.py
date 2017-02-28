@@ -231,8 +231,6 @@ def callback():
                         #print("........input push rate fail1")
                         simple_push_rate = 50
                     print("........push_rate_1" + str(simple_push_rate))
-                    try:
-                        filter_simple = 
                     simple_filter_type = 2
                     all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                     #print(all_template_message)
