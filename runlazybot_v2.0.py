@@ -439,7 +439,9 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         print("............yes : " + str(push_rate_match))
                         if filter_simple.lower() in title.lower():
                             article_list.append((int(comment_rate), URL, title))
-                        #print(article_list)        
+                        #print(article_list)
+                    else:
+                        print("........fail")
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
