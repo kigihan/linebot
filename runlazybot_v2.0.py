@@ -182,11 +182,11 @@ def callback():
                 for filter_ctr in filter_test:
                     print("vvv...CCCCCTTTTTRRRRRR[0]")
                     print(simple_board_name == filter_ctr[0])
+                    print(len(simple_board_name))
+                    print(len(filter_ctr[0]))
                     if simple_board_name == filter_ctr[0]:
-                        print("........ya equal")
                         filter_simple = filter_ctr[1:]
                     else:
-                        print("........not equal damn...")
                         filter_simple = filter_test[0][1:]
                     #print(filter_simple)
                 
@@ -382,8 +382,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
                 #print("........rate in craw: " + str(push_rate))
-                print("vvvv...filter_simple...")
-                print(filter_simple)
+                # print("vvvv...filter_simple...")
+                # print(filter_simple)
                 if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
                     #print(article_list)
