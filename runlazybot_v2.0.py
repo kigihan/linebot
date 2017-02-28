@@ -218,9 +218,10 @@ def callback():
                     bypass_proc = 0
                 except:
                     all_template_message = \
-                    "請輸入關鍵字以供搜尋，設定方式可參考lzptts指令說明: \n\n" + \
-                    "lzptts (空格) PTT版名 (空格) 關鍵字 (空格) 推文數標準\n\n" + \
-                    "例: lzptts nba live 70\n\n" + \
+                    "請輸入關鍵字以供搜尋，設定方式可參考LzPtts指令說明: \n\n" + \
+                    "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                    "例: LzPtts car 心得\n" + \
+                    "例: LzPtts nba box 70\n" + \
                     "或使用指令\"LzHelp\"了解詳細資訊\n"
                     bypass_proc = 1
                 if bypass_proc == 0:
@@ -236,16 +237,24 @@ def callback():
                     #print(all_template_message)
                     print(len(all_template_message))
                     if not all_template_message:
-                        all_template_message = \
-                        "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
-                        "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
-                        "例: lzptt nba 70\n"
+                        if push_rate_match >= 1:
+                            all_template_message = \
+                            "請調整推文數標準，設定方式可參考LzPtts指令說明: \n\n" + \
+                            "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                            "例: LzPtts car 心得\n" + \
+                            "例: LzPtts nba box 70\n"
+                        elif push_rate_match <=0:
+                            all_template_message = \
+                            "查無結果，請調整搜尋關鍵字，LzPtts指令說明: \n\n" + \
+                            "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                            "例: LzPtts car 心得\n" + \
+                            "例: LzPtts nba box 70\n"
                     if len(all_template_message) >= 2000:
                         all_template_message = \
                         "文章過多，請提高推文數。\n\n" + \
-                        "lzptt (空格) PTT版名 (空格) 推文數標準\n" + \
-                        "例: lzptt nba 70\n\n" + \
-                        "或使用指令\"LzHelp\"了解詳細資訊\n"
+                        "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                        "例: LzPtts car 心得\n" + \
+                        "例: LzPtts nba box 70\n"
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
