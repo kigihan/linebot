@@ -130,14 +130,14 @@ def callback():
                     "✡Beau\n\n" + \
                     "☀[+]查看PTT各版熱門文章\n" + \
                     "(推文數可不輸入，預設50)\n" + \
-                    "✡LzPtt (空格) 版名 (空格) 推文數標準\n\n" + \
+                    "✡LzPtt (空格) 版名 (空格) 推文數標準\n" + \
                     "以下為範例: \n" + \
                     "✡LzPtt car\n" + \
                     "✡LzPtt nba 80\n" + \
                     "✡LzPtt gossiping 10\n\n" + \
                     "☀[+]利用關鍵字搜尋PTT看板文章\n" + \
                     "(推文數可不輸入，預設50)\n" + \
-                    "(cellphone)LzPttS (空格) 版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                    "(cellphone)LzPttS (空格) 版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n" + \
                     "以下為範例: \n" + \
                     "✡LzPttS car 心得\n" + \
                     "✡LzPttS nba live 30\n" + \
