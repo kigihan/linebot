@@ -422,7 +422,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
-                #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
+                #只看推文數 >= push_rate設定，同時依標題分類黑名單過濾
                 #print("........rate in craw: " + str(push_rate))
                 # print("vvvv...filter_simple...")
                 # print(filter_simple)
