@@ -370,7 +370,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
-                print("........rate in craw: " + str(push_rate))
+                #print("........rate in craw: " + str(push_rate))
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
                     #print(article_list)
@@ -379,7 +379,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
             print('delete')
-    #print(article_list)
+    print(article_list)
 
 def crawPageNBA(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
