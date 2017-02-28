@@ -382,7 +382,6 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
             # print('本文已被刪除')
             print('delete')
     #print(article_list)
-    return article_list
 
 def crawPageNBA(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
