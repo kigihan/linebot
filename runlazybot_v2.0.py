@@ -182,7 +182,7 @@ def callback():
                 for filter_ctr in filter_test:
                     print("vvv...CCCCCTTTTTRRRRRR[0]")
                     print(filter_ctr[0])
-
+                    print(simple_board_name)
                     if simple_board_name == filter_ctr[0]:
                         print("........ya equal")
                         filter_simple = filter_ctr[1:]
