@@ -379,7 +379,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
                 #print("........rate in craw: " + str(push_rate))
-                if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
+                if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
                     #print(article_list)
         
