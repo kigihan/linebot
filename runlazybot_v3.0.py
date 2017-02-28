@@ -56,6 +56,8 @@ filter_test = [
     ["beauty", "[公告]"],
     ["baseball", "[公告]"]
 ]
+for filter_clns in filter_test:
+    print(filter_clns)
 
 @app.route("/callback", methods=['POST'])
 
