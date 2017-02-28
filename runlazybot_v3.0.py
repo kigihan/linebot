@@ -124,7 +124,7 @@ def callback():
                 event.reply_token,
                 TextSendMessage(text= \
                     "指令說明\n" + \
-                    "((yes)所有指令大小寫皆可\n\n)" + \
+                    "((yes)所有指令大小寫皆可)\n\n" + \
                     "☀[+]Beauty版熱文\n" + \
                     "(手機觀看可得較佳效果)\n" + \
                     "✡Beau\n\n" + \
