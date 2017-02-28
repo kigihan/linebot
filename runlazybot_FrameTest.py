@@ -350,6 +350,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
     #print(filter_softjob)
     #del article_list
     article_list = []
+    del article_list
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -375,13 +376,13 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                 #print("........rate in craw: " + str(push_rate))
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
-                    #print(article_list)
-        
+                    #print(article_list)        
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
             print('delete')
     #print(article_list)
+    return article_list
 
 def crawPageNBA(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
@@ -571,10 +572,8 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     #del article_list_sorted
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
-    # all_template_message = ''
-    #del all_template_message
-    print("......all: " + all_template_message)
     all_template_message = ""
+    del all_template_message
     for article in article_list_sorted:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
         all_template_message += data
