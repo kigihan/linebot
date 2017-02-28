@@ -349,6 +349,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
     #r-ent是每頁裡面各篇文的class
     #print(filter_softjob)
     del article_list
+    article_list = []
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
