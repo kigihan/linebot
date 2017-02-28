@@ -565,7 +565,7 @@ def PttBeautyCarousel():
     #最新頁雖然是index.html，但剛剛的數字+1也能連的到，所以+1來用
     LPN = int(LatestPageNum.group(1)) + 1
     #設個閥值，想降些loading，這支parser好像不太快
-    push_rate = 1  # 推文
+    push_rate = 20  # 推文
     page_uri_list = []
     #抓個3頁差不多吧，表特版文章更新不算快，把這三頁的uri接好存到page_uri_list
     for page in range(LPN, LPN-3, -1):
