@@ -186,7 +186,7 @@ def callback():
                     else:
                         filter_simple = filter_test[0][1:]
                     #print(filter_simple)
-                del all_template_message
+                # del all_template_message
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 print(all_template_message)
                 if not all_template_message:
