@@ -93,7 +93,7 @@ def callback():
             # if event.message.text.lower() == 'lazybot' or event.message.text.lower() == "lazynoob":
             if event.message.text.lower() in ["lazybot", "lazbot", "lzbot", "lazynoob", "lazyn00b"]:
                 all_template_message = TemplateSendMessage(
-                    alt_text = '安安 \n\n指令說明請輸入\"LzHelp\"(大小寫皆可)\n',
+                    alt_text = '安安 \n\n指令說明請輸入\"LzHelp\"(大小寫皆可)',
                     template = ButtonsTemplate(
                         thumbnail_image_url = "https://farm1.staticflickr.com/369/30705578944_b898fa0458_h.jpg",
                         title = '安安',
