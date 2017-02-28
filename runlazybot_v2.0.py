@@ -588,6 +588,10 @@ def PttBeautyCarousel():
     return article_list_sorted
 
 def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type):
+    global search_match
+    global push_rate_match
+    search_match = 0
+    push_rate_match = 0
     #吃傳進來的板名(simple_board_name)
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
     rs = requests.session()
