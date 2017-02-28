@@ -185,15 +185,17 @@ def callback():
                 if not filter_simple:
                     filter_simple = filter_test[0][1:]
                     #print(filter_simple)
-                
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+                #設定filter，1 = 標題黑名單filter(內建)，2 = 標題白名單filter(user輸入)
+                simple_filter_type = 1
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type)
                 #print(all_template_message)
                 print(len(all_template_message))
                 if not all_template_message:
                     all_template_message = \
                     "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
                     "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
-                    "例: lzptt nba 70\n"
+                    "例: lzptt nba 70\n\n" + \
+                    "或使用指令\"LzHelp\"了解詳細資訊\n"
                 if len(all_template_message) >= 2000:
                     all_template_message = \
                     "文章過多，請提高推文數。\n\n" + \
@@ -211,34 +213,41 @@ def callback():
                 #print(simple_board_name_input)
                 simple_board_name = simple_board_name_input[1]
                 #print("..............<<" + simple_board_name)
-                #吃輸入的推文數
                 try:
-                    simple_push_rate = int(simple_board_name_input[2])
+                    filter_simple = simple_board_name_input[2]
+                    bypass_proc = 0
                 except:
-                    #print("........input push rate fail1")
-                    simple_push_rate = 50
-                print("........push_rate_1" + str(simple_push_rate))
-                for filter_ctr in filter_test:
-                    if simple_board_name == filter_ctr[0]:
-                        filter_simple = filter_ctr[1:]
-                if not filter_simple:
-                    filter_simple = filter_test[0][1:]
-                    #print(filter_simple)
-                
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
-                #print(all_template_message)
-                print(len(all_template_message))
-                if not all_template_message:
                     all_template_message = \
-                    "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
-                    "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
-                    "例: lzptt nba 70\n"
-                if len(all_template_message) >= 2000:
-                    all_template_message = \
-                    "文章過多，請提高推文數。\n\n" + \
-                    "lzptt (空格) PTT版名 (空格) 推文數標準\n" + \
-                    "例: lzptt nba 70\n\n" + \
+                    "請輸入關鍵字以供搜尋，設定方式可參考lzptts指令說明: \n\n" + \
+                    "lzptts (空格) PTT版名 (空格) 關鍵字 (空格) 推文數標準\n\n" + \
+                    "例: lzptts nba live 70\n\n" + \
                     "或使用指令\"LzHelp\"了解詳細資訊\n"
+                    bypass_proc = 1
+                if bypass_proc == 0:
+                    #吃輸入的推文數
+                    try:
+                        simple_push_rate = int(simple_board_name_input[3])
+                    except:
+                        #print("........input push rate fail1")
+                        simple_push_rate = 50
+                    print("........push_rate_1" + str(simple_push_rate))
+                    try:
+                        filter_simple = 
+                    simple_filter_type = 2
+                    all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+                    #print(all_template_message)
+                    print(len(all_template_message))
+                    if not all_template_message:
+                        all_template_message = \
+                        "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
+                        "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
+                        "例: lzptt nba 70\n"
+                    if len(all_template_message) >= 2000:
+                        all_template_message = \
+                        "文章過多，請提高推文數。\n\n" + \
+                        "lzptt (空格) PTT版名 (空格) 推文數標準\n" + \
+                        "例: lzptt nba 70\n\n" + \
+                        "或使用指令\"LzHelp\"了解詳細資訊\n"
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
@@ -391,7 +400,7 @@ def crawPageBeauty(url, push_rate, soup):
             # print('本文已被刪除')
             print('delete')
 
-def simple_craw_page(url, push_rate, soup, filter_simple):
+def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
     #r-ent是每頁裡面各篇文的class
     #print(filter_softjob)
     for r_ent in soup.find_all(class_="r-ent"):
@@ -419,10 +428,14 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                 #print("........rate in craw: " + str(push_rate))
                 # print("vvvv...filter_simple...")
                 # print(filter_simple)
-                if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
-                    article_list.append((int(comment_rate), URL, title))
-                    #print(article_list)
-        
+                if simple_filter_type == 1:
+                    if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
+                        article_list.append((int(comment_rate), URL, title))
+                        #print(article_list)
+                elif simple_filter_type == 2:
+                    if int(comment_rate) >= push_rate and (filter_simple in title):
+                        article_list.append((int(comment_rate), URL, title))
+                        #print(article_list)        
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -553,7 +566,7 @@ def PttBeautyCarousel():
     #     all_template_message += data
     return article_list_sorted
 
-def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
+def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type):
     #吃傳進來的板名(simple_board_name)
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
     rs = requests.session()
@@ -609,7 +622,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
             # print u'error_URL:',index
             # time.sleep(1)
         else:
-            simple_craw_page(index, push_rate, soup, filter_simple)
+            simple_craw_page(index, push_rate, soup, filter_simple, simple_filter_type)
             # print u'OK_URL:', index
             # time.sleep(0.05)
     #print(article_list)
