@@ -232,7 +232,7 @@ def callback():
                         simple_push_rate = 50
                     print("........push_rate_1" + str(simple_push_rate))
                     simple_filter_type = 2
-                    all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+                    all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type)
                     #print(all_template_message)
                     print(len(all_template_message))
                     if not all_template_message:
