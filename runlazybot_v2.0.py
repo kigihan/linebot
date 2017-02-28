@@ -181,8 +181,7 @@ def callback():
                 print("........push_rate_1" + str(simple_push_rate))
                 for filter_ctr in filter_test:
                     print("vvv...CCCCCTTTTTRRRRRR[0]")
-                    print(filter_ctr[0])
-                    print(simple_board_name)
+                    print(simple_board_name == filter_ctr[0])
                     if simple_board_name == filter_ctr[0]:
                         print("........ya equal")
                         filter_simple = filter_ctr[1:]
