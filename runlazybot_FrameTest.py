@@ -178,7 +178,7 @@ def callback():
                 except:
                     #print("........input push rate fail1")
                     simple_push_rate = 50
-                
+                print("........push_rate_1" + str(simple_push_rate))
                 for filter_ctr in filter_test:
                     #print(filter_ctr)
                     if simple_board_name == filter_ctr[0]:
@@ -188,7 +188,7 @@ def callback():
                     #print(filter_simple)
                 
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
-                #print(all_template_message)
+                print(all_template_message)
                 if not all_template_message:
                     all_template_message = "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
                     "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
@@ -281,13 +281,13 @@ def callback():
                 all_template_message
                 )
                 #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
-    # article_list = []
-    # article_list_sorted = []
-    del article_list[:]
-    del article_list_sorted[:]
-    simple_board_name = ""
-    simple_push_rate is None
-    del filter_simple[:]
+        # article_list = []
+        # article_list_sorted = []
+        del article_list[:]
+        del article_list_sorted[:]
+        simple_board_name = ""
+        simple_push_rate is None
+        del filter_simple[:]
 
     return 'OK'
 article_list = []
@@ -369,6 +369,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
+                print("........rate in craw: " + str(push_rate))
                 if int(comment_rate) >= push_rate and not (title.startswith(tuple(filter_simple))):
                     article_list.append((int(comment_rate), URL, title))
                     #print(article_list)
@@ -539,6 +540,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple):
     LPN = int(LatestPageNum) + 1
     #吃傳進來的推文閥值
     push_rate = simple_push_rate
+    print("....push_erate = simple..." + str(push_rate))
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
     for page in range(LPN, LPN-3, -1):
