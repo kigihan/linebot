@@ -197,10 +197,10 @@ def callback():
                     "例: lzptt nba 70\n"
                 if len(all_template_message) >= 2000:
                     all_template_message = \
-                    "文章過多，請提高推文數。\n" + \
-                    "設定方式可參考lzptt指令說明: \n\n" + \
-                    "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
-                    "例: lzptt nba 70\n"
+                    "文章過多，請提高推文數。\n\n" + \
+                    "lzptt (空格) PTT版名 (空格) 推文數標準\n" + \
+                    "例: lzptt nba 70\n" + \
+                    "或使用指令\"LzHelp\"了解詳細資訊\n"
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
