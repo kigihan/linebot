@@ -345,6 +345,7 @@ def callback():
 
     return 'OK'
 article_list = []
+push_rate_match = 0
 
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
@@ -434,6 +435,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                     print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
                     if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
                         article_list.append((int(comment_rate), URL, title))
+                        push_rate_match += 1
+                        print("......push status is : " + str(push_rate_match))
                         #print(article_list)        
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
