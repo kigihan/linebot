@@ -402,6 +402,7 @@ def crawPageBeauty(url, push_rate, soup):
 def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
     #r-ent是每頁裡面各篇文的class
     #print(filter_softjob)
+    global push_rate_match
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
