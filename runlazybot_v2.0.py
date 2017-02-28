@@ -345,7 +345,7 @@ def callback():
 
     return 'OK'
 article_list = []
-push_rate_match = 0
+
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
     for r_ent in soup.find_all(class_="r-ent"):
@@ -422,7 +422,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
-                #只看推文數 >= push_rate設定，同時依標題分類黑名單過濾
+                #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
                 #print("........rate in craw: " + str(push_rate))
                 # print("vvvv...filter_simple...")
                 # print(filter_simple)
@@ -431,17 +431,10 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         article_list.append((int(comment_rate), URL, title))
                         #print(article_list)
                 elif simple_filter_type == 2:
-                    print("......" + str(comment_rate) + " >? " + push_rate + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
+                    print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
                     if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
                         article_list.append((int(comment_rate), URL, title))
-                    # if int(comment_rate) >= push_rate:
-                    #     push_rate_match += 1
-                    #     print("............yes : " + str(push_rate_match))
-                    #     if filter_simple.lower() in title.lower():
-                    #         article_list.append((int(comment_rate), URL, title))
-                    #     #print(article_list)
-                    # else:
-                    #     print("........fail")
+                        #print(article_list)        
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -616,7 +609,6 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
     #print(page_uri_list)
-    
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
@@ -632,7 +624,6 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
             simple_craw_page(index, push_rate, soup, filter_simple, simple_filter_type)
             # print u'OK_URL:', index
             # time.sleep(0.05)
-    print("........after all push match status is : " + str(push_rate_match))
     #print(article_list)
     article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
