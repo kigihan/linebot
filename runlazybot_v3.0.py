@@ -49,11 +49,12 @@ line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 filter_softjob = ["[情報]", "[公告]"]
 filter_test = [
-    ["default", "[公告]"],
+    ["default", "[公告]", "[發錢]"],
     ["soft_job", "[公告]", "[情報]"],
     ["lol", "[公告]"],
     ["nba", "[公告]", "[live]"],
-    ["beauty", "[公告]"]
+    ["beauty", "[公告]"],
+    ["baseball", "[公告]"]
 ]
 
 @app.route("/callback", methods=['POST'])
@@ -447,13 +448,13 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 else:
                     comment_rate = 0
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
-                if simple_filter_type == 1:
-                    if int(comment_rate) > push_rate_peak:
-                        push_rate_peak = int(comment_rate)
-                        print("............push peak: " + comment_rate)
+                if simple_filter_type == 1:                    
                     if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                         article_list.append((int(comment_rate), URL, title))
                         #print(article_list)
+                    elif not title.lower().startswith(tuple(filter_simple)):
+                        push_rate_peak = int(comment_rate)
+                        print("............push peak: " + comment_rate)
                 elif simple_filter_type == 2:
                     print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
                     # if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
