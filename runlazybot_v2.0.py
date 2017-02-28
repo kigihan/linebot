@@ -180,6 +180,7 @@ def callback():
                     simple_push_rate = 50
                 print("........push_rate_1" + str(simple_push_rate))
                 for filter_ctr in filter_test:
+                    print("vvv...CCCCCTTTTTRRRRRR")
                     print(filter_ctr)
                     if simple_board_name == filter_ctr[0]:
                         filter_simple = filter_ctr[1:]
