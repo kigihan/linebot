@@ -476,24 +476,24 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                     # print(filter_simple.encode("UTF-8"))
                     # print("\n")
                     # print(title.encode("UTF-8"))
-                    # if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
-                    #     article_list.append((int(comment_rate), URL, title))
-                    #     push_rate_match += 1
-                    #     print("......push status is : " + str(push_rate_match))
-                        #print(article_list)
+                    if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
+                        article_list.append((int(comment_rate), URL, title))
+                        push_rate_match += 1
+                        print("......push status is : " + str(push_rate_match))
+                        # print(article_list)
                     # if filter_simple.lower() in title.lower():
-                    filter_simple_enc = filter_simple.encode("UTF-8")
-                    title_enc = title.encode("UTF-8")
-                    if filter_simple_enc in title_enc:
-                        search_match += 1
-                        if int(comment_rate) > int(push_rate_peak):
-                            push_rate_peak = int(comment_rate)
-                            print("............push peak: " + comment_rate)
-                        print("...... search status is : " + str(search_match))
-                        if int(comment_rate) >= int(push_rate):
-                            push_rate_match += 1
-                            print("......push status is : " + str(push_rate_match))
-                            article_list.append((int(comment_rate), URL, title))
+                    # filter_simple_enc = filter_simple.encode("UTF-8")
+                    # title_enc = title.encode("UTF-8")
+                    # if filter_simple_enc in title_enc:
+                    #     search_match += 1
+                    #     if int(comment_rate) > int(push_rate_peak):
+                    #         push_rate_peak = int(comment_rate)
+                    #         print("............push peak: " + comment_rate)
+                    #     print("...... search status is : " + str(search_match))
+                    #     if int(comment_rate) >= int(push_rate):
+                    #         push_rate_match += 1
+                    #         print("......push status is : " + str(push_rate_match))
+                    #         article_list.append((int(comment_rate), URL, title))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
