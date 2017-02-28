@@ -189,6 +189,7 @@ def callback():
                 
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
                 print(all_template_message)
+                print(len(all_template_message))
                 if not all_template_message:
                     all_template_message = \
                     "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
