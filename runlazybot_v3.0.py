@@ -201,7 +201,7 @@ def callback():
                 print(len(all_template_message))
                 if not all_template_message:
                     all_template_message = \
-                    "請調整推文數標準，設定方式可參考LzPtt指令說明: \n\n" + \
+                    "請降低推文數標準，設定方式可參考LzPtt指令說明: \n\n" + \
                     "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
                     "例: LzPtt NBA 70\n\n" + \
                     "或使用指令\"LzHelp\"了解詳細資訊\n"
@@ -365,6 +365,7 @@ def callback():
 article_list = []
 push_rate_match = 0
 search_match = 0
+push_rate_peak = 0
 
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
@@ -423,6 +424,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
     #print(filter_softjob)
     global push_rate_match
     global search_match
+    global push_rate_peak
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -444,10 +446,10 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
+                if int(comment_rate) > push_rate_peak:
+                    push_rate_peak = int(comment_rate)
+                    print("......push peak: " + comment_rate)
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
-                #print("........rate in craw: " + str(push_rate))
-                # print("vvvv...filter_simple...")
-                # print(filter_simple)
                 if simple_filter_type == 1:
                     if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                         article_list.append((int(comment_rate), URL, title))
@@ -599,8 +601,10 @@ def PttBeautyCarousel():
 def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type):
     global search_match
     global push_rate_match
+    global push_rate_peak
     search_match = 0
     push_rate_match = 0
+    push_rate_peak = 0
     #吃傳進來的板名(simple_board_name)
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
     rs = requests.session()
