@@ -281,14 +281,14 @@ def callback():
                 all_template_message
                 )
                 #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
-        # article_list = []
-        # article_list_sorted = []
-        del all_template_message
-        del article_list[:]
-        del article_list_sorted[:]
-        simple_board_name = ""
-        simple_push_rate is None
-        del filter_simple[:]
+            # article_list = []
+            # article_list_sorted = []
+            del all_template_message
+            del article_list[:]
+            del article_list_sorted[:]
+            simple_board_name = ""
+            simple_push_rate is None
+            del filter_simple[:]
 
     return 'OK'
 article_list = []
