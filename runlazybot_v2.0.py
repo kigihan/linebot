@@ -205,6 +205,45 @@ def callback():
                 TextSendMessage(text=all_template_message)
                 )
 
+            if event.message.text.lower().startswith("lzptts "):
+                print(event.message.text)
+                simple_board_name_input = re.split("\s*", event.message.text)
+                #print(simple_board_name_input)
+                simple_board_name = simple_board_name_input[1]
+                #print("..............<<" + simple_board_name)
+                #吃輸入的推文數
+                try:
+                    simple_push_rate = int(simple_board_name_input[2])
+                except:
+                    #print("........input push rate fail1")
+                    simple_push_rate = 50
+                print("........push_rate_1" + str(simple_push_rate))
+                for filter_ctr in filter_test:
+                    if simple_board_name == filter_ctr[0]:
+                        filter_simple = filter_ctr[1:]
+                if not filter_simple:
+                    filter_simple = filter_test[0][1:]
+                    #print(filter_simple)
+                
+                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+                #print(all_template_message)
+                print(len(all_template_message))
+                if not all_template_message:
+                    all_template_message = \
+                    "請調整推文數標準，設定方式可參考lzptt指令說明: \n\n" + \
+                    "lzptt (空格) PTT版名 (空格) 推文數標準\n\n" + \
+                    "例: lzptt nba 70\n"
+                if len(all_template_message) >= 2000:
+                    all_template_message = \
+                    "文章過多，請提高推文數。\n\n" + \
+                    "lzptt (空格) PTT版名 (空格) 推文數標準\n" + \
+                    "例: lzptt nba 70\n\n" + \
+                    "或使用指令\"LzHelp\"了解詳細資訊\n"
+                line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=all_template_message)
+                )
+
             if event.message.text.lower() == 'beau':
                 all_template_message = ''
                 article_list_sorted = PttBeautyCarousel()
