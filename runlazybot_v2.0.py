@@ -119,21 +119,29 @@ def callback():
                 all_template_message
                 )
 
-            if event.message.text.lower() == 'lzhelp':
+            if event.message.text.lower() in ["lzhelp", "lazhelp", "lazyhelp"]:
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= \
-                    "指令說明\n\n" + \
-                    "[+]Beauty版熱文\n" + \
+                    "指令說明\n" + \
+                    "((yes)所有指令大小寫皆可\n\n)" + \
+                    "(!)[+]Beauty版熱文\n" + \
                     "(手機觀看可得較佳效果)\n" + \
-                    "Beau\n\n" + \
-                    "[+]查看PTT各版熱門文章\n" + \
-                    "推文數可不輸入，預設50\n" + \
-                    "lzptt (空格) 版名 (空格) 推文數標準\n\n" + \
+                    "(cellphone)Beau\n\n" + \
+                    "(!)[+]查看PTT各版熱門文章\n" + \
+                    "(推文數可不輸入，預設50)\n" + \
+                    "(cellphone)LzPtt (空格) 版名 (空格) 推文數標準\n\n" + \
                     "以下為範例: \n" + \
-                    "lzptt car\n" + \
-                    "lzptt nba 80\n" + \
-                    "lzptt gossiping 10\n")
+                    "(cellphone)LzPtt car\n" + \
+                    "(cellphone)LzPtt nba 80\n" + \
+                    "(cellphone)LzPtt gossiping 10\n\n" + \
+                    "(!)LzPttS (空格) 版名 (空格) 推文數標準\n" + \
+                    "(推文數可不輸入，預設50)\n" + \
+                    "(cellphone)LzPttS (空格) 版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
+                    "以下為範例: \n" + \
+                    "(cellphone)LzPttS car 心得\n" + \
+                    "(cellphone)LzPttS nba live 30\n" + \
+                    "(cellphone)LzPttS movie 好雷 10\n")
                 )
 
             if event.message.text.lower() == '表特':
