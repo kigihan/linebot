@@ -167,6 +167,12 @@ def callback():
                 )
 
             if event.message.text.lower().startswith("lzptt "):
+                del all_template_message
+                del article_list[:]
+                del article_list_sorted[:]
+                simple_board_name = ""
+                simple_push_rate is None
+                del filter_simple[:]
                 #print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
                 #print(simple_board_name_input)
