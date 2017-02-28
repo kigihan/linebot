@@ -446,11 +446,11 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         comment_rate = -1 * int(rate[1])
                 else:
                     comment_rate = 0
-                if int(comment_rate) > push_rate_peak:
-                    push_rate_peak = int(comment_rate)
-                    print("......push peak: " + comment_rate)
                 #只看推文數 >= push_rate設定的，同時依標題分類黑名單過濾
                 if simple_filter_type == 1:
+                    if int(comment_rate) > push_rate_peak:
+                        push_rate_peak = int(comment_rate)
+                        print("............push peak: " + comment_rate)
                     if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                         article_list.append((int(comment_rate), URL, title))
                         #print(article_list)
@@ -463,6 +463,9 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         #print(article_list)
                     if (filter_simple.lower() in title.lower()):
                         search_match += 1
+                        if int(comment_rate) > push_rate_peak:
+                            push_rate_peak = int(comment_rate)
+                            print("............push peak: " + comment_rate)
                         print("...... search status is : " + str(search_match))
                         if int(comment_rate) >= push_rate:
                             push_rate_match += 1
