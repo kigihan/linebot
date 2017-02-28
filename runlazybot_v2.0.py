@@ -180,14 +180,10 @@ def callback():
                     simple_push_rate = 50
                 print("........push_rate_1" + str(simple_push_rate))
                 for filter_ctr in filter_test:
-                    print("vvv...CCCCCTTTTTRRRRRR[0]")
-                    print(simple_board_name == filter_ctr[0])
-                    print(len(simple_board_name))
-                    print(len(filter_ctr[0]))
                     if simple_board_name == filter_ctr[0]:
                         filter_simple = filter_ctr[1:]
-                    else:
-                        filter_simple = filter_test[0][1:]
+                if not filter_simple:
+                    filter_simple = filter_test[0][1:]
                     #print(filter_simple)
                 
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
