@@ -199,7 +199,7 @@ def callback():
                     all_template_message = \
                     "文章過多，請提高推文數。\n\n" + \
                     "lzptt (空格) PTT版名 (空格) 推文數標準\n" + \
-                    "例: lzptt nba 70\n" + \
+                    "例: lzptt nba 70\n\n" + \
                     "或使用指令\"LzHelp\"了解詳細資訊\n"
                 line_bot_api.reply_message(
                 event.reply_token,
