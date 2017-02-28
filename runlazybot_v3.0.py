@@ -63,7 +63,12 @@ for filter_clns in filter_test:
     print(filter_clns)    
     #if filter_clns[0] not in ["default"]:
     filter_clns.extend(filter_default[0][1:])
+    print("....filter 1....")
+    print(filter_clns)
     filter_formal.extend(filter_clns)
+    print(".......filter 2 ........")
+    print(filter_formal)
+print("...........FULL FILTER............")
 print(filter_formal)
 @app.route("/callback", methods=['POST'])
 
