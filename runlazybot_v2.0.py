@@ -431,11 +431,12 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         article_list.append((int(comment_rate), URL, title))
                         #print(article_list)
                 elif simple_filter_type == 2:
-                    # print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
+                    print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
                     # if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
                     #     article_list.append((int(comment_rate), URL, title))
                     if int(comment_rate) >= push_rate:
                         push_rate_match += 1
+                        print("............yes : " + str(push_rate_match))
                         if filter_simple.lower() in title.lower():
                             article_list.append((int(comment_rate), URL, title))
                         #print(article_list)        
