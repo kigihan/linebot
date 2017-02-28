@@ -56,9 +56,11 @@ filter_test = [
     ["beauty", "[公告]"],
     ["baseball", "[公告]"]
 ]
-for filter_clns in filter_test:
+filter_formal = []
+for filter_clns in filter_test[1:]:
     print(filter_clns)
-
+    filter_formal += filter_clns.extend(filter_test[0][1:])
+print(filter_formal)
 @app.route("/callback", methods=['POST'])
 
 def callback():
