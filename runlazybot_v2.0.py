@@ -184,8 +184,10 @@ def callback():
                     print(filter_ctr[0])
 
                     if simple_board_name == filter_ctr[0]:
+                        print("........ya equal")
                         filter_simple = filter_ctr[1:]
                     else:
+                        print("........not equal damn...")
                         filter_simple = filter_test[0][1:]
                     #print(filter_simple)
                 
