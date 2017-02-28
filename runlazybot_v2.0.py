@@ -188,7 +188,7 @@ def callback():
                     #print(filter_simple)
                 
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
-                print(all_template_message)
+                #print(all_template_message)
                 print(len(all_template_message))
                 if not all_template_message:
                     all_template_message = \
@@ -387,7 +387,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple):
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
             print('delete')
-    print(article_list)
+    #print(article_list)
 
 def crawPageNBA(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
