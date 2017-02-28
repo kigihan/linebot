@@ -48,19 +48,21 @@ if channel_access_token is None:
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
 filter_softjob = ["[情報]", "[公告]"]
+filter_default = [
+    ["default", "[公告]", "[發錢]"]
+]
 filter_test = [
-    ["default", "[公告]", "[發錢]"],
     ["soft_job", "[公告]", "[情報]"],
     ["lol", "[公告]"],
     ["nba", "[公告]", "[live]"],
     ["beauty", "[公告]"],
     ["baseball", "[公告]"]
 ]
-filter_formal = filter_test[0]
+filter_formal = []
 for filter_clns in filter_test:
     print(filter_clns)    
-    if filter_clns[0] not in ["default"]:
-        filter_formal.extend(filter_clns.extend(filter_test[0][1:]))
+    #if filter_clns[0] not in ["default"]:
+    filter_formal.extend(filter_clns.extend(filter_default[0][1:]))
 print(filter_formal)
 @app.route("/callback", methods=['POST'])
 
@@ -198,7 +200,7 @@ def callback():
                     if simple_board_name == filter_ctr[0]:
                         filter_simple = filter_ctr[1:]
                 if not filter_simple:
-                    filter_simple = filter_test[0][1:]
+                    filter_simple = filter_default[0][1:]
                     #print(filter_simple)
                 #設定filter，1 = 標題黑名單filter(內建)，2 = 標題白名單filter(user輸入)
                 simple_filter_type = 1
