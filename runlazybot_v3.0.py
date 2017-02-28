@@ -137,7 +137,7 @@ def callback():
                     "✡LzPtt gossiping 10\n\n" + \
                     "☀[+]利用關鍵字搜尋PTT看板文章\n" + \
                     "(推文數可不輸入，預設50)\n" + \
-                    "(cellphone)LzPttS (空格) 版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n" + \
+                    "✡LzPttS (空格) 版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n" + \
                     "以下為範例: \n" + \
                     "✡LzPttS car 心得\n" + \
                     "✡LzPttS nba live 30\n" + \
