@@ -355,6 +355,7 @@ def callback():
     return 'OK'
 article_list = []
 push_rate_match = 0
+search_match = 0
 
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
@@ -412,6 +413,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
     #r-ent是每頁裡面各篇文的class
     #print(filter_softjob)
     global push_rate_match
+    global search_match
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -443,11 +445,18 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         #print(article_list)
                 elif simple_filter_type == 2:
                     print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower())
-                    if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
-                        article_list.append((int(comment_rate), URL, title))
-                        push_rate_match += 1
-                        print("......push status is : " + str(push_rate_match))
-                        #print(article_list)        
+                    # if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
+                    #     article_list.append((int(comment_rate), URL, title))
+                    #     push_rate_match += 1
+                    #     print("......push status is : " + str(push_rate_match))
+                        #print(article_list)
+                    if (filter_simple.lower() in title.lower()):
+                        search_match += 1
+                        print("...... search status is : " + str(search_match))
+                        if int(comment_rate) >= push_rate:
+                            push_rate_match += 1
+                            print("......push status is : " + str(push_rate_match))
+                            article_list.append((int(comment_rate), URL, title))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
