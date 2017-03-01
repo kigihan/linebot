@@ -355,11 +355,12 @@ search_match = 0
 push_rate_peak = 0
 
 def push_rate_suggestion():
-    all_template_message = "請降低推文數標準，設定方式可參考LzPtt指令說明: \n" + \
-               "本次搜尋結果，推文數最高為😅 " + str(push_rate_peak) + " 😅\n\n" + \
+    all_template_message = "本次搜尋，推文數最高為😅 " + str(push_rate_peak) + " 😅\n\n" + \
+               "LzPtt指令說明: \n\n" + \
                "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
                "例: LzPtt NBA 70\n\n" + \
-               "或使用指令\"LzHelp\"了解詳細資訊\n"
+               "意為搜尋NBA版70推以上文章\n\n"
+               "或使用指令\"LzHelp\"了解更多資訊\n"
     return all_template_message
 
 def crawPageBeauty(url, push_rate, soup):
