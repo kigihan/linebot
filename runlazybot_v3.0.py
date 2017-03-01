@@ -107,7 +107,7 @@ def callback():
     filter_simple = []
     for event in events:
         if isinstance(event, MessageEvent):
-            # if event.message.text.lower() == 'lazybot' or event.message.text.lower() == "lazynoob":
+            event.message.text = event.message.text.lower()
             if event.message.text.lower() in ["lazybot", "lazbot", "lzbot", "lazynoob", "lazyn00b"]:
                 all_template_message = TemplateSendMessage(
                     alt_text = '安安 \n\n指令說明請輸入\"LzHelp\"(大小寫皆可)',
