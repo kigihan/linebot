@@ -184,12 +184,14 @@ def callback():
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type)
                 #print(all_template_message)
                 print(len(all_template_message))
+                # if not all_template_message:
+                #     all_template_message = \
+                #     "請降低推文數標準，設定方式可參考LzPtt指令說明: \n\n" + \
+                #     "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
+                #     "例: LzPtt NBA 70\n\n" + \
+                #     "或使用指令\"LzHelp\"了解詳細資訊\n"
                 if not all_template_message:
-                    all_template_message = \
-                    "請降低推文數標準，設定方式可參考LzPtt指令說明: \n\n" + \
-                    "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
-                    "例: LzPtt NBA 70\n\n" + \
-                    "或使用指令\"LzHelp\"了解詳細資訊\n"
+                    all_template_message = push_rate_suggestion()
                 if len(all_template_message) >= 2000:
                     all_template_message = \
                     "文章過多，請提高推文數。\n\n" + \
@@ -353,11 +355,12 @@ search_match = 0
 push_rate_peak = 0
 
 def push_rate_suggestion:
-    prs_text = "請降低推文數標準，設定方式可參考LzPtt指令說明: \n" + \
+    all_template_message = "請降低推文數標準，設定方式可參考LzPtt指令說明: \n" + \
                "本次搜尋結果，推文數最高為😅 " + push_rate_peak + " 😅\n\n" + \
                "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
                "例: LzPtt NBA 70\n\n" + \
                "或使用指令\"LzHelp\"了解詳細資訊\n"
+    return all_template_message
 
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
