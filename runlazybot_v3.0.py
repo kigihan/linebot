@@ -413,7 +413,7 @@ def crawPageBeauty(url, push_rate, soup):
                     #抓URL網頁內容給res_post
                     res_post = requests.get(URL, verify=False)
                     #把網頁內容parser過後丟給soup_post
-                    soup_post = BeautifulSoup(res_post.text, "html.parser")
+                    soup_post = BeautifulSoup(res_post.text, "lxml")
                     #比較像暫時解，因為我抓全部<a >但前5個會是PTT的連結，後面才開始是po文內的，就設定個起始值降loading
                     img_uri_num = 5
                     img_links_list = []
@@ -423,7 +423,7 @@ def crawPageBeauty(url, push_rate, soup):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         print(img_links)
                         #如果該連結結尾是.jpg，那就可以用
-                        if img_links.endswith(".jpg"):
+                        if (img_links.endswith(".jpg")) or ("imgur" in img_links):
                             #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
                             if not img_links.startswith("https://"):
                                 img_links = re.sub("http", "https", img_links)
