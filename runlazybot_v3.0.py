@@ -478,9 +478,10 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                     if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                         article_list.append((int(comment_rate), URL, title))
                         #print(article_list)
-                    elif (not title.lower().startswith(tuple(filter_simple))) and int(comment_rate > push_rate_peak):
-                        push_rate_peak = int(comment_rate)
-                        print("............push peak: " + comment_rate)
+                    elif not title.lower().startswith(tuple(filter_simple)):
+                        if int(comment_rate) > push_rate_peak:
+                            push_rate_peak = int(comment_rate)
+                            print("............push peak: " + comment_rate)
                 elif simple_filter_type == 2:
                     print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower() + "\n\n")
                     # print(filter_simple.encode("UTF-8"))
