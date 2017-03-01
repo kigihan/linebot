@@ -108,7 +108,7 @@ def callback():
     for event in events:
         if isinstance(event, MessageEvent):
             event.message.text = event.message.text.lower()
-            if event.message.text.lower() in ["lazybot", "lazbot", "lzbot", "lazynoob", "lazyn00b"]:
+            if event.message.text in ["lazybot", "lazbot", "lzbot", "lazynoob", "lazyn00b"]:
                 all_template_message = TemplateSendMessage(
                     alt_text = '安安 \n\n指令說明請輸入\"LzHelp\"(大小寫皆可)',
                     template = ButtonsTemplate(
@@ -136,7 +136,7 @@ def callback():
                 all_template_message
                 )
 
-            if event.message.text.lower() in ["lzhelp", "lazhelp", "lazyhelp"]:
+            if event.message.text in ["lzhelp", "lazhelp", "lazyhelp"]:
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text= \
@@ -192,7 +192,7 @@ def callback():
             #     TextSendMessage(text=all_template_message)
             #     )
 
-            if event.message.text.lower().startswith("lzptt "):
+            if event.message.text.startswith("lzptt "):
                 #print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
                 #print(simple_board_name_input)
@@ -233,7 +233,7 @@ def callback():
                 TextSendMessage(text=all_template_message)
                 )
 
-            if event.message.text.lower().startswith("lzptts "):
+            if event.message.text.startswith("lzptts "):
                 print(event.message.text)
                 simple_board_name_input = re.split("\s*", event.message.text)
                 #print(simple_board_name_input)
@@ -286,7 +286,7 @@ def callback():
                 TextSendMessage(text=all_template_message)
                 )
 
-            if event.message.text.lower() == 'beau':
+            if event.message.text == 'beau':
                 all_template_message = ''
                 article_list_sorted = PttBeautyCarousel()
                 print(article_list_sorted)
