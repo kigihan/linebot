@@ -419,6 +419,7 @@ def crawPageBeauty(url, push_rate, soup):
                     img_links_list = []
                     #沒打算抓很多連結來分析，只要有一張圖就可以了，讓他抓第5到10個連結
                     for img_uri_num in range(img_uri_num, 10, +1):
+                        print(img_uri_num)
                         img_links = soup_post.select("a")[img_uri_num]["href"]
                         print(img_links)
                         #如果該連結結尾是.jpg，那就可以用
