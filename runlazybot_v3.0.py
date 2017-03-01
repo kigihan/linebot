@@ -420,7 +420,7 @@ def crawPageBeauty(url, push_rate, soup):
                     #沒打算抓很多連結來分析，只要有一張圖就可以了，讓他抓第5到10個連結
                     for img_uri_num in range(img_uri_num, 10, +1):
                         img_links = soup_post.select("a")[img_uri_num]["href"]
-                        #print(img_links)
+                        print(img_links)
                         #如果該連結結尾是.jpg，那就可以用
                         if img_links.endswith(".jpg"):
                             #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
@@ -480,20 +480,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         article_list.append((int(comment_rate), URL, title))
                         push_rate_match += 1
                         print("......push status is : " + str(push_rate_match))
-                        # print(article_list)
-                    # if filter_simple.lower() in title.lower():
-                    # filter_simple_enc = filter_simple.encode("UTF-8")
-                    # title_enc = title.encode("UTF-8")
-                    # if filter_simple_enc in title_enc:
-                    #     search_match += 1
-                    #     if int(comment_rate) > int(push_rate_peak):
-                    #         push_rate_peak = int(comment_rate)
-                    #         print("............push peak: " + comment_rate)
-                    #     print("...... search status is : " + str(search_match))
-                    #     if int(comment_rate) >= int(push_rate):
-                    #         push_rate_match += 1
-                    #         print("......push status is : " + str(push_rate_match))
-                    #         article_list.append((int(comment_rate), URL, title))
+                        # print(article_list)                    
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
