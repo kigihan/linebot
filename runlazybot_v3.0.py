@@ -596,6 +596,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     for article in article_list_sorted:
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
         all_template_message += data
+    print("......Simple Board Func Return: " + all_template_message)
     return all_template_message
 
 if __name__ == "__main__":
