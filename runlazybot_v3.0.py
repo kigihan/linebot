@@ -535,7 +535,7 @@ def PttBeauty():
     res = requests.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
-    soup = BeautifulSoup(res.text, "html.parser")
+    soup = BeautifulSoup(res.text, "lxml")
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
     LatestPageURI = soup.select('.btn.wide')[1]['href']
@@ -554,7 +554,7 @@ def PttBeauty():
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
         res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
+        soup = BeautifulSoup(res.text, 'lxml')
         # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
         if (soup.title.text.find('Service Temporarily') > -1):
             page_uri_list.append(index)
@@ -578,7 +578,7 @@ def PttBeautyCarousel():
     res = requests.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
-    soup = BeautifulSoup(res.text, "html.parser")
+    soup = BeautifulSoup(res.text, "lxml")
     #print("    soup>>>" + soup.prettify())
     #爬最新-1頁面連結(因為直接get的話，第1頁是index.html)
     LatestPageURI = soup.select('.btn.wide')[1]['href']
@@ -602,7 +602,7 @@ def PttBeautyCarousel():
         #print("    try to parse: " + index)
         #爬頁面內容出來
         res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
+        soup = BeautifulSoup(res.text, 'lxml')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒後重試
         if (soup.title.text.find('Service Temporarily') > -1):
             page_uri_list.append(index)
@@ -642,7 +642,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     res = rs.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
-    soup = BeautifulSoup(res.text, "html.parser")
+    soup = BeautifulSoup(res.text, "lxml")
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
     #抓最新-1頁連結
@@ -675,7 +675,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
         #print("    try to parse: " + index)
 
         res = rs.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
+        soup = BeautifulSoup(res.text, 'lxml')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
         if (soup.title.text.find('Service Temporarily') > -1):
             page_uri_list.append(index)
@@ -700,7 +700,7 @@ def PttNBA():
     res = requests.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
-    soup = BeautifulSoup(res.text, "html.parser")
+    soup = BeautifulSoup(res.text, "lxml")
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
     #抓最新-1頁的連結
@@ -722,7 +722,7 @@ def PttNBA():
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
         res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
+        soup = BeautifulSoup(res.text, 'lxml')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
         if (soup.title.text.find('Service Temporarily') > -1):
             page_uri_list.append(index)
@@ -746,7 +746,7 @@ def PttNBAFilm():
     res = requests.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
-    soup = BeautifulSoup(res.text, "html.parser")
+    soup = BeautifulSoup(res.text, "lxml")
     #print("    soup>>>" + soup.prettify())
     #class=btn wide
     #抓最新-1頁的連結
@@ -768,7 +768,7 @@ def PttNBAFilm():
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
         res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
+        soup = BeautifulSoup(res.text, 'lxml')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
         if (soup.title.text.find('Service Temporarily') > -1):
             page_uri_list.append(index)
