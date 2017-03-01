@@ -161,36 +161,36 @@ def callback():
                     "❇LzPttS movie 好雷 10\n")
                 )
 
-            if event.message.text.lower() == '表特':
-                all_template_message = PttBeauty()
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=all_template_message)
-                )
+            # if event.message.text.lower() == '表特':
+            #     all_template_message = PttBeauty()
+            #     line_bot_api.reply_message(
+            #     event.reply_token,
+            #     TextSendMessage(text=all_template_message)
+            #     )
 
-            if event.message.text.lower() == 'nba':
-                all_template_message = PttNBA()
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=all_template_message)
-                )
+            # if event.message.text.lower() == 'nba':
+            #     all_template_message = PttNBA()
+            #     line_bot_api.reply_message(
+            #     event.reply_token,
+            #     TextSendMessage(text=all_template_message)
+            #     )
 
-            if event.message.text.lower() == 'nbafilm':
-                all_template_message = PttNBAFilm()
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=all_template_message)
-                )
+            # if event.message.text.lower() == 'nbafilm':
+            #     all_template_message = PttNBAFilm()
+            #     line_bot_api.reply_message(
+            #     event.reply_token,
+            #     TextSendMessage(text=all_template_message)
+            #     )
 
-            if event.message.text.lower() == 'softjob':
-                simple_board_name = "Soft_Job"
-                simple_push_rate = 20
-                filter_simple = filter_softjob
-                all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=all_template_message)
-                )
+            # if event.message.text.lower() == 'softjob':
+            #     simple_board_name = "Soft_Job"
+            #     simple_push_rate = 20
+            #     filter_simple = filter_softjob
+            #     all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple)
+            #     line_bot_api.reply_message(
+            #     event.reply_token,
+            #     TextSendMessage(text=all_template_message)
+            #     )
 
             if event.message.text.lower().startswith("lzptt "):
                 #print(event.message.text)
@@ -497,82 +497,82 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
             print('delete')
     #print(article_list)
 
-def crawPageNBA(url, push_rate, soup):
-    #r-ent是每頁裡面各篇文的class
-    for r_ent in soup.find_all(class_="r-ent"):
-        try:
-            #抓各篇文章uri的後半段
-            link = r_ent.find('a')['href']
-            # if 'M.1430099938.A.3B7' in link:
-            #     continue
-            comment_rate = ""
-            if (link):
-                #文章uri存在的話，表示沒被刪文，可以繼續抓值(標題、推文數)，因為link的網址只有後半段，自己接起來
-                title = r_ent.find(class_="title").text.strip()
-                rate = r_ent.find(class_="nrec").text
-                URL = 'https://www.ptt.cc' + link
-                #print("........" + URL)
-                if (rate):
-                    comment_rate = rate
-                    if rate.find(u'爆') > -1:
-                        comment_rate = 100
-                    if rate.find('X') > -1:
-                        comment_rate = -1 * int(rate[1])
-                else:
-                    comment_rate = 0
-                #只看推文數 >= push_rate設定的
-                #print("................" + str(comment_rate) + title)
-                if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
-                #if int(comment_rate) >= push_rate:
-                    #print(comment_rate + title)
-                    article_list.append((int(comment_rate), URL, title))                
-        except:
-            # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
-            # print('本文已被刪除')
-            print('delete')
+# def crawPageNBA(url, push_rate, soup):
+#     #r-ent是每頁裡面各篇文的class
+#     for r_ent in soup.find_all(class_="r-ent"):
+#         try:
+#             #抓各篇文章uri的後半段
+#             link = r_ent.find('a')['href']
+#             # if 'M.1430099938.A.3B7' in link:
+#             #     continue
+#             comment_rate = ""
+#             if (link):
+#                 #文章uri存在的話，表示沒被刪文，可以繼續抓值(標題、推文數)，因為link的網址只有後半段，自己接起來
+#                 title = r_ent.find(class_="title").text.strip()
+#                 rate = r_ent.find(class_="nrec").text
+#                 URL = 'https://www.ptt.cc' + link
+#                 #print("........" + URL)
+#                 if (rate):
+#                     comment_rate = rate
+#                     if rate.find(u'爆') > -1:
+#                         comment_rate = 100
+#                     if rate.find('X') > -1:
+#                         comment_rate = -1 * int(rate[1])
+#                 else:
+#                     comment_rate = 0
+#                 #只看推文數 >= push_rate設定的
+#                 #print("................" + str(comment_rate) + title)
+#                 if int(comment_rate) >= push_rate and not re.search("[live]", title, re.IGNORECASE) and not re.search("[公告]", title):
+#                 #if int(comment_rate) >= push_rate:
+#                     #print(comment_rate + title)
+#                     article_list.append((int(comment_rate), URL, title))                
+#         except:
+#             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
+#             # print('本文已被刪除')
+#             print('delete')
 
-def PttBeauty():
-    TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
-    res = requests.get(TargetURI, verify=False)
-    #print(res.text)
-    #ResContent = res.text
-    soup = BeautifulSoup(res.text, "lxml")
-    #print("    soup>>>" + soup.prettify())
-    #class=btn wide
-    LatestPageURI = soup.select('.btn.wide')[1]['href']
-    #print("    URI>>> " + LatestPageURI)
-    LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
-    #print("    PageNum>>> " + LatestPageNum.group(1))
-    LPN = int(LatestPageNum.group(1)) + 1
-    push_rate = 30  # 推文
-    page_uri_list = []
-    for page in range(LPN, LPN-3, -1):
-        page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
-        page_uri_list.append(page_uri)
-    #print("    PageURI>>> " + page_uri)
-    #print(page_uri_list)
-    while page_uri_list:
-        index = page_uri_list.pop(0)
-        #print("    try to parse: " + index)
-        res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'lxml')
-        # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
-        if (soup.title.text.find('Service Temporarily') > -1):
-            page_uri_list.append(index)
-            # print u'error_URL:',index
-            # time.sleep(1)
-        else:
-            crawPageBeauty(index, push_rate, soup)
-            # print u'OK_URL:', index
-            # time.sleep(0.05)
-    article_list_sorted = []
-    article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
-    #print(article_list_sorted)
-    all_template_message = ''
-    for article in article_list_sorted:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
-        all_template_message += data
-    return all_template_message
+# def PttBeauty():
+#     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
+#     res = requests.get(TargetURI, verify=False)
+#     #print(res.text)
+#     #ResContent = res.text
+#     soup = BeautifulSoup(res.text, "lxml")
+#     #print("    soup>>>" + soup.prettify())
+#     #class=btn wide
+#     LatestPageURI = soup.select('.btn.wide')[1]['href']
+#     #print("    URI>>> " + LatestPageURI)
+#     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
+#     #print("    PageNum>>> " + LatestPageNum.group(1))
+#     LPN = int(LatestPageNum.group(1)) + 1
+#     push_rate = 30  # 推文
+#     page_uri_list = []
+#     for page in range(LPN, LPN-3, -1):
+#         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
+#         page_uri_list.append(page_uri)
+#     #print("    PageURI>>> " + page_uri)
+#     #print(page_uri_list)
+#     while page_uri_list:
+#         index = page_uri_list.pop(0)
+#         #print("    try to parse: " + index)
+#         res = requests.get(index, verify=False)
+#         soup = BeautifulSoup(res.text, 'lxml')
+#         # 如網頁忙線中,則先將網頁加入 index_list 並休息1秒後再連接
+#         if (soup.title.text.find('Service Temporarily') > -1):
+#             page_uri_list.append(index)
+#             # print u'error_URL:',index
+#             # time.sleep(1)
+#         else:
+#             crawPageBeauty(index, push_rate, soup)
+#             # print u'OK_URL:', index
+#             # time.sleep(0.05)
+#     article_list_sorted = []
+#     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
+#     #print(article_list_sorted)
+#     all_template_message = ''
+#     for article in article_list_sorted:
+#         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + "\n\n"
+#         all_template_message += data
+#     return all_template_message
 
 def PttBeautyCarousel():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
@@ -696,97 +696,97 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
         all_template_message += data
     return all_template_message
 
-def PttNBA():
-    TargetURI = "https://www.ptt.cc/bbs/NBA/index.html"
-    res = requests.get(TargetURI, verify=False)
-    #print(res.text)
-    #ResContent = res.text
-    soup = BeautifulSoup(res.text, "lxml")
-    #print("    soup>>>" + soup.prettify())
-    #class=btn wide
-    #抓最新-1頁的連結
-    LatestPageURI = soup.select('.btn.wide')[1]['href']
-    #print("    URI>>> " + LatestPageURI)
-    #從連接拆出最新-1頁數
-    LatestPageNum = re.match('/bbs/NBA/index(.*).html',LatestPageURI)
-    #print("    PageNum>>> " + LatestPageNum.group(1))
-    LPN = int(LatestPageNum.group(1)) + 1
-    #設定推文數閥值
-    push_rate = 50
-    page_uri_list = []
-    for page in range(LPN, LPN-3, -1):
-        page_uri = "https://www.ptt.cc/bbs/NBA/index" + str(page) + ".html"
-        page_uri_list.append(page_uri)
-    #print("    PageURI>>> " + page_uri)
-    #print(page_uri_list)
-    while page_uri_list:
-        index = page_uri_list.pop(0)
-        #print("    try to parse: " + index)
-        res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'lxml')
-        #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
-        if (soup.title.text.find('Service Temporarily') > -1):
-            page_uri_list.append(index)
-            # print u'error_URL:',index
-            # time.sleep(1)
-        else:
-            crawPageNBA(index, push_rate, soup)
-            # print u'OK_URL:', index
-            # time.sleep(0.05)
-    article_list_sorted = []
-    article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
-    #print(article_list_sorted)
-    all_template_message = ''
-    for article in article_list_sorted:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
-        all_template_message += data
-    return all_template_message
+# def PttNBA():
+#     TargetURI = "https://www.ptt.cc/bbs/NBA/index.html"
+#     res = requests.get(TargetURI, verify=False)
+#     #print(res.text)
+#     #ResContent = res.text
+#     soup = BeautifulSoup(res.text, "lxml")
+#     #print("    soup>>>" + soup.prettify())
+#     #class=btn wide
+#     #抓最新-1頁的連結
+#     LatestPageURI = soup.select('.btn.wide')[1]['href']
+#     #print("    URI>>> " + LatestPageURI)
+#     #從連接拆出最新-1頁數
+#     LatestPageNum = re.match('/bbs/NBA/index(.*).html',LatestPageURI)
+#     #print("    PageNum>>> " + LatestPageNum.group(1))
+#     LPN = int(LatestPageNum.group(1)) + 1
+#     #設定推文數閥值
+#     push_rate = 50
+#     page_uri_list = []
+#     for page in range(LPN, LPN-3, -1):
+#         page_uri = "https://www.ptt.cc/bbs/NBA/index" + str(page) + ".html"
+#         page_uri_list.append(page_uri)
+#     #print("    PageURI>>> " + page_uri)
+#     #print(page_uri_list)
+#     while page_uri_list:
+#         index = page_uri_list.pop(0)
+#         #print("    try to parse: " + index)
+#         res = requests.get(index, verify=False)
+#         soup = BeautifulSoup(res.text, 'lxml')
+#         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
+#         if (soup.title.text.find('Service Temporarily') > -1):
+#             page_uri_list.append(index)
+#             # print u'error_URL:',index
+#             # time.sleep(1)
+#         else:
+#             crawPageNBA(index, push_rate, soup)
+#             # print u'OK_URL:', index
+#             # time.sleep(0.05)
+#     article_list_sorted = []
+#     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
+#     #print(article_list_sorted)
+#     all_template_message = ''
+#     for article in article_list_sorted:
+#         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
+#         all_template_message += data
+#     return all_template_message
 
-def PttNBAFilm():
-    TargetURI = "https://www.ptt.cc/bbs/NBA_Film/index.html"
-    res = requests.get(TargetURI, verify=False)
-    #print(res.text)
-    #ResContent = res.text
-    soup = BeautifulSoup(res.text, "lxml")
-    #print("    soup>>>" + soup.prettify())
-    #class=btn wide
-    #抓最新-1頁的連結
-    LatestPageURI = soup.select('.btn.wide')[1]['href']
-    #print("    URI>>> " + LatestPageURI)
-    #從連接拆出最新-1頁數
-    LatestPageNum = re.match('/bbs/NBA_Film/index(.*).html',LatestPageURI)
-    #print("    PageNum>>> " + LatestPageNum.group(1))
-    LPN = int(LatestPageNum.group(1)) + 1
-    #設定推文數閥值
-    push_rate = 20
-    page_uri_list = []
-    for page in range(LPN, LPN-3, -1):
-        page_uri = "https://www.ptt.cc/bbs/NBA_Film/index" + str(page) + ".html"
-        page_uri_list.append(page_uri)
-    #print("    PageURI>>> " + page_uri)
-    #print(page_uri_list)
-    while page_uri_list:
-        index = page_uri_list.pop(0)
-        #print("    try to parse: " + index)
-        res = requests.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'lxml')
-        #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
-        if (soup.title.text.find('Service Temporarily') > -1):
-            page_uri_list.append(index)
-            # print u'error_URL:',index
-            # time.sleep(1)
-        else:
-            crawPageNBA(index, push_rate, soup)
-            # print u'OK_URL:', index
-            # time.sleep(0.05)
-    article_list_sorted = []
-    article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
-    #print(article_list_sorted)
-    all_template_message = ''
-    for article in article_list_sorted:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
-        all_template_message += data
-    return all_template_message
+# def PttNBAFilm():
+#     TargetURI = "https://www.ptt.cc/bbs/NBA_Film/index.html"
+#     res = requests.get(TargetURI, verify=False)
+#     #print(res.text)
+#     #ResContent = res.text
+#     soup = BeautifulSoup(res.text, "lxml")
+#     #print("    soup>>>" + soup.prettify())
+#     #class=btn wide
+#     #抓最新-1頁的連結
+#     LatestPageURI = soup.select('.btn.wide')[1]['href']
+#     #print("    URI>>> " + LatestPageURI)
+#     #從連接拆出最新-1頁數
+#     LatestPageNum = re.match('/bbs/NBA_Film/index(.*).html',LatestPageURI)
+#     #print("    PageNum>>> " + LatestPageNum.group(1))
+#     LPN = int(LatestPageNum.group(1)) + 1
+#     #設定推文數閥值
+#     push_rate = 20
+#     page_uri_list = []
+#     for page in range(LPN, LPN-3, -1):
+#         page_uri = "https://www.ptt.cc/bbs/NBA_Film/index" + str(page) + ".html"
+#         page_uri_list.append(page_uri)
+#     #print("    PageURI>>> " + page_uri)
+#     #print(page_uri_list)
+#     while page_uri_list:
+#         index = page_uri_list.pop(0)
+#         #print("    try to parse: " + index)
+#         res = requests.get(index, verify=False)
+#         soup = BeautifulSoup(res.text, 'lxml')
+#         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
+#         if (soup.title.text.find('Service Temporarily') > -1):
+#             page_uri_list.append(index)
+#             # print u'error_URL:',index
+#             # time.sleep(1)
+#         else:
+#             crawPageNBA(index, push_rate, soup)
+#             # print u'OK_URL:', index
+#             # time.sleep(0.05)
+#     article_list_sorted = []
+#     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
+#     #print(article_list_sorted)
+#     all_template_message = ''
+#     for article in article_list_sorted:
+#         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
+#         all_template_message += data
+#     return all_template_message
 
 
 if __name__ == "__main__":
