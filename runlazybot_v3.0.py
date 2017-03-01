@@ -359,7 +359,7 @@ def push_rate_suggestion():
                "LzPtt指令說明: \n\n" + \
                "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
                "例: LzPtt NBA 70\n\n" + \
-               "意為搜尋NBA版70推以上文章\n\n"
+               "意為搜尋NBA版70推以上文章\n\n" + \
                "或使用指令\"LzHelp\"了解更多資訊\n"
     return all_template_message
 
