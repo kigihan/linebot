@@ -354,7 +354,7 @@ push_rate_match = 0
 search_match = 0
 push_rate_peak = 0
 
-def push_rate_suggestion:
+def push_rate_suggestion():
     all_template_message = "請降低推文數標準，設定方式可參考LzPtt指令說明: \n" + \
                "本次搜尋結果，推文數最高為😅 " + push_rate_peak + " 😅\n\n" + \
                "LzPtt (空格) PTT版名 (空格) 推文數標準\n\n" + \
