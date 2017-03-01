@@ -468,10 +468,10 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         push_rate_match += 1
                         print("......push status is : " + str(push_rate_match))
                         # print(article_list)
-                    # elif filter_simple.lower() in title.lower():
-                    #     if int(comment_rate) > push_rate_peak:
-                    #         push_rate_peak = int(comment_rate)
-                    #         print("............push peak: " + comment_rate)
+                    elif filter_simple.lower() in title.lower():
+                        if int(comment_rate) > push_rate_peak:
+                            push_rate_peak = int(comment_rate)
+                            print(".........T2.push peak: " + comment_rate)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
