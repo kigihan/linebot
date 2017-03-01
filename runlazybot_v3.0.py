@@ -77,6 +77,7 @@ print(filter_test)
 
 def callback():
     signature = request.headers['X-Line-Signature']
+    global push_rate_peak
 
     # get request body as text
     body = request.get_data(as_text=True)
@@ -239,6 +240,7 @@ def callback():
                             "LzPtts (空格) PTT版名 (空格) 搜尋關鍵字 (空格) 推文數標準\n\n" + \
                             "例: LzPtts car 心得\n" + \
                             "例: LzPtts nba box 70\n"
+                            print(push_rate_peak)
                         elif push_rate_peak > 1:
                             all_template_message = push_rate_suggestion()
                     if len(all_template_message) >= 2000:
