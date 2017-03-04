@@ -564,14 +564,17 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     LatestPageNum = noindex_page_uri[1][0:-5]
     #print( LatestPageNum )
     #print(LatestPageNum.group(1))
-    LPN = int(LatestPageNum) + 1
+    newest_page_num = int(LatestPageNum) + 1
     #吃傳進來的推文閥值
     push_rate = simple_push_rate
     print("....push_erate = simple..." + str(push_rate))
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
     #八卦一天115頁，lol一天9頁
-    for page in range(LPN, LPN-10, -1):
+    if simple_board_name in ["gossiping"]:
+        oldest_page_num = newest_page_num - 120
+    else oldest_page_num = newest_page_num - 30
+    for page in range(newest_page_num, oldest_page_num, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
@@ -600,7 +603,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
         #print("(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + " | " + article[4] + "\n\n")
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + " | " + article[4] + "\n\n"
         all_template_message += data
-    print("......Simple Board Func Return: " + all_template_message)
+    print("\n\n[+]________all_tem_message_from_sim_boa_func:________\n" + all_template_message)
     return all_template_message
 
 if __name__ == "__main__":
