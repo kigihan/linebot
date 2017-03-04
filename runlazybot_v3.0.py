@@ -53,7 +53,7 @@ filter_default = [
 ]
 filter_test = [
     ["soft_job", "[情報]"],
-    ["lol", "[實況]"],
+    ["lol", "[實況]", "[電競]"],
     ["nba", "[live]"],
     ["beauty"],
     ["baseball"]
