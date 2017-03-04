@@ -496,8 +496,7 @@ def PttBeautyCarousel():
     push_rate = 20  # 推文
     page_uri_list = []
     #抓個3頁差不多吧，表特版文章更新不算快，把這三頁的uri接好存到page_uri_list
-    #八卦一天115頁，lol一天9頁
-    for page in range(LPN, LPN-10, -1):
+    for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
@@ -571,7 +570,8 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     print("....push_erate = simple..." + str(push_rate))
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
-    for page in range(LPN, LPN-72, -1):
+    #八卦一天115頁，lol一天9頁
+    for page in range(LPN, LPN-10, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
