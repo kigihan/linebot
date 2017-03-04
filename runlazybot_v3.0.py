@@ -141,7 +141,7 @@ def callback():
                 event.reply_token,
                 TextSendMessage(text= \
                                       "指令說明\n" + \
-                                      "(😃 所有輸入都不分大小寫)\n\n" + \
+                                      "(😃 所有輸入都不分大小寫 😃)\n\n" + \
                                       "❤PTT表特版近期熱文\n" + \
                                       "❇Beau\n" + \
                                       "(手機觀看可左右滑動看圖)\n" + \
@@ -173,17 +173,20 @@ def callback():
                     #print("........input push rate fail1")
                     simple_push_rate = 50
                 print("........push_rate_1" + str(simple_push_rate))
+                #比對版名是否在filter_test每個column的第0列中，有自己的關鍵字黑名單；沒有的話吃default黑名單
+                #最後把黑名單餵到filter_simple
                 for filter_ctr in filter_test:
                     if simple_board_name == filter_ctr[0]:
                         filter_simple = filter_ctr[1:]
                 if not filter_simple:
                     filter_simple = filter_default[0][1:]
                     #print(filter_simple)
-                #設定filter，1 = 標題黑名單filter(內建)，2 = 標題白名單filter(user輸入)
+                #設定simple_filter_type，1(LzPtt) = 標題黑名單filter(內建)
+                #            2(LzPttS) = 標題白名單filter(user輸入)
                 simple_filter_type = 1
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type)
                 #print(all_template_message)
-                print(len(all_template_message))
+                print("[+] message len(): " + str(len(all_template_message)))
                 # if not all_template_message:
                 #     all_template_message = \
                 #     "請降低推文數標準，設定方式可參考LzPtt指令說明: \n\n" + \
