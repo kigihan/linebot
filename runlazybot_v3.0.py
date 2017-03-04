@@ -445,7 +445,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 post_author = r_ent.find(class_="author").text
                 print("[+] POST: date: " + post_date + " | author: " + post_author + "\n")
                 date_today_utc = datetime.datetime.today()
-                print("  [+] UTC Time is: ", date_now_utc)
+                print("  [+] UTC Time is: ", date_today_utc)
                 date_today_taiwan = date_today_utc + datetime.timedelta(hours = 8)
                 print("  [+] GMT+8 Time is: ", date_today_taiwan)
                 date_today_5am = date_today_taiwan.replace(hour = 5, minute = 0, second = 0, microsecond = 0)
