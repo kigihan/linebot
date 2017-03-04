@@ -441,7 +441,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 URL = 'https://www.ptt.cc' + link
                 post_date = r_ent.find(class_="date").text
                 post_author = r_ent.find(class_="author").text
-                print("....date: " + post_date + " | author: " + post_author + "\n")
+                #print("....date: " + post_date + " | author: " + post_author + "\n")
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
@@ -570,7 +570,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     print("....push_erate = simple..." + str(push_rate))
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
-    for page in range(LPN, LPN-10, -1):
+    for page in range(LPN, LPN-72, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
