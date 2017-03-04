@@ -186,7 +186,7 @@ def callback():
                 simple_filter_type = 1
                 all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type)
                 #print(all_template_message)
-                print("[+] message len(): " + str(len(all_template_message)))
+                print("[+] message len(): " + str(len(all_template_message)) + "\n")
                 # if not all_template_message:
                 #     all_template_message = \
                 #     "請降低推文數標準，設定方式可參考LzPtt指令說明: \n\n" + \
@@ -566,7 +566,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     print("....push_erate = simple..." + str(push_rate))
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
-    for page in range(LPN, LPN-3, -1):
+    for page in range(LPN, LPN-10, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
