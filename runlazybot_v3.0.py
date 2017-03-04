@@ -446,7 +446,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 print("....date: " + post_date + " | author: " + post_author + "\n")
                 date_now_utc = datetime.datetime.now()
                 print("[+] UTC Time is: ", date_now_utc)
-                date_now_taiwan = date_now_utc + 8*HOUR
+                date_now_taiwan = date_now_utc + datetime.timedelta(hours = 8)
                 print("[+] UTC+8 Time is: ", date_now_taiwan)
                 #post_date_parse = datetime.datetime.strptime(post_date, "%m/%d")
 
