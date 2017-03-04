@@ -443,7 +443,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 URL = 'https://www.ptt.cc' + link
                 post_date = r_ent.find(class_="date").text
                 post_author = r_ent.find(class_="author").text
-                #print("....date: " + post_date + " | author: " + post_author + "\n")
+                print("....date: " + post_date + " | author: " + post_author + "\n")
                 date_now_utc = datetime.datetime.now()
                 print("[+] UTC Time is: " + date_now_utc + "\n")
                 date_now_taiwan = date_now_utc + 8*HOUR
