@@ -454,7 +454,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 #filter_type == 1 , LzPtt功能
                 if simple_filter_type == 1:                    
                     if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
-                        article_list.append((int(comment_rate), URL, title))
+                        article_list.append((int(comment_rate), URL, title, post_date, post_author))
                         #print(article_list)
                     elif not title.lower().startswith(tuple(filter_simple)):
                         if int(comment_rate) > push_rate_peak:
@@ -595,9 +595,9 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     article_list_sorted = []
     article_list_sorted = sorted(article_list, key = lambda x:x[0], reverse = True)
     #print(article_list_sorted)
-    all_template_message = ''
+    all_template_message = ""
     for article in article_list_sorted:
-        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
+        data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + post_date + " | " + post_author + "\n\n"
         all_template_message += data
     print("......Simple Board Func Return: " + all_template_message)
     return all_template_message
