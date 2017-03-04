@@ -597,7 +597,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     #print(article_list_sorted)
     all_template_message = ""
     for article in article_list_sorted:
-        print("(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + post_date + " | " + post_author + "\n\n")
+        print("(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n" + article[3] + " | " + article[4] + "\n\n")
         data = "(" + str(article[0]) + "推) " + article[2] + "\n" + article[1] + "\n\n"
         all_template_message += data
     print("......Simple Board Func Return: " + all_template_message)
