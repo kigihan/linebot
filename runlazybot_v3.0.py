@@ -22,7 +22,6 @@ import requests
 import re
 import json
 import datetime
-import pytz
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -445,8 +444,10 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 post_date = r_ent.find(class_="date").text
                 post_author = r_ent.find(class_="author").text
                 #print("....date: " + post_date + " | author: " + post_author + "\n")
-                date_now = datetime.datetime.now(pytz.timezone("Asia/Taipei"))
-                print("[+] Now Time is: " + date_now)
+                date_now_utc = datetime.datetime.now
+                date_now_taiwan = date_now_utc + 8*HOUR
+                print("[+] UTC Time is: " + date_now_utc + "\n" + \
+                      "[+] UTC+8 Time is: " + date_now_taiwan + "\n")
                 #post_date_parse = datetime.datetime.strptime(post_date, "%m/%d")
 
                 print()
