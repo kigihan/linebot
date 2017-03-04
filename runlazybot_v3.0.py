@@ -439,7 +439,9 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
                 URL = 'https://www.ptt.cc' + link
-                #print("........" + URL)
+                post_date = r_ent.find(class_="date").text
+                post_author = r_ent.find(class_="author").text
+                print("....date: " + post_date + " | author: " + post_author + "\n")
                 if (rate):
                     comment_rate = rate
                     if rate.find(u'爆') > -1:
@@ -531,6 +533,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     #吃傳進來的板名(simple_board_name)
     TargetURI = "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html"
     rs = requests.session()
+    #八卦版、西斯版，需要成人驗證
     if simple_board_name in ["gossiping", "sex"]:
         #print("........start to verify 18+")
         adult_payload = {
@@ -566,7 +569,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     print("....push_erate = simple..." + str(push_rate))
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
-    for page in range(LPN, LPN-10, -1):
+    for page in range(LPN, LPN-3, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
