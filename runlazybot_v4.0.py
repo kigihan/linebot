@@ -196,7 +196,6 @@ def callback():
                 #     "例: LzPtt NBA 70\n\n" + \
                 #     "或使用指令\"LzHelp\"了解詳細資訊\n"
                 if not all_template_message:
-                    # all_template_message = ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_filter_type)
                     all_template_message = ptt_simple_board(simple_board_name, push_rate_peak, filter_simple, simple_filter_type)
                 if len(all_template_message) >= 2000:
                     all_template_message = \
@@ -240,7 +239,7 @@ def callback():
                     print(len(all_template_message))
                     if not all_template_message:
                         if push_rate_peak > 1:
-                            all_template_message = push_rate_suggestion()
+                            all_template_message = ptt_simple_board(simple_board_name, push_rate_peak, filter_simple, simple_filter_type)
                         elif search_match <=0:
                             all_template_message = \
                             "查無結果，請調整搜尋關鍵字，LzPtts指令說明: \n\n" + \
