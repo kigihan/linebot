@@ -368,9 +368,9 @@ def push_rate_suggestion():
                            "❄或使用指令\"LzHelp\"了解更多資訊\n"
     return all_template_message
 
-def no_article_today():
+def no_article_today(simple_board_name):
     all_template_message = "PTT" + simple_board_name + "版本日無文章，或可至該版查看\n" + \
-                           "本次搜尋，推文數最高為😅 " + TargetURI + " 😅\n\n" + \
+                           "https://www.ptt.cc/bbs/" + simple_board_name + "/index.html" + " 😅\n\n" + \
                            "❄或使用指令\"LzHelp\"了解更多資訊\n"
     return all_template_message
 
