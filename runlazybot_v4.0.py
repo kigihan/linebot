@@ -648,7 +648,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
     #八卦一天115頁，lol一天9頁
-    oldest_page_num = newest_page_num - 130
+    oldest_page_num = newest_page_num - 60
     for page in range(newest_page_num, oldest_page_num, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
