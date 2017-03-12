@@ -171,15 +171,14 @@ def callback():
                 #吃輸入的推文數
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
-                    print("    [+] get rate:" + simple_push_rate)
+                    print("    [+] get rate:" + str(simple_push_rate))
                     if simple_push_rate > 100:
                         simple_push_rate = 100
-                        print("    [+] fix rate:" + simple_push_rate)
+                        print("    [+] fix rate:" + str(simple_push_rate))
                 except:
                     #print("........input push rate fail1")
                     simple_push_rate = 50
-                    print("    [+] use default rate:" + simple_push_rate)
-                print("........push_rate_1" + str(simple_push_rate))
+                    print("    [+] use default rate:" + str(simple_push_rate))
                 #比對版名是否在filter_test每個column的第0列中，有自己的關鍵字黑名單；沒有的話吃default黑名單
                 #最後把黑名單餵到filter_simple
                 for filter_ctr in filter_test:
