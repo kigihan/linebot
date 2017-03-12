@@ -448,11 +448,13 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 date_now_utc = datetime.datetime.now()
                 print("  [+] UTC Time is: ", date_now_utc)
                 date_now_taiwan = date_now_utc + datetime.timedelta(hours = 8)
+                date_yesterday_taiwan = date_now_taiwan + datetime.timedelta(days = -1)
                 print("  [+] GMT+8 Time is: ", date_now_taiwan)
                 date_today_5am = date_now_taiwan.replace(hour = 5, minute = 0, second = 0, microsecond = 0)
                 print("  [+] 5am: ", date_today_5am)
                 print("    [+] GMT+8 > 5am: ", date_now_taiwan > date_today_5am)
                 date_date_string = date_now_taiwan.strftime("%m/%d")
+                date_yesterday_string = date_yesterday_string.strftime("%m/%d")
                 print("      [+] Date Post string:" + post_date_nospace + "||")
                 print("      [+] Date Now  string:" + date_date_string + "||")
                 print("      [+] If date in range:", post_date_nospace in date_date_string)
@@ -472,7 +474,16 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 #filter_type == 1 , LzPtt功能
                 if simple_filter_type == 1:
                     if date_now_taiwan > date_today_5am:
-                        if 1:
+                        if post_date_nospace in (date_date_string, date_yesterday_string):
+                            if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
+                                article_list.append((int(comment_rate), URL, title, post_date, post_author))
+                                #print(article_list)
+                            elif not title.lower().startswith(tuple(filter_simple)):
+                                if int(comment_rate) > push_rate_peak:
+                                    push_rate_peak = int(comment_rate)
+                                    print("............push peak: " + comment_rate)
+                    elif date_now_taiwan <= date_today_5am:
+                        if post_date_nospace in (date_date_string, date_yesterday_string):
                             if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                                 article_list.append((int(comment_rate), URL, title, post_date, post_author))
                                 #print(article_list)
