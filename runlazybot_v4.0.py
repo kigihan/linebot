@@ -174,6 +174,7 @@ def callback():
                     print("    [+] get rate:" + simple_push_rate)
                     if simple_push_rate > 100:
                         simple_push_rate = 100
+                        print("    [+] fix rate:" + simple_push_rate)
                 except:
                     #print("........input push rate fail1")
                     simple_push_rate = 50
