@@ -354,6 +354,7 @@ article_list = []
 push_rate_match = 0
 search_match = 0
 push_rate_peak = 0
+date_check_4page = 1
 
 def push_rate_suggestion():
     all_template_message = "請下修推文數標準\n" + \
@@ -429,6 +430,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
     global push_rate_match
     global search_match
     global push_rate_peak
+    global date_check_4page
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -484,6 +486,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                                 if int(comment_rate) > push_rate_peak:
                                     push_rate_peak = int(comment_rate)
                                     print("............push peak: " + comment_rate)
+                        else:
+                            date_check_4page = -1
                     elif date_now_taiwan <= date_today_5am:
                         if (post_date_nospace in date_date_string) or (post_date_nospace in date_yesterday_string):
                             if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
@@ -493,6 +497,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                                 if int(comment_rate) > push_rate_peak:
                                     push_rate_peak = int(comment_rate)
                                     print("............push peak: " + comment_rate)
+                        else:
+                            date_check_4page = -1
                 elif simple_filter_type == 2:
                     print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower() + "\n")
                     if date_now_taiwan > date_today_5am:
@@ -508,6 +514,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                                 if int(comment_rate) > push_rate_peak:
                                     push_rate_peak = int(comment_rate)
                                     print(".........T2.push peak: " + comment_rate)
+                        else:
+                            date_check_4page = -1
                     elif date_now_taiwan <= date_today_5am:
                         if (post_date_nospace in date_date_string) or (post_date_nospace in date_yesterday_string):
                             print("date in range")
@@ -520,6 +528,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                                 if int(comment_rate) > push_rate_peak:
                                     push_rate_peak = int(comment_rate)
                                     print(".........T2.push peak: " + comment_rate)
+                        else:
+                            date_check_4page = -1
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
@@ -577,6 +587,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     global search_match
     global push_rate_match
     global push_rate_peak
+    global date_check_4page
     search_match = 0
     push_rate_match = 0
     push_rate_peak = 0
@@ -629,10 +640,24 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
     #print(page_uri_list)
-    while page_uri_list:
+    if page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
-
+        res = rs.get(index, verify=False)
+        soup = BeautifulSoup(res.text, 'lxml')
+        #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
+        if (soup.title.text.find('Service Temporarily') > -1):
+            page_uri_list.append(index)
+            # print u'error_URL:',index
+            # time.sleep(1)
+        else:
+            simple_craw_page(index, push_rate, soup, filter_simple, simple_filter_type)
+            # print u'OK_URL:', index
+            # time.sleep(0.05)
+    date_check_4page = 1
+    while page_uri_list and date_check_4page > 0:
+        index = page_uri_list.pop(0)
+        #print("    try to parse: " + index)
         res = rs.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'lxml')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
