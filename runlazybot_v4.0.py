@@ -652,20 +652,22 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
     #print(page_uri_list)
-    if page_uri_list:
-        index = page_uri_list.pop(0)
-        #print("    try to parse: " + index)
-        res = rs.get(index, verify=False)
-        soup = BeautifulSoup(res.text, 'lxml')
-        #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
-        if (soup.title.text.find('Service Temporarily') > -1):
-            page_uri_list.append(index)
-            # print u'error_URL:',index
-            # time.sleep(1)
-        else:
-            simple_craw_page(index, push_rate, soup, filter_simple, simple_filter_type)
-            # print u'OK_URL:', index
-            # time.sleep(0.05)
+    #前三頁無條件先抓
+    for pre_page in range(3)
+        if page_uri_list:
+            index = page_uri_list.pop(0)
+            #print("    try to parse: " + index)
+            res = rs.get(index, verify=False)
+            soup = BeautifulSoup(res.text, 'lxml')
+            #如網頁忙線中,則先將網頁加入page_uri_list等1秒重試
+            if (soup.title.text.find('Service Temporarily') > -1):
+                page_uri_list.append(index)
+                # print u'error_URL:',index
+                # time.sleep(1)
+            else:
+                simple_craw_page(index, push_rate, soup, filter_simple, simple_filter_type)
+                # print u'OK_URL:', index
+                # time.sleep(0.05)
     date_check_4page = 1
     while page_uri_list and date_check_4page > 0:
         index = page_uri_list.pop(0)
