@@ -500,7 +500,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         if (post_date_nospace in date_date_string):
                             print("date in range")
                             if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
-                                article_list.append((int(comment_rate), URL, title))
+                                article_list.append((int(comment_rate), URL, title, post_date, post_author))
                                 push_rate_match += 1
                                 print("......push status is : " + str(push_rate_match))
                                 # print(article_list)
@@ -512,7 +512,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                         if (post_date_nospace in date_date_string) or (post_date_nospace in date_yesterday_string):
                             print("date in range")
                             if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
-                                article_list.append((int(comment_rate), URL, title))
+                                article_list.append((int(comment_rate), URL, title, post_date, post_author))
                                 push_rate_match += 1
                                 print("......push status is : " + str(push_rate_match))
                                 # print(article_list)
