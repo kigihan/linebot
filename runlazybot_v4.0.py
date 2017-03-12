@@ -242,10 +242,6 @@ def callback():
                     if not all_template_message:
                         if push_rate_peak > 1:
                             all_template_message = ptt_simple_board(simple_board_name, push_rate_peak, filter_simple, simple_filter_type)
-                            if not all_template_message:
-                                all_template_message = ptt_simple_board(simple_board_name, push_rate_peak, filter_simple, simple_filter_type)
-                                if not all_template_message:
-                                    all_template_message = no_article_today(simple_board_name)
                         elif search_match <=0:
                             all_template_message = \
                             "查無結果，請調整搜尋關鍵字，LzPtts指令說明: \n\n" + \
