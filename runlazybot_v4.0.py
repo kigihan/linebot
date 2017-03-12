@@ -443,7 +443,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 URL = 'https://www.ptt.cc' + link
                 post_date = r_ent.find(class_="date").text
                 post_author = r_ent.find(class_="author").text
-                print("\n[+] POST: date: " + post_date + " | author: " + post_author + "\n")
+                print("\n[+] POST: date:" + post_date + "| author: " + post_author + "\n")
                 date_now_utc = datetime.datetime.now()
                 print("  [+] UTC Time is: ", date_now_utc)
                 date_now_taiwan = date_now_utc + datetime.timedelta(hours = 8)
@@ -452,7 +452,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 print("  [+] 5am: ", date_today_5am)
                 print("    [+] GMT+8 > 5am: ", date_now_taiwan > date_today_5am)
                 date_date_string = date_now_taiwan.strftime("%m/%d")
-                print("      [+] Date string: " + date_date_string)
+                print("      [+] Date string:" + date_date_string + "||")
                 print("      [+] If date in range:", post_date in date_date_string)
                 print("          [+] If date in range:", "3/11" in "03/11")
                 # print("  [+] parse done.")
