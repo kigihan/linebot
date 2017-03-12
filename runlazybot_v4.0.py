@@ -171,6 +171,7 @@ def callback():
                 #吃輸入的推文數
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
+                    print("    [+] get rate:" + simple_push_rate)
                     if simple_push_rate > 100:
                         simple_push_rate = 100
                 except:
