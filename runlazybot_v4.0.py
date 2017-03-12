@@ -454,6 +454,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 date_date_string = date_now_taiwan.strftime("%m/%d")
                 print("      [+] Date string: " + date_date_string)
                 print("      [+] If date in range:", post_date in date_date_string)
+                print("          [+] If date in range:", 3/11 in 03/11)
                 # print("  [+] parse done.")
                 # print("  [+] PostDate is: ", post_date_parse)
                 #print("    [+] PostDate < date_5am: ", )
