@@ -178,6 +178,7 @@ def callback():
                 except:
                     #print("........input push rate fail1")
                     simple_push_rate = 50
+                    print("    [+] use default rate:" + simple_push_rate)
                 print("........push_rate_1" + str(simple_push_rate))
                 #比對版名是否在filter_test每個column的第0列中，有自己的關鍵字黑名單；沒有的話吃default黑名單
                 #最後把黑名單餵到filter_simple
@@ -462,19 +463,19 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 post_author = r_ent.find(class_="author").text
                 print("\n[+] POST: date:" + post_date_nospace + "| author: " + post_author + "\n")
                 date_now_utc = datetime.datetime.now()
-                print("  [+] UTC Time is: ", date_now_utc)
+                # print("  [+] UTC Time is: ", date_now_utc)
                 date_now_taiwan = date_now_utc + datetime.timedelta(hours = 8)
                 date_yesterday_taiwan = date_now_taiwan + datetime.timedelta(days = -1)
-                print("  [+] GMT+8 Time is: ", date_now_taiwan)
+                # print("  [+] GMT+8 Time is: ", date_now_taiwan)
                 date_today_5am = date_now_taiwan.replace(hour = 5, minute = 0, second = 0, microsecond = 0)
-                print("  [+] 5am: ", date_today_5am)
-                print("    [+] GMT+8 > 5am: ", date_now_taiwan > date_today_5am)
+                # print("  [+] 5am: ", date_today_5am)
+                # print("    [+] GMT+8 > 5am: ", date_now_taiwan > date_today_5am)
                 date_date_string = date_now_taiwan.strftime("%m/%d")
                 date_yesterday_string = date_yesterday_taiwan.strftime("%m/%d")
-                print("      [+] Date Post string:" + post_date_nospace + "||")
-                print("      [+] Date Now  string:" + date_date_string + "||")
-                print("      [+] If date in range:", post_date_nospace in date_date_string)
-                print("          [+] If date in range:", "3/11" in "03/11")
+                # print("      [+] Date Post string:" + post_date_nospace + "||")
+                # print("      [+] Date Now  string:" + date_date_string + "||")
+                # print("      [+] If date in range:", post_date_nospace in date_date_string)
+                # print("          [+] If date in range:", "3/11" in "03/11")
                 # print("  [+] parse done.")
                 # print("  [+] PostDate is: ", post_date_parse)
                 #print("    [+] PostDate < date_5am: ", )
