@@ -653,7 +653,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     #print("    PageURI>>> " + page_uri)
     #print(page_uri_list)
     #前三頁無條件先抓
-    for pre_page in range(3)
+    for pre_page in range(3):
         if page_uri_list:
             index = page_uri_list.pop(0)
             #print("    try to parse: " + index)
