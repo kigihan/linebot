@@ -462,8 +462,8 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 post_date = r_ent.find(class_="date").text
                 post_date_nospace = post_date.replace(" ","")
                 post_author = r_ent.find(class_="author").text
-                print("\n\n[+] POST: date:" + post_date_nospace + "| author: " + post_author + \
-                      "\n    [+] 推: " + rate + " | " + title)
+                # print("\n\n[+] POST: date:" + post_date_nospace + "| author: " + post_author + \
+                #       "\n    [+] 推: " + rate + " | " + title)
                 date_now_utc = datetime.datetime.now()
                 # print("  [+] UTC Time is: ", date_now_utc)
                 date_now_taiwan = date_now_utc + datetime.timedelta(hours = 8)
@@ -648,7 +648,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     page_uri_list = []
     #抓3頁，把uri接起來存在page_uri_list
     #八卦一天115頁，lol一天9頁
-    oldest_page_num = newest_page_num - 150
+    oldest_page_num = newest_page_num - 130
     for page in range(newest_page_num, oldest_page_num, -1):
         page_uri = "https://www.ptt.cc/bbs/" + simple_board_name + "/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
