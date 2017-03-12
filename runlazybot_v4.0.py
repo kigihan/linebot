@@ -475,7 +475,7 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 if simple_filter_type == 1:
                     if date_now_taiwan > date_today_5am:
                         print(">5am")
-                        if (post_date_nospace in date_date_string) or (post_date_nospace in date_yesterday_string):
+                        if (post_date_nospace in date_date_string):
                             print("date in range")
                             if int(comment_rate) >= push_rate and not (title.lower().startswith(tuple(filter_simple))):
                                 article_list.append((int(comment_rate), URL, title, post_date, post_author))
@@ -495,15 +495,31 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                                     print("............push peak: " + comment_rate)
                 elif simple_filter_type == 2:
                     print(str(comment_rate) + "   keyword   " + filter_simple.lower() + "  >?  " + title.lower() + "\n")
-                    if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
-                        article_list.append((int(comment_rate), URL, title))
-                        push_rate_match += 1
-                        print("......push status is : " + str(push_rate_match))
-                        # print(article_list)
-                    elif filter_simple.lower() in title.lower():
-                        if int(comment_rate) > push_rate_peak:
-                            push_rate_peak = int(comment_rate)
-                            print(".........T2.push peak: " + comment_rate)
+                    if date_now_taiwan > date_today_5am:
+                        print(">5am")
+                        if (post_date_nospace in date_date_string):
+                            print("date in range")
+                            if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
+                                article_list.append((int(comment_rate), URL, title))
+                                push_rate_match += 1
+                                print("......push status is : " + str(push_rate_match))
+                                # print(article_list)
+                            elif filter_simple.lower() in title.lower():
+                                if int(comment_rate) > push_rate_peak:
+                                    push_rate_peak = int(comment_rate)
+                                    print(".........T2.push peak: " + comment_rate)
+                    elif date_now_taiwan <= date_today_5am:
+                        if (post_date_nospace in date_date_string) or (post_date_nospace in date_yesterday_string):
+                            print("date in range")
+                            if int(comment_rate) >= push_rate and (filter_simple.lower() in title.lower()):
+                                article_list.append((int(comment_rate), URL, title))
+                                push_rate_match += 1
+                                print("......push status is : " + str(push_rate_match))
+                                # print(article_list)
+                            elif filter_simple.lower() in title.lower():
+                                if int(comment_rate) > push_rate_peak:
+                                    push_rate_peak = int(comment_rate)
+                                    print(".........T2.push peak: " + comment_rate)
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
