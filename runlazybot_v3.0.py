@@ -450,10 +450,11 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
                 print("  [+] GMT+8 Time is: ", date_now_taiwan)
                 date_today_5am = date_now_taiwan.replace(hour = 5, minute = 0, second = 0, microsecond = 0)
                 print("  [+] 5am: ", date_today_5am)
-                print("    [+] GMT+8 > 5am: ", date_today_taiwan > date_today_5am)
-                post_date_parse = datetime.datetime.strptime(post_date, "%m/%d")
-                print("  [+] parse done.")
-                print("  [+] PostDate is: ", post_date_parse)
+                print("    [+] GMT+8 > 5am: ", date_now_taiwan > date_today_5am)
+                # post_date_parse = datetime.datetime.strptime(post_date, "%m/%d")
+                # print("  [+] parse done.")
+                # print("  [+] PostDate is: ", post_date_parse)
+                
                 #print("    [+] PostDate < date_5am: ", )
                 if (rate):
                     comment_rate = rate
