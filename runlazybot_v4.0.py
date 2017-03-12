@@ -171,6 +171,8 @@ def callback():
                 #吃輸入的推文數
                 try:
                     simple_push_rate = int(simple_board_name_input[2])
+                    if simple_push_rate > 100:
+                        simple_push_rate = 100
                 except:
                     #print("........input push rate fail1")
                     simple_push_rate = 50
@@ -231,6 +233,8 @@ def callback():
                     #吃輸入的推文數
                     try:
                         simple_push_rate = int(simple_board_name_input[3])
+                        if simple_push_rate > 100:
+                            simple_push_rate = 100
                     except:
                         #print("........input push rate fail1")
                         simple_push_rate = 50
