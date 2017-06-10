@@ -114,7 +114,7 @@ def callback():
                 line_bot_api.reply_message(
                     event.reply_token,
                     TextSendMessage(text= "地址：" + event.message.address + "\n" \
-                                          "緯度/經度：" + event.message.latitude + "/" + event.message.longitude + "\n\n" \
+                                          "緯度/經度：" + str(event.message.latitude) + "/" + str(event.message.longitude) + "\n\n" \
                                     )
                 )
             #文字訊息
