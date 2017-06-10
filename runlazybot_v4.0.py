@@ -349,7 +349,16 @@ def callback():
                 event.reply_token,
                 all_template_message
                 )
-                #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
+
+            #分享位置
+            if event.message.type == 'location':
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text= "地址：" + event.message.address + "\n" \
+                                          "緯度/經度：" + event.message.latitude + "/" + event.message.longitude + "\n\n" \
+                                    )
+                )
+            #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
             # article_list = []
             # article_list_sorted = []
             del all_template_message
@@ -358,15 +367,6 @@ def callback():
             simple_board_name = ""
             simple_push_rate is None
             del filter_simple[:]
-        #分享位置
-        elif isinstance(event, LocationEvent):
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text= "地址：" + event.message.address + "\n" \
-                                      "緯度/經度：" + event.message.latitude + "/" + event.message.longitude + "\n\n" \
-                                )
-            )
-
 
     return 'OK'
 article_list = []
