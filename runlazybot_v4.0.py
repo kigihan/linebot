@@ -358,6 +358,15 @@ def callback():
             simple_board_name = ""
             simple_push_rate is None
             del filter_simple[:]
+        #分享位置
+        elif isinstance(event, LocationEvent):
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text= "地址：" + event.message.address + "\n" \
+                                      "緯度/經度：" + event.message.latitude + "/" + event.message.longitude + "\n\n" \
+                                )
+            )
+
 
     return 'OK'
 article_list = []
