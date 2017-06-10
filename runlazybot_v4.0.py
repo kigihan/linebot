@@ -109,6 +109,15 @@ def callback():
     filter_simple = []
     for event in events:
         if isinstance(event, MessageEvent):
+            #分享位置
+            if event.message.type == 'location':
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text= "地址：" + event.message.address + "\n" \
+                                          "緯度/經度：" + event.message.latitude + "/" + event.message.longitude + "\n\n" \
+                                    )
+                )
+            #文字訊息
             event.message.text = event.message.text.lower()
             if event.message.text in ["lazybot", "lazbot", "lzbot", "lazynoob", "lazyn00b"]:
                 all_template_message = TemplateSendMessage(
@@ -348,16 +357,7 @@ def callback():
                 line_bot_api.reply_message(
                 event.reply_token,
                 all_template_message
-                )
-
-            #分享位置
-            if event.message.type == 'location':
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text= "地址：" + event.message.address + "\n" \
-                                          "緯度/經度：" + event.message.latitude + "/" + event.message.longitude + "\n\n" \
-                                    )
-                )
+                )            
             #用完把list內容刪掉，達到重置的效果，不然舊的紀錄還在，結果累積推文數最高的那篇
             # article_list = []
             # article_list_sorted = []
