@@ -376,7 +376,7 @@ def callback():
                 url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_kw + "&ro=1"
 
                 if json_104["status"] == 200:
-                    message_104 = "關鍵字: " + job_kw + " \n" \
+                    message_104 = "關鍵字: " + job_cmd[1] + " \n" \
                                 + "共搜尋到 " + str(json_104["data"]["totalCount"]) + " 個職缺" \
                                 + locale_msg + "\n\n" + url_104_web
                 else:
