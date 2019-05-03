@@ -760,7 +760,7 @@ def json_104_proc(json, kw):
 def job_locale_message(locale_count):
 	locale_msg = ""
 	for x in locale_count:
-		locale_msg += "\n" x + ": " + str(locale_count(x)) + " 筆"
+		locale_msg += "\n" + x + ": " + str(locale_count(x)) + " 筆"
 	return(locale_msg)
 
 if __name__ == "__main__":
