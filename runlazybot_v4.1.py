@@ -370,12 +370,12 @@ def callback():
                 job_kw = job_cmd[1]
                 json_104 = get_104(job_kw)
 
-                tc = json_104_proc(json_104)
+                json_104_proc(json_104)
 
                 if json_104["status"] == 200:
                     message_104 = \
                             "關鍵字: " + job_kw + " \n" + \
-                            "共搜尋到 " + str(tc) + " 個職缺"
+                            "共搜尋到 " + str(json_104["data"]["totalCount"]) + " 個職缺"
                 else:
                     message_104 = "搜尋失敗；API未正常回應\n[response status code] " \
                                 + str(json_104["status"])
@@ -394,7 +394,7 @@ def callback():
                 simple_push_rate is None
                 del filter_simple[:]
             except:
-                print("104")
+                print("104 search done")
 
     return 'OK'
 article_list = []
