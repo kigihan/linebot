@@ -379,6 +379,7 @@ def callback():
                     message_104 = "關鍵字: " + job_cmd[1] + " \n" \
                                 + "共搜尋到 " + str(json_104["data"]["totalCount"]) + " 個職缺" \
                                 + locale_msg + "\n\n" + url_104_web
+                    print((message_104).replace("\n", ""))
                 else:
                     message_104 = "搜尋失敗；API未正常回應\n[response status code] " \
                                 + str(json_104["status"])
@@ -778,7 +779,7 @@ def job_locale_message(summ):
 	#print(summ)
 	for x in summ:
 		locale_msg += "\n" + x[0] + ": " + str(x[1]) + " 筆    $" + str(x[2])
-	print(locale_msg)
+	#print(locale_msg)
         
 def job_locale_message_ori(locale_count):
 	locale_msg = "\n"
