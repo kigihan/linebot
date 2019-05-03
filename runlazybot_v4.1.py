@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -745,7 +745,7 @@ def json_104_proc(json):
         total_page = json["data"]["totalPage"]
         curr_page = json["data"]["pageNo"]
         for i in range(total_page):
-        	print(i)
+        	print("i = " + str(i))
 
 
 if __name__ == "__main__":
