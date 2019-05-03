@@ -376,11 +376,12 @@ def callback():
                 url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_kw + "&ro=1"
 
                 if json_104["status"] == 200:
-                    print(locale_msg.replace("\n", ""))
+                    print(type(locale_msg))
+                    print(str(locale_msg).replace("\n", ""))
                     print(type(locale_msg), type(url_104_web))
                     message_104 = "關鍵字: " + job_cmd[1] + " \n" \
                                 + "共搜尋到 " + str(json_104["data"]["totalCount"]) + " 個職缺" \
-                                + locale_msg + "\n\n" + url_104_web
+                                + str(locale_msg) + "\n\n" + url_104_web
                 else:
                     message_104 = "搜尋失敗；API未正常回應\n[response status code] " \
                                 + str(json_104["status"])
