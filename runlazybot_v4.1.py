@@ -765,7 +765,7 @@ def json_104_proc(json, kw):
 	for i in range(len(job_locale_count_sorted)):
 		tmp = []
 		for jl, js in job_total_matrix:
-			#print(jl, js, job_total_matrix[i][0], job_total_matrix[i][1])
+			print(jl, js, job_total_matrix[i][0], job_total_matrix[i][1])
 			if jl == job_total_matrix[i][0]:
 				tmp.append(int(js))
 		job_summ[i].append(max(tmp))
@@ -775,9 +775,9 @@ def json_104_proc(json, kw):
 
 def job_locale_message(summ):
 	locale_msg = "\n"
-	print(summ)
+	#print(summ)
 	for x in summ:
-		locale_msg += "\n" + x[0] + ": " + str(x[1]) + " 筆    $" + str(x[2]) + " 薪資"
+		locale_msg += "\n" + x[0] + ": " + str(x[1]) + " 筆    $" + str(x[2])
         
 def job_locale_message_ori(locale_count):
 	locale_msg = "\n"
