@@ -750,7 +750,7 @@ def json_104_proc(json, kw):
         print("start... for page")
         for p in range(total_page):
         	json_curr = get_104(kw, (p+1))
-        	for n in len(json_curr["data"]["list"]):
+        	for n in range(len(json_curr["data"]["list"])):
         		job_locale.append(json_curr["data"]["list"][n]["jobAddrNoDesc"])
         print(job_locale)
         job_locale_conut = Counter(job_locale)
