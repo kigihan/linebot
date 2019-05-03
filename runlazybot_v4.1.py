@@ -24,6 +24,7 @@ import json
 import urllib3
 from urllib.parse import quote
 import  string
+from collections import Counter
 import datetime
 from argparse import ArgumentParser
 
@@ -745,18 +746,17 @@ def json_104_proc(json, kw):
         total_page = json["data"]["totalPage"]
         curr_page = json["data"]["pageNo"]
         job_no = []
+        job_locale = []
         print("start... for page")
-        for n in range(total_page):
-        	json_curr = get_104(kw, (n+1))
-        	print(len(json_curr["data"]["list"]))
-        	job_no.append(len(json_curr["data"]["list"]))
-        print(job_no)
-        a = 0
-        t = 0
-        print("start... for jobs")
-        for a in job_no:
-        	t += a
-        print("jobs: " + str(t))
+        for p in range(total_page):
+        	json_curr = get_104(kw, (p+1))
+        	for n in len(json_curr["data"]["list"]):
+        		job_locale.append(json_curr["data"]["list"][n]["jobAddrNoDesc"])
+        print(job_locale)
+        job_locale_conut = Counter(job_locale)
+        print(job_locale_conut)
+        
+        
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
