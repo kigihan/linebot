@@ -758,7 +758,7 @@ def json_104_proc(json, kw):
 	#print(job_locale)
 	job_locale_count = Counter(job_locale)
 	job_locale_count_sorted = job_locale_count.most_common()
-	job_summ = job_locale_count_sorted
+	job_summ = list(map(list, job_locale_count_sorted))
 
 	job_total_matrix = list(map(list, zip(*[job_locale, job_salaryH])))
 
