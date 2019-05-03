@@ -750,6 +750,7 @@ def json_104_proc(json, kw):
         	job_no.append(len(json_curr["data"]["list"]))
         print(job_no)
         a = 0
+        t = 0
         for a in job_no:
         	t += a
         print("jobs: " + str(t))
