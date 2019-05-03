@@ -775,9 +775,10 @@ def json_104_proc(json, kw):
 
 def job_locale_message(summ):
 	locale_msg = "\n"
-	print(summ)
+	#print(summ)
 	for x in summ:
-		locale_msg += "\n" + x[0] + ": " + str(x[1]) + " 筆    $"
+		locale_msg += "\n" + x[0] + ": " + str(x[1]) + " 筆    $" + str(x[2])
+	print(locale_msg)
         
 def job_locale_message_ori(locale_count):
 	locale_msg = "\n"
