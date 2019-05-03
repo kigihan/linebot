@@ -734,7 +734,7 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     return all_template_message
 
 def get_104(kw, page):
-        url_104_API = url_104_base + "&keyword=" + kw + "&ro=1" + "&page=" + page
+        url_104_API = url_104_base + "&keyword=" + kw + "&ro=1" + "&page=" + str(page)
         res_104_API = requests.get(url_104_API, verify=False)
         json_104 = json.loads(res_104_API.text)
         return(json_104)
