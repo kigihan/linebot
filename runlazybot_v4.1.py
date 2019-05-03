@@ -373,7 +373,7 @@ def callback():
 
                 locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
 
-                url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_cmd[1] + "&ro=1"
+                url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_kw + "&ro=1"
 
                 if json_104["status"] == 200:
                     message_104 = "關鍵字: " + job_cmd[1] + " \n" \
