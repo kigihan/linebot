@@ -371,12 +371,12 @@ def callback():
                 job_kw = job_cmd[1]
                 json_104 = get_104(job_kw, 1)
 
-                json_104_proc(json_104, job_kw)
+                locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
 
                 if json_104["status"] == 200:
-                    message_104 = \
-                            "關鍵字: " + job_kw + " \n" + \
-                            "共搜尋到 " + str(json_104["data"]["totalCount"]) + " 個職缺"
+                    message_104 = "關鍵字: " + job_kw + " \n" \
+                                + "共搜尋到 " + str(json_104["data"]["totalCount"]) + " 個職缺" \
+                                + locale_msg
                 else:
                     message_104 = "搜尋失敗；API未正常回應\n[response status code] " \
                                 + str(json_104["status"])
@@ -735,28 +735,33 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     return all_template_message
 
 def get_104(kw, page):
-        url_104_API = url_104_base + "&keyword=" + kw + "&ro=1" + "&page=" + str(page)
-        res_104_API = requests.get(url_104_API, verify=False)
-        json_104 = json.loads(res_104_API.text)
-        return(json_104)
+	url_104_API = url_104_base + "&keyword=" + kw + "&ro=1" + "&page=" + str(page)
+	res_104_API = requests.get(url_104_API, verify=False)
+	json_104 = json.loads(res_104_API.text)
+	return(json_104)
 
 def json_104_proc(json, kw):
-        #return(json["data"]["totalCount"])
-        job_count = json["data"]["totalCount"]
-        total_page = json["data"]["totalPage"]
-        curr_page = json["data"]["pageNo"]
-        job_no = []
-        job_locale = []
-        print("start... for page")
-        for p in range(total_page):
-        	json_curr = get_104(kw, (p+1))
-        	for n in range(len(json_curr["data"]["list"])):
-        		job_locale.append(json_curr["data"]["list"][n]["jobAddrNoDesc"])
-        print(job_locale)
-        job_locale_conut = Counter(job_locale)
-        print(job_locale_conut)
+	#return(json["data"]["totalCount"])
+	job_count = json["data"]["totalCount"]
+	total_page = json["data"]["totalPage"]
+	curr_page = json["data"]["pageNo"]
+	job_no = []
+	job_locale = []
+	print("start... for page")
+	for p in range(total_page):
+		json_curr = get_104(kw, (p+1))
+		for n in range(len(json_curr["data"]["list"])):
+			job_locale.append(json_curr["data"]["list"][n]["jobAddrNoDesc"])
+	#print(job_locale)
+	job_locale_count = Counter(job_locale)
+	print(job_locale_count)
+	return(job_locale_count)
         
-        
+def job_locale_message(locale_count):
+	locale_msg = ""
+	for x in locale_count:
+		locale_msg += "\n" x + ": " + str(locale_count(x)) + " 筆"
+	return(locale_msg)
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
