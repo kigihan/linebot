@@ -748,6 +748,7 @@ def json_104_proc(json, kw):
         print("start... for page")
         for n in range(total_page):
         	json_curr = get_104(kw, (n+1))
+        	print(len(json_curr["data"]["list"]))
         	job_no.append(len(json_curr["data"]["list"]))
         print(job_no)
         a = 0
