@@ -747,19 +747,38 @@ def json_104_proc(json, kw):
 	job_count = json["data"]["totalCount"]
 	total_page = json["data"]["totalPage"]
 	curr_page = json["data"]["pageNo"]
-	job_no = []
 	job_locale = []
-	print("start... for page")
+	job_salaryH = []
+	print("start... 104 crawler")
 	for p in range(total_page):
 		json_curr = get_104(kw, (p+1))
-		for n in range(len(json_curr["data"]["list"])):
-			job_locale.append(json_curr["data"]["list"][n]["jobAddrNoDesc"])
+		for e in json_curr["data"]["list"]:
+			job_locale.append(e["jobAddrNoDesc"])
+			job_salaryH.append(e["salaryHigh"])
 	#print(job_locale)
 	job_locale_count = Counter(job_locale)
-	print(job_locale_count)
-	return(job_locale_count.most_common())
+	job_locale_count_sorted = job_locale_count.most_common()
+	job_summ = job_locale_count_sorted
+
+	job_total_matrix = list(map(list, zip(*[job_locale, job_salaryH])))
+
+	for i in range(len(job_locale_count_sorted)):
+		tmp = []
+		for jl, js in job_total_matrix:
+			if jl == job_locale_count_sorted[i]:
+				tmp.append(int(js))
+		job_summ[i].append(max(tmp))
+
+	return(job_summ)
+	#return(job_locale_count.most_common())
+
+def job_locale_message(summ):
+	locale_msg = "\n"
+	print(summ)
+	for x in summ:
+		locale_msg += "\n" + x[0] + ": " + str(x[1]) + " 筆    $" + str(x[2])
         
-def job_locale_message(locale_count):
+def job_locale_message_ori(locale_count):
 	locale_msg = "\n"
 	print(locale_count)
 	for x in locale_count:
