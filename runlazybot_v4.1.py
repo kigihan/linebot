@@ -368,9 +368,9 @@ def callback():
                 print(event.message.text)
                 job_cmd = re.split("\s*", event.message.text)
                 job_kw = job_cmd[1]
-                json_104 = get_104(job_kw)
+                json_104 = get_104(job_kw, 1)
 
-                json_104_proc(json_104)
+                json_104_proc(json_104, job_kw)
 
                 if json_104["status"] == 200:
                     message_104 = \
@@ -394,7 +394,7 @@ def callback():
                 simple_push_rate is None
                 del filter_simple[:]
             except:
-                print("104 search done")
+                print("[o] 104 search done")
 
     return 'OK'
 article_list = []
@@ -733,19 +733,26 @@ def ptt_simple_board(simple_board_name, simple_push_rate, filter_simple, simple_
     print("\n\n[+]________all_tem_message_from_sim_boa_func:________\n" + all_template_message)
     return all_template_message
 
-def get_104(kw):
-        url_104_API = url_104_base + "&keyword=" + kw + "&ro=1"
+def get_104(kw, page):
+        url_104_API = url_104_base + "&keyword=" + kw + "&ro=1" + "&page=" + page
         res_104_API = requests.get(url_104_API, verify=False)
         json_104 = json.loads(res_104_API.text)
         return(json_104)
 
-def json_104_proc(json):
+def json_104_proc(json, kw):
         #return(json["data"]["totalCount"])
         job_count = json["data"]["totalCount"]
         total_page = json["data"]["totalPage"]
         curr_page = json["data"]["pageNo"]
-        print(total_page)
-
+        job_no = []
+        for n in range(total_page):
+        	json_curr = get_104(kw, (n+1))
+        	job_no.append(len(json_curr["data"]["list"]))
+        print(job_no)
+        a = 0
+        for a in job_no:
+        	t += a
+        print("jobs: " + str(t))
 
 if __name__ == "__main__":
     arg_parser = ArgumentParser(
