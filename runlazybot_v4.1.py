@@ -744,8 +744,7 @@ def json_104_proc(json):
         job_count = json["data"]["totalCount"]
         total_page = json["data"]["totalPage"]
         curr_page = json["data"]["pageNo"]
-        for i in range(total_page):
-        	print("i = " + str(i))
+        print(total_page)
 
 
 if __name__ == "__main__":
