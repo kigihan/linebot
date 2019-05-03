@@ -22,7 +22,7 @@ import requests
 import re
 import json
 import urllib3
-from urllib.parse import quote
+from urllib.parse import quote_plus
 import  string
 from collections import Counter
 import datetime
@@ -368,7 +368,7 @@ def callback():
             if event.message.text.startswith("104 "):
                 print(event.message.text)
                 job_cmd = re.split("\s*", event.message.text)
-                job_kw = job_cmd[1]
+                job_kw = quote_plus(job_cmd[1])
                 json_104 = get_104(job_kw, 1)
 
                 locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
