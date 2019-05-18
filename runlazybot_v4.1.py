@@ -755,13 +755,14 @@ def json_104_proc(json, kw):
 		for e in json_curr["data"]["list"]:
 			job_locale.append(e["jobAddrNoDesc"])
 			job_salaryH.append(e["salaryHigh"])
-	print(job_locale)
-	print(job_salaryH)
+	#print(job_locale)
+	#print(job_salaryH)
 	job_locale_count = Counter(job_locale)
 	job_locale_count_sorted = job_locale_count.most_common()
 	job_summ = list(map(list, job_locale_count_sorted))
 
 	job_total_matrix = list(map(list, zip(*[job_locale, job_salaryH])))
+	print(job_total_matrix)
 
 	for i in range(len(job_locale_count_sorted)):
 		tmp = []
