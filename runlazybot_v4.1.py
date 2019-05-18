@@ -776,7 +776,7 @@ def json_104_proc(json, kw):
 		job_summ[i].append(max(tmp))
 
 	print(job_summ)
-	print(sorted(job_summ,key=lambda x: x[2]))
+	print(sorted(job_summ,key=lambda x: x[2], , reverse=True))
 	return(job_summ)
 	#return(job_locale_count.most_common())
 
