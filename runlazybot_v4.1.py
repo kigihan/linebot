@@ -772,8 +772,9 @@ def json_104_proc(json, kw):
 				tmp.append(int(js))
 		#print(tmp)
 		job_summ[i].append(max(tmp))
+	print(job_locale_count_sorted)
 	print(job_summ)
-	print(job_total_matrix)
+	#print(job_total_matrix)
 
 	return(job_summ)
 	#return(job_locale_count.most_common())
