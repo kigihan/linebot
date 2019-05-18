@@ -764,13 +764,14 @@ def json_104_proc(json, kw):
 	job_total_matrix = list(map(list, zip(*[job_locale, job_salaryH])))
 	#print(job_total_matrix)
 
+	print(job_locale_count_sorted)
 	for i in range(len(job_locale_count_sorted)):
 		tmp = []
 		for jl, js in job_total_matrix:
 			#print(jl, js, job_total_matrix[i][0], job_total_matrix[i][1])
 			if jl == job_total_matrix[i][0]:
 				tmp.append(int(js))
-				print(job_total_matrix[i][0], job_total_matrix[i][1])
+				print(jl, js)
 		print(tmp)
 		job_summ[i].append(max(tmp))
 	#print(job_locale_count_sorted)
