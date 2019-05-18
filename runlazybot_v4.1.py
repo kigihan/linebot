@@ -367,7 +367,7 @@ def callback():
                 )
             if event.message.text.startswith("104 "):
                 print(event.message.text)
-                job_cmd = re.split("\s*", event.message.text)
+                job_cmd = re.split("\s*", 1, event.message.text)
                 job_kw = quote_plus(job_cmd[1])
                 json_104 = get_104(job_kw, 1)
 
