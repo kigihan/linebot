@@ -373,7 +373,7 @@ def callback():
 
                 if len(job_cmd) == 2:
                     locale_msg = job_locale_message(json_104_proc(json_104, job_kw, 2))
-                elif len(job_cmd) == 3 and job[2] == "-p":
+                elif len(job_cmd) == 3 and job_cmd[2] == "-p":
                     locale_msg = job_locale_message(json_104_proc(json_104, job_kw, 3))
 
                 url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_kw + "&ro=1"
