@@ -367,11 +367,14 @@ def callback():
                 )
             if event.message.text.startswith("104 "):
                 print(event.message.text)
-                job_cmd = re.split("\s*", event.message.text, maxsplit=1)
+                job_cmd = re.split("\s*", event.message.text, maxsplit=0)
                 job_kw = quote_plus(job_cmd[1])
                 json_104 = get_104(job_kw, 1)
 
-                locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
+                if len(job_cmd) == 2:
+                    locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
+                elif len(job_cmd) == 3 and job[2] == "-p":
+                    locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
 
                 url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_kw + "&ro=1"
 
@@ -772,6 +775,8 @@ def json_104_proc(json, kw):
 				tmp.append(int(js))
 		job_summ[i].append(max(tmp))
 
+	print(job_summ)
+	print(sorted(job_summ,key=lambda x: x[2]))
 	return(job_summ)
 	#return(job_locale_count.most_common())
 
