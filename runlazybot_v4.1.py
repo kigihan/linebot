@@ -372,9 +372,9 @@ def callback():
                 json_104 = get_104(job_kw, 1)
 
                 if len(job_cmd) == 2:
-                    locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
+                    locale_msg = job_locale_message(json_104_proc(json_104, job_kw, 2))
                 elif len(job_cmd) == 3 and job[2] == "-p":
-                    locale_msg = job_locale_message(json_104_proc(json_104, job_kw))
+                    locale_msg = job_locale_message(json_104_proc(json_104, job_kw, 3))
 
                 url_104_web = url_104_base.replace("/list?", "/?") + "&keyword=" + job_kw + "&ro=1"
 
@@ -745,7 +745,7 @@ def get_104(kw, page):
 	json_104 = json.loads(res_104_API.text)
 	return(json_104)
 
-def json_104_proc(json, kw):
+def json_104_proc(json, kw, op):
 	#return(json["data"]["totalCount"])
 	job_count = json["data"]["totalCount"]
 	total_page = json["data"]["totalPage"]
@@ -775,8 +775,8 @@ def json_104_proc(json, kw):
 				tmp.append(int(js))
 		job_summ[i].append(max(tmp))
 
-	print(job_summ)
-	print(sorted(job_summ,key=lambda x: x[2], reverse=True))
+	if op == 3:
+		job_summ = sorted(job_summ,key=lambda x: x[2], reverse=True)
 	return(job_summ)
 	#return(job_locale_count.most_common())
 
