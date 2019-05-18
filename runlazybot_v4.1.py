@@ -756,6 +756,7 @@ def json_104_proc(json, kw):
 			job_locale.append(e["jobAddrNoDesc"])
 			job_salaryH.append(e["salaryHigh"])
 	print(job_locale)
+	print(job_salaryH)
 	job_locale_count = Counter(job_locale)
 	job_locale_count_sorted = job_locale_count.most_common()
 	job_summ = list(map(list, job_locale_count_sorted))
