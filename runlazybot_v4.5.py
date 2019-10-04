@@ -338,7 +338,7 @@ def callback():
                             BubbleContainer(
                                 direction='ltr',
                                 hero=ImageComponent(
-                                    url = "https://imgur.com/VZFedkZl.jpg",
+                                    url = article_list_sorted[2][3],
                                     size='full',
                                     aspect_mode='cover',
                                     aspect_ratio='9:13',
