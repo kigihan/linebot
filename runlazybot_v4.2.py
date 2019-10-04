@@ -282,24 +282,13 @@ def callback():
                 event.reply_token,
                 TextSendMessage(text=all_template_message)
                 )
-
             if event.message.text == 'beau':
                 all_template_message = ''
                 article_list_sorted = PttBeautyCarousel()
                 print(article_list_sorted)
                 all_template_message = TemplateSendMessage(
                     #PC版不支援CarouselTemplate，只會顯示這段訊息，手機板剛好不會顯示，拿來當PC版的資訊欄位
-                    alt_text = "PTT表特版近日推文數前5名\n\n" + "(" + str(article_list_sorted[0][0]) + "推) " \
-                     + article_list_sorted[0][2] + "\n" + article_list_sorted[0][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[1][0]) + "推) " \
-                     + article_list_sorted[1][2] + "\n" + article_list_sorted[1][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[2][0]) + "推) " \
-                     + article_list_sorted[2][2] + "\n" + article_list_sorted[2][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[3][0]) + "推) " \
-                     + article_list_sorted[3][2] + "\n" + article_list_sorted[3][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[4][0]) + "推) " \
-                     + article_list_sorted[4][2] + "\n" + article_list_sorted[4][1] \
-                     ,
+                    alt_text = "PTT表特版近日推文數前5名\n\n",
                     template = CarouselTemplate(
                         columns = [
                             CarouselColumn(
