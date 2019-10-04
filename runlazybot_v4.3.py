@@ -366,7 +366,7 @@ def callback():
 
                 fall_template_message = FlexSendMessage(
                     alt_text='beauty posts',
-                    contents=BubbleContainer(
+                    contents=[BubbleContainer(
                         direction='ltr',
                         hero=ImageComponent(
                             url = 'https://i.imgur.com/XHr2NE1.jpg',
@@ -403,7 +403,7 @@ def callback():
                                 )
                             ]
                         )
-                    )
+                    )]
                 )
 
                 line_bot_api.reply_message(
