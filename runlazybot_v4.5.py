@@ -289,81 +289,6 @@ def callback():
                 #print(article_list_sorted)
                 #print("\n\t**************\n")
 
-                all_template_message = TemplateSendMessage(
-                    #PC版不支援CarouselTemplate，只會顯示這段訊息，手機板剛好不會顯示，拿來當PC版的資訊欄位
-                    alt_text = "PTT表特版近日推文數前5名\n\n" + "(" + str(article_list_sorted[0][0]) + "推) " \
-                     + article_list_sorted[0][2] + "\n" + article_list_sorted[0][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[1][0]) + "推) " \
-                     + article_list_sorted[1][2] + "\n" + article_list_sorted[1][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[2][0]) + "推) " \
-                     + article_list_sorted[2][2] + "\n" + article_list_sorted[2][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[3][0]) + "推) " \
-                     + article_list_sorted[3][2] + "\n" + article_list_sorted[3][1] \
-                     + "\n\n" + "(" + str(article_list_sorted[4][0]) + "推) " \
-                     + article_list_sorted[4][2] + "\n" + article_list_sorted[4][1] \
-                     ,
-                    template = CarouselTemplate(
-                        columns = [
-                            CarouselColumn(
-                                thumbnail_image_url = article_list_sorted[0][3],
-                                #反正CarouselTemplate的title欄位非必要，放了也沒比較好看，就省掉
-                                #title = "( " + str(article_list_sorted[0][0]) + "推 )",
-                                text = "( " + str(article_list_sorted[0][0]) + "推 ) " + article_list_sorted[0][2],
-                                actions = [
-                                    URITemplateAction(
-                                        label = "PTT原文連結",
-                                        uri = article_list_sorted[0][1]
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url = article_list_sorted[1][3],
-                                #title = "( " + str(article_list_sorted[1][0]) + "推 ) ",
-                                text = "( " + str(article_list_sorted[1][0]) + "推 ) " + article_list_sorted[1][2],
-                                actions = [
-                                    URITemplateAction(
-                                        label = "PTT原文連結",
-                                        uri = article_list_sorted[1][1]
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url = article_list_sorted[2][3],
-                                #title = "( " + str(article_list_sorted[2][0]) + "推 )",
-                                text = "( " + str(article_list_sorted[2][0]) + "推 ) " + article_list_sorted[2][2],
-                                actions = [
-                                    URITemplateAction(
-                                        label = "PTT原文連結",
-                                        uri = article_list_sorted[2][1]
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url = article_list_sorted[3][3],
-                                #title = "( " + str(article_list_sorted[3][0]) + "推 )",
-                                text = "( " + str(article_list_sorted[3][0]) + "推 ) " + article_list_sorted[3][2],
-                                actions = [
-                                    URITemplateAction(
-                                        label = "PTT原文連結",
-                                        uri = article_list_sorted[3][1]
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url = article_list_sorted[4][3],
-                                #title = "( " + str(article_list_sorted[4][0]) + " 推)",
-                                text = "( " + str(article_list_sorted[4][0]) + " 推) " + article_list_sorted[4][2],
-                                actions = [
-                                    URITemplateAction(
-                                        label = "PTT原文連結",
-                                        uri = article_list_sorted[4][1]
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                )
-
                 fall_template_message = FlexSendMessage(
                     alt_text='beauty posts',
                     contents=CarouselContainer(
@@ -582,6 +507,8 @@ def crawPageBeauty(url, push_rate, soup):
                         #print(img_links)
                         #如果該連結結尾是.jpg，那就可以用
                         if img_links.lower().endswith(".jpg"):
+                            #處理電腦版部分圖不知為何無法顯示
+                            img_links = re.sub(".jpg", "l.jpg", img_links)
                             #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
                             if not img_links.startswith("https://"):
                                 img_links = re.sub("http", "https", img_links)
