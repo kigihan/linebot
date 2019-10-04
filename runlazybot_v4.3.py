@@ -366,44 +366,46 @@ def callback():
 
                 fall_template_message = FlexSendMessage(
                     alt_text='beauty posts',
-                    contents=[BubbleContainer(
-                        direction='ltr',
-                        hero=ImageComponent(
-                            url = 'https://i.imgur.com/XHr2NE1.jpg',
-                            size='full',
-                            action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='Hero\'s Label')
-                            ),
-                        footer=BoxComponent(
-                            layout='vertical',
-                            spacing='sm',
-                            contents=[
-                                ButtonComponent(
-                                    style='link',
-                                    height='sm',
-                                    action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='Footer\'s Label')
-                                )
-                            ]
+                    contents=[
+                        BubbleContainer(
+                            direction='ltr',
+                            hero=ImageComponent(
+                                url = 'https://i.imgur.com/XHr2NE1.jpg',
+                                size='full',
+                                action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='Hero\'s Label 1')
+                                ),
+                            footer=BoxComponent(
+                                layout='vertical',
+                                spacing='sm',
+                                contents=[
+                                    ButtonComponent(
+                                        style='link',
+                                        height='sm',
+                                        action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='YugJgpl.jpg')
+                                    )
+                                ]
+                            )
+                        ),
+                        BubbleContainer(
+                            direction='ltr',
+                            hero=ImageComponent(
+                                url = 'imgur.com/BKEJ3Oz.jpg',
+                                size='full',
+                                action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Hero\'s Label 2')
+                                ),
+                            footer=BoxComponent(
+                                layout='vertical',
+                                spacing='sm',
+                                contents=[
+                                    ButtonComponent(
+                                        style='link',
+                                        height='sm',
+                                        action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='3ytgoYh.jpg')
+                                    )
+                                ]
+                            )
                         )
-                    ),
-                    BubbleContainer(
-                        direction='ltr',
-                        hero=ImageComponent(
-                            url = 'imgur.com/BKEJ3Oz.jpg',
-                            size='full',
-                            action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Hero\'s Label')
-                            ),
-                        footer=BoxComponent(
-                            layout='vertical',
-                            spacing='sm',
-                            contents=[
-                                ButtonComponent(
-                                    style='link',
-                                    height='sm',
-                                    action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Footer\'s Label')
-                                )
-                            ]
-                        )
-                    )]
+                    ]
                 )
 
                 line_bot_api.reply_message(
