@@ -414,6 +414,9 @@ def no_article_today(simple_board_name):
 
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
+    cookies = dict(over18='1')
+    rs = requests.session()
+    res = rs.get(TargetURI, cookies=cookies, verify=False)
     for r_ent in soup.find_all(class_="r-ent"):
         try:
             #抓各篇文章uri的後半段
@@ -439,7 +442,7 @@ def crawPageBeauty(url, push_rate, soup):
                 if int(comment_rate) >= push_rate:
                     #print("        HighPost: " + URL)
                     #抓URL網頁內容給res_post
-                    res_post = requests.get(URL, verify=False)
+                    res_post = rs.get(URL, verify=False)
                     #把網頁內容parser過後丟給soup_post
                     soup_post = BeautifulSoup(res_post.text, "lxml")
                     #比較像暫時解，因為我抓全部<a >但前5個會是PTT的連結，後面才開始是po文內的，就設定個起始值降loading
