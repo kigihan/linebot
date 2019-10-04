@@ -365,7 +365,7 @@ def callback():
                 )
 
                 fall_template_message = FlexSendMessage(
-                    alt='beauuuu_ALT',
+                    alt_text='beauuuu_ALT',
                     contents=BubbleContainer(
                         direction='ltr',
                         hero=ImageComponent(
@@ -381,8 +381,8 @@ def callback():
                 )
 
                 line_bot_api.reply_message(
-                event.reply_token,
-                fall_template_message
+                    event.reply_token,
+                    fall_template_message
                 )
             if event.message.text.startswith("104 "):
                 print(event.message.text)
