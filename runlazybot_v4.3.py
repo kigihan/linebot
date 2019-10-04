@@ -364,22 +364,25 @@ def callback():
                     )
                 )
 
-                bubble = BubbleContainer(
-                    direction='ltr',
-                    hero=ImageComponent(
-                        url = 'https://www.dw.com/image/47863948_303.jpg',
-                        action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Hero\'s Label')
-                    ),
-                    footer=ButtonComponent(
-                        style='link',
-                        height='sm',
-                        action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Footer\'s Label')
+                fall_template_message = FlexSendMessage(
+                    alt='beauuuu_ALT',
+                    contents=BubbleContainer(
+                        direction='ltr',
+                        hero=ImageComponent(
+                            url = 'https://www.dw.com/image/47863948_303.jpg',
+                            action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Hero\'s Label')
+                            ),
+                        footer=ButtonComponent(
+                            style='link',
+                            height='sm',
+                            action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Footer\'s Label')
+                        )
                     )
                 )
 
                 line_bot_api.reply_message(
                 event.reply_token,
-                bubble
+                fall_template_message
                 )
             if event.message.text.startswith("104 "):
                 print(event.message.text)
