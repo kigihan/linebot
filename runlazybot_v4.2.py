@@ -414,6 +414,7 @@ def no_article_today(simple_board_name):
 
 def crawPageBeauty(url, push_rate, soup):
     #r-ent是每頁裡面各篇文的class
+    TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
     cookies = dict(over18='1')
     rs = requests.session()
     res = rs.get(TargetURI, cookies=cookies, verify=False)
