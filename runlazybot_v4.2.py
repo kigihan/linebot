@@ -426,6 +426,7 @@ def crawPageBeauty(url, push_rate, soup):
                 continue
             comment_rate = ""
             if (link):
+                print(" >> starting crawling beauty")
                 #文章uri存在的話，表示沒被刪文，可以繼續抓值(標題、推文數)，因為link的網址只有後半段，自己接起來
                 title = r_ent.find(class_="title").text.strip()
                 rate = r_ent.find(class_="nrec").text
@@ -443,7 +444,7 @@ def crawPageBeauty(url, push_rate, soup):
                 if int(comment_rate) >= push_rate:
                     #print("        HighPost: " + URL)
                     #抓URL網頁內容給res_post
-                    res_post = rs.get(URL, verify=False)
+                    res_post = rs.get(URL, cookies=cookies, verify=False)
                     #把網頁內容parser過後丟給soup_post
                     soup_post = BeautifulSoup(res_post.text, "lxml")
                     #比較像暫時解，因為我抓全部<a >但前5個會是PTT的連結，後面才開始是po文內的，就設定個起始值降loading
