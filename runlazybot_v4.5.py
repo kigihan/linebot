@@ -338,7 +338,7 @@ def callback():
                             BubbleContainer(
                                 direction='ltr',
                                 hero=ImageComponent(
-                                    url = article_list_sorted[2][3],
+                                    url = "https://imgur.com/VZFedkZl.jpg",
                                     size='full',
                                     aspect_mode='cover',
                                     aspect_ratio='9:13',
@@ -401,7 +401,7 @@ def callback():
                         ]
                     )
                 )
-                print(article_list_sorted[0][3]+"\n"+article_list_sorted[1][3]+"\n"+article_list_sorted[2][3]+"\n")
+                print("\toooo\t\n"+article_list_sorted[0][3]+"\n"+article_list_sorted[1][3]+"\n"+article_list_sorted[2][3])
                 print(article_list_sorted[3][3]+"\n"+article_list_sorted[4][3])
                 line_bot_api.reply_message(
                     event.reply_token,
