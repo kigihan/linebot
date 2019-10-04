@@ -386,25 +386,6 @@ def callback():
                                         )
                                     ]
                                 )
-                            ),
-                            BubbleContainer(
-                                direction='ltr',
-                                hero=ImageComponent(
-                                    url = 'imgur.com/BKEJ3Oz.jpg',
-                                    size='full',
-                                    action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Hero\'s Label 2')
-                                    ),
-                                footer=BoxComponent(
-                                    layout='vertical',
-                                    spacing='sm',
-                                    contents=[
-                                        ButtonComponent(
-                                            style='link',
-                                            height='sm',
-                                            action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='3ytgoYh.jpg')
-                                        )
-                                    ]
-                                )
                             )
                         ]
                     )
