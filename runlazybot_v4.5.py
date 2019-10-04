@@ -504,12 +504,12 @@ def crawPageBeauty(url, push_rate, soup):
                     #沒打算抓很多連結來分析，只要有一張圖就可以了，讓他抓第5到10個連結
                     for img_uri_num in range(img_uri_num, 10, +1):
                         #print(img_uri_num)
-                        img_links = soup_post.select("a")[img_uri_num]["href"]
+                        img_links = soup_post.select("a")[img_uri_num]["href"].lower()
                         #print(img_links)
+                        if "//imgur.com/" in img_links:
+                            img_links = re.sub("/imgur.com/", "/i.imgur.com/", img_links)
                         #如果該連結結尾是.jpg，那就可以用
-                        if img_links.lower().endswith(".jpg"):
-                            #處理電腦版部分圖不知為何無法顯示
-                            #img_links = re.sub(".jpg", "l.jpg", img_links)
+                        if img_links.endswith(".jpg"):
                             #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
                             if not img_links.startswith("https://"):
                                 img_links = re.sub("http", "https", img_links)
