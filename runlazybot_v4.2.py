@@ -601,12 +601,13 @@ def PttBeautyCarousel():
     #print(res.text)
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "lxml")
-    print("    soup>>>" + soup.prettify())
+    #print("    soup>>>" + soup.prettify())
     #爬最新-1頁面連結(因為直接get的話，第1頁是index.html)
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
     #從連結抓出最新-1頁數
     LatestPageNum = re.match('/bbs/Beauty/index(.*).html',LatestPageURI)
+    #print("\n\t?????????????")
     #print("    PageNum>>> " + LatestPageNum.group(1))
     #最新頁雖然是index.html，但剛剛的數字+1也能連的到，所以+1來用
     LPN = int(LatestPageNum.group(1)) + 1
@@ -618,12 +619,12 @@ def PttBeautyCarousel():
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
-    print(page_uri_list)
+    #print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
         #爬頁面內容出來
-        res = requests.get(index, verify=False)
+        res = rs.get(index, verify=False)
         soup = BeautifulSoup(res.text, 'lxml')
         #如網頁忙線中,則先將網頁加入page_uri_list等1秒後重試
         if (soup.title.text.find('Service Temporarily') > -1):
