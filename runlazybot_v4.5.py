@@ -373,7 +373,8 @@ def callback():
                                 hero=ImageComponent(
                                     url = article_list_sorted[0][3],
                                     size='full',
-                                    action=URIAction(uri=article_list_sorted[0][1], label="beauty")
+                                    aspect_mode='cover',
+                                    action=URIAction(uri=article_list_sorted[0][1])
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
@@ -392,7 +393,8 @@ def callback():
                                 hero=ImageComponent(
                                     url = article_list_sorted[1][3],
                                     size='full',
-                                    action=URIAction(uri=article_list_sorted[1][1], label="beauty")
+                                    aspect_mode='cover',
+                                    action=URIAction(uri=article_list_sorted[1][1])
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
@@ -411,7 +413,8 @@ def callback():
                                 hero=ImageComponent(
                                     url = article_list_sorted[2][3],
                                     size='full',
-                                    action=URIAction(uri=article_list_sorted[2][1], label="beauty")
+                                    aspect_mode='cover',
+                                    action=URIAction(uri=article_list_sorted[2][1])
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
@@ -430,7 +433,8 @@ def callback():
                                 hero=ImageComponent(
                                     url = article_list_sorted[3][3],
                                     size='full',
-                                    action=URIAction(uri=article_list_sorted[3][1], label="beauty")
+                                    aspect_mode='cover',
+                                    action=URIAction(uri=article_list_sorted[3][1])
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
@@ -449,7 +453,8 @@ def callback():
                                 hero=ImageComponent(
                                     url = article_list_sorted[4][3],
                                     size='full',
-                                    action=URIAction(uri=article_list_sorted[4][1], label="beauty")
+                                    aspect_mode='cover',
+                                    action=URIAction(uri=article_list_sorted[4][1])
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
