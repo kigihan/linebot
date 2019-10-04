@@ -374,6 +374,7 @@ def callback():
                                     url = article_list_sorted[0][3],
                                     size='full',
                                     aspect_mode='cover',
+                                    aspect_ratio='20:13',
                                     action=URIAction(uri=article_list_sorted[0][1])
                                     ),
                                 footer=BoxComponent(
@@ -394,6 +395,7 @@ def callback():
                                     url = article_list_sorted[1][3],
                                     size='full',
                                     aspect_mode='cover',
+                                    aspect_ratio='20:13',
                                     action=URIAction(uri=article_list_sorted[1][1])
                                     ),
                                 footer=BoxComponent(
@@ -414,6 +416,7 @@ def callback():
                                     url = article_list_sorted[2][3],
                                     size='full',
                                     aspect_mode='cover',
+                                    aspect_ratio='20:13',
                                     action=URIAction(uri=article_list_sorted[2][1])
                                     ),
                                 footer=BoxComponent(
@@ -434,6 +437,7 @@ def callback():
                                     url = article_list_sorted[3][3],
                                     size='full',
                                     aspect_mode='cover',
+                                    aspect_ratio='20:13',
                                     action=URIAction(uri=article_list_sorted[3][1])
                                     ),
                                 footer=BoxComponent(
@@ -454,6 +458,7 @@ def callback():
                                     url = article_list_sorted[4][3],
                                     size='full',
                                     aspect_mode='cover',
+                                    aspect_ratio='20:13',
                                     action=URIAction(uri=article_list_sorted[4][1])
                                     ),
                                 footer=BoxComponent(
