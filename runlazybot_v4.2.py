@@ -285,9 +285,9 @@ def callback():
             if event.message.text == 'beau':
                 all_template_message = ''
                 article_list_sorted = PttBeautyCarousel()
-                print("\n\n\t**************")
+                print("\n\t**************\n")
                 print(article_list_sorted)
-                print("\n\n\t**************")
+                print("\n\t**************\n")
                 all_template_message = TemplateSendMessage(
                     #PC版不支援CarouselTemplate，只會顯示這段訊息，手機板剛好不會顯示，拿來當PC版的資訊欄位
                     alt_text = "PTT表特版近日推文數前5名\n\n",
@@ -593,7 +593,7 @@ def PttBeautyCarousel():
     #print(res.text)
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "lxml")
-    #print("    soup>>>" + soup.prettify())
+    print("    soup>>>" + soup.prettify())
     #爬最新-1頁面連結(因為直接get的話，第1頁是index.html)
     LatestPageURI = soup.select('.btn.wide')[1]['href']
     #print("    URI>>> " + LatestPageURI)
@@ -610,7 +610,7 @@ def PttBeautyCarousel():
         page_uri = "https://www.ptt.cc/bbs/Beauty/index" + str(page) + ".html"
         page_uri_list.append(page_uri)
     #print("    PageURI>>> " + page_uri)
-    #print(page_uri_list)
+    print(page_uri_list)
     while page_uri_list:
         index = page_uri_list.pop(0)
         #print("    try to parse: " + index)
