@@ -365,13 +365,13 @@ def callback():
                 )
 
                 fall_template_message = FlexSendMessage(
-                    alt_text='beauuuu_ALT',
+                    alt_text='beauty posts',
                     contents=BubbleContainer(
                         direction='ltr',
                         hero=ImageComponent(
-                            url = 'https://www.dw.com/image/47863948_303.jpg',
+                            url = 'https://i.imgur.com/XHr2NE1.jpg',
                             size='full',
-                            action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Hero\'s Label')
+                            action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='Hero\'s Label')
                             ),
                         footer=BoxComponent(
                             layout='vertical',
@@ -380,7 +380,26 @@ def callback():
                                 ButtonComponent(
                                     style='link',
                                     height='sm',
-                                    action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Footer\'s Label')
+                                    action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='Footer\'s Label')
+                                )
+                            ]
+                        )
+                    ),
+                    BubbleContainer(
+                        direction='ltr',
+                        hero=ImageComponent(
+                            url = 'imgur.com/BKEJ3Oz.jpg',
+                            size='full',
+                            action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Hero\'s Label')
+                            ),
+                        footer=BoxComponent(
+                            layout='vertical',
+                            spacing='sm',
+                            contents=[
+                                ButtonComponent(
+                                    style='link',
+                                    height='sm',
+                                    action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Footer\'s Label')
                                 )
                             ]
                         )
