@@ -371,9 +371,9 @@ def callback():
                             BubbleContainer(
                                 direction='ltr',
                                 hero=ImageComponent(
-                                    url = 'https://i.imgur.com/XHr2NE1.jpg',
+                                    url = article_list_sorted[0][3],
                                     size='full',
-                                    action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='Hero\'s Label 1')
+                                    action=URIAction(uri=article_list_sorted[0][1], label="beauty")
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
@@ -382,7 +382,7 @@ def callback():
                                         ButtonComponent(
                                             style='link',
                                             height='sm',
-                                            action=URIAction(uri='https://i.imgur.com/YugJgpl.jpg', label='YugJgpl.jpg')
+                                            action=URIAction(uri=article_list_sorted[0][1], label="( " + str(article_list_sorted[0][0]) + "推 ) " + article_list_sorted[0][2])
                                         )
                                     ]
                                 )
@@ -390,9 +390,9 @@ def callback():
                             BubbleContainer(
                                 direction='ltr',
                                 hero=ImageComponent(
-                                    url = 'https://i.imgur.com/BKEJ3Oz.jpg',
+                                    url = article_list_sorted[1][3],
                                     size='full',
-                                    action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='Hero\'s Label 2')
+                                    action=URIAction(uri=article_list_sorted[1][1], label="beauty")
                                     ),
                                 footer=BoxComponent(
                                     layout='vertical',
@@ -401,7 +401,64 @@ def callback():
                                         ButtonComponent(
                                             style='link',
                                             height='sm',
-                                            action=URIAction(uri='https://i.imgur.com/3ytgoYh.jpg', label='3ytgoYh.jpg')
+                                            action=URIAction(uri=article_list_sorted[1][1], label="( " + str(article_list_sorted[1][0]) + "推 ) " + article_list_sorted[1][2])
+                                        )
+                                    ]
+                                )
+                            ),
+                            BubbleContainer(
+                                direction='ltr',
+                                hero=ImageComponent(
+                                    url = article_list_sorted[2][3],
+                                    size='full',
+                                    action=URIAction(uri=article_list_sorted[2][1], label="beauty")
+                                    ),
+                                footer=BoxComponent(
+                                    layout='vertical',
+                                    spacing='sm',
+                                    contents=[
+                                        ButtonComponent(
+                                            style='link',
+                                            height='sm',
+                                            action=URIAction(uri=article_list_sorted[2][1], label="( " + str(article_list_sorted[2][0]) + "推 ) " + article_list_sorted[2][2])
+                                        )
+                                    ]
+                                )
+                            ),
+                            BubbleContainer(
+                                direction='ltr',
+                                hero=ImageComponent(
+                                    url = article_list_sorted[3][3],
+                                    size='full',
+                                    action=URIAction(uri=article_list_sorted[3][1], label="beauty")
+                                    ),
+                                footer=BoxComponent(
+                                    layout='vertical',
+                                    spacing='sm',
+                                    contents=[
+                                        ButtonComponent(
+                                            style='link',
+                                            height='sm',
+                                            action=URIAction(uri=article_list_sorted[3][1], label="( " + str(article_list_sorted[3][0]) + "推 ) " + article_list_sorted[3][2])
+                                        )
+                                    ]
+                                )
+                            ),
+                            BubbleContainer(
+                                direction='ltr',
+                                hero=ImageComponent(
+                                    url = article_list_sorted[4][3],
+                                    size='full',
+                                    action=URIAction(uri=article_list_sorted[4][1], label="beauty")
+                                    ),
+                                footer=BoxComponent(
+                                    layout='vertical',
+                                    spacing='sm',
+                                    contents=[
+                                        ButtonComponent(
+                                            style='link',
+                                            height='sm',
+                                            action=URIAction(uri=article_list_sorted[4][1], label="( " + str(article_list_sorted[4][0]) + "推 ) " + article_list_sorted[4][2])
                                         )
                                     ]
                                 )
