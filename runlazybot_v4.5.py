@@ -526,7 +526,7 @@ def crawPageBeauty(url, push_rate, soup):
                             #雖然只要一張，但抓都抓了，有幾張存幾張，可能後面有用
                             img_links_list.append(img_links)
                     #一篇文的資料抓完了，存進list
-                    article_list.append((int(comment_rate), URL, title, img_links_list[1]))
+                    article_list.append((int(comment_rate), URL, title, img_links_list[0]))
         except:
             # print u'crawPage function error:',r_ent.find(class_="title").text.strip()
             # print('本文已被刪除')
