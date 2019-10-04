@@ -504,24 +504,24 @@ def crawPageBeauty(url, push_rate, soup):
                     #沒打算抓很多連結來分析，只要有一張圖就可以了，讓他抓第5到10個連結
                     for img_uri_num in range(img_uri_num, 10, +1):
                         #print(img_uri_num)
-                        img_links = soup_post.select("a")[img_uri_num]["href"].lower()
+                        img_links = soup_post.select("a")[img_uri_num]["href"]
                         #print(img_links)
-                        if "//imgur.com/" in img_links:
-                            img_links = re.sub("/imgur.com/", "/i.imgur.com/", img_links)
+                        if "//imgur.com/" in img_links.lower():
+                            img_links = re.sub("/imgur.com/", "/i.imgur.com/", img_links, flags=re.I)
                         #如果該連結結尾是.jpg，那就可以用
-                        if img_links.endswith(".jpg"):
+                        if img_links.lower().endswith(".jpg"):
                             #如果是https就OK，不是的話要把http換成https，LINE不支援http的圖
-                            if not img_links.startswith("https://"):
-                                img_links = re.sub("http", "https", img_links)
+                            if not img_links.lower().startswith("https://"):
+                                img_links = re.sub("http", "https", img_links, flags=re.I)
                                 #print(img_links)
                             #雖然只要一張，但抓都抓了，存個5張先，可能後面有用
                             img_links_list.append(img_links)
                         #非.jpg結尾的，如果是imgur圖床的，幫他加個
-                        elif "imgur" in img_links:
+                        elif "imgur" in img_links.lower():
                             img_links = img_links + ".jpg"
                             print(img_links)
-                            if not img_links.startswith("https://"):
-                                img_links = re.sub("http", "https", img_links)
+                            if not img_links.lower().startswith("https://"):
+                                img_links = re.sub("http", "https", img_links, flags=re.I)
                                 #print(img_links)
                             #雖然只要一張，但抓都抓了，有幾張存幾張，可能後面有用
                             img_links_list.append(img_links)
