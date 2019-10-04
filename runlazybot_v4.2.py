@@ -588,8 +588,16 @@ def simple_craw_page(url, push_rate, soup, filter_simple, simple_filter_type):
     #print(article_list)
 def PttBeautyCarousel():
     TargetURI = "https://www.ptt.cc/bbs/Beauty/index.html"
-    cookies = dict(over18='1')
-    res = requests.get(TargetURI, cookies=cookies, verify=False)
+    #cookies = dict(over18='1')
+    #res = requests.get(TargetURI, cookies=cookies, verify=False)
+    #res = requests.get(TargetURI, verify=False)
+    adult_payload = {
+        "from" : "/bbs/Beauty/index.html",
+        "yes" : "yes"
+        }
+    rs = requests.session()
+    res = rs.post("https://www.ptt.cc/ask/over18", verify=False, data = adult_payload)
+    res = rs.get(TargetURI, verify=False)
     #print(res.text)
     #ResContent = res.text
     soup = BeautifulSoup(res.text, "lxml")
