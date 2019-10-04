@@ -370,12 +370,19 @@ def callback():
                         direction='ltr',
                         hero=ImageComponent(
                             url = 'https://www.dw.com/image/47863948_303.jpg',
+                            size='full',
                             action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Hero\'s Label')
                             ),
-                        footer=ButtonComponent(
-                            style='link',
-                            height='sm',
-                            action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Footer\'s Label')
+                        footer=BoxComponent(
+                            layout='vertical',
+                            spacing='sm',
+                            contents=[
+                                ButtonComponent(
+                                    style='link',
+                                    height='sm',
+                                    action=URIAction(uri='https://scx1.b-cdn.net/csz/news/800/2019/quotacowisne.jpg', label='Footer\'s Label')
+                                )
+                            ]
                         )
                     )
                 )
